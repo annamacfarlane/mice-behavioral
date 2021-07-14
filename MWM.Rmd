@@ -1,3 +1,11 @@
+---
+title: "mwm-script"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 library(ggplot2)
 library(patternplot)
 library(lme4)
@@ -6,7 +14,6 @@ library(tidyr)
 library(magrittr) 
 library(dplyr)
 library(ggpubr)
-library(tidyverse)
 
 # masterFile='/Users/ar_ni/Scripts/apoe22_33_44__2HN_3HN_4HN_mwm_combined.csv'
 outpath='/Users/AnnaMacFarlane/Documents/mice-behavioral-plots'
@@ -45,8 +52,9 @@ dfFin<-subset(dfFin, (NormSWTime <= 1))
 
 #Averages 4 trials per day for each mouse
 #dfAveraged<-aggregate(.~Animal+APOE+Sex+Stage, dfFin, mean, na.action=na.pass)
-#dfAveraged<-aggregate(dfFin, list(dfFin$Animal,dfFin$APOE,dfFin$Sex,dfFin$Stage), mean)
-dfAveraged<-aggregate(.~Animal+APOE+Sex+Stage, dfFin, FUN='mean', na.action=na.pass)
+dfAveraged<-aggregate(dfFin, list(dfFin$Animal,dfFin$APOE,dfFin$Sex,dfFin$Stage), mean)
+# dfAveraged<-aggregate(dfFin, by=list(dfFin$Animal,dfFin$APOE,dfFin$Sex,dfFin$Stage), FUN=mean, na.action=na.pass)
+dfAveraged<-aggregate(Animal ~ NormSWTime, dfFin, FUN = function(x) mean(as.numeric(as.character(x))))
 dfAPOE<-subset(dfAveraged, (APOE=='E22' | APOE=='E33' | APOE=='E44'))
 dfHN<-subset(dfAveraged, (APOE=='E2HN' | APOE=='E3HN' | APOE=='E4HN'))
 
@@ -103,14 +111,14 @@ dfQuadp1<-subset(dfQuad, Day=='Probe_D5')
 dfQuadp2<-subset(dfQuad, Day=='Probe_D8')
 
 #Adjust Norm SW Time for covariate Mean Speed
-cor.test(dfAveraged$NormSWTime, dfAveraged$Mean.speed)
-lm1<-lm(SW.time ~ Mean.speed, data=dfAveraged)
-cor.test(lm1$residuals, dfAveraged$Mean.speed)
-dfAveraged<-cbind(dfAveraged, residuals=lm1$residuals)
+#cor.test(dfAveraged$NormSWTime, dfAveraged$Mean.speed)
+#lm1<-lm(SW.time ~ Mean.speed, data=dfAveraged)
+#cor.test(lm1$residuals, dfAveraged$Mean.speed)
+#dfAveraged<-cbind(dfAveraged, residuals=lm1$residuals)
 
 #__________________________________________________________________________
 #Rewrite Data frame for Stats
-write.csv(dfAveraged, file='mwmStatsAvgAPOE.csv')
+#write.csv(dfAveraged, file='mwmStatsAvgAPOE.csv')
 write.csv(dfQuadp1, file='mwmProbeTrial1APOE.csv')
 write.csv(dfQuadp2, file='mwmProbeTrial2APOE.csv')
 
@@ -1136,4 +1144,7 @@ ggline(dfSW, x='Genotype', y='DistNorm', color='Genotype', fill='Genotype',
        point.size = 1.5, xlab='', ylab='Distance (m)', legend='top', facet.by='Day')
 ggsave(paste(outpath,'NormSWDistAPOEProbe.pdf',sep=''), plot = last_plot(), device = 'pdf',
        scale = 1, width = 5, height = 5, units = c("in"),dpi = 300)
+
+
+```
 
