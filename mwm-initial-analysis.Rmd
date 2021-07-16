@@ -9,6 +9,18 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 library(tidyverse)
 library(cowplot)
+library(gplots)
+library(ggplot2)
+library(patternplot)
+library(lme4)
+library(visreg)
+library(tidyr)
+library(magrittr) 
+library(dplyr)
+library(ggpubr)
+library(lme4)
+library(lsmeans)
+library(emmeans)
 
 info<-read.csv("apoe22_33_44__2HN_3HN_4HN_mwm_combined copy.csv", header=TRUE)
 
@@ -51,18 +63,207 @@ reg_trials<-info %>%
     Sex == "F" ~ "Female",
     Sex == "M" ~ "Male"
   )) 
-reg_trials
+
+probe_trials<-info %>% 
+  filter(Sex != "FHet") %>% 
+  filter(Stage == "Probe_D5" | Stage == "Probe_D8") %>% 
+  # aesthetic purposes:
+  mutate(Day = case_when( 
+    Stage == "Probe_D5" ~ 1,
+    Stage == "Probe_D8" ~ 2,
+  )) %>% 
+  filter(! is.na(Day)) %>% 
+  mutate(Sex = case_when(
+    Sex == "F" ~ "Female",
+    Sex == "M" ~ "Male"
+  )) 
+
+# correcting for errors from Any Maze (taken from Andrei's script)
+reg_trials$Distance=reg_trials$Distance/10
+reg_trials$NE.distance=reg_trials$NE.distance/10
+reg_trials$NW.distance=reg_trials$NW.distance/10
+reg_trials$SE.distance=reg_trials$SE.distance/10
+reg_trials$SW.distance=reg_trials$SW.distance/10
+
+#Normalize time and distance in target region
+reg_trials$NormSWTime<-reg_trials$SW.time/reg_trials$Duration
+reg_trials$NormSWDist<-reg_trials$SW.distance/reg_trials$Distance
+reg_trials<-subset(reg_trials, (NormSWTime <= 1))
+
+reg_trials$NormSWDist <- as.numeric(reg_trials$NormSWDist)
+probe_trials$NormSWDist <- as.numeric(probe_trials$NormSWDist)
+
 hn_trials <- reg_trials %>% 
-  filter(APOE == "E2HN" | APOE == "E3HN" | APOE == "E4HN")
+  filter(APOE == "E2HN" | APOE == "E3HN" | APOE == "E4HN") 
+
+hn_probe <- probe_trials %>% 
+  filter(APOE == "E2HN" | APOE == "E3HN" | APOE == "E4HN") 
 
 e_trials <- reg_trials %>% 
   filter(APOE == "E22" | APOE == "E33" | APOE == "E44")
+
+e_probe <- probe_trials %>% 
+  filter(APOE == "E22" | APOE == "E33" | APOE == "E44")
+
+e2 <- reg_trials %>% 
+  filter(APOE == "E2HN" | APOE == "E22")
+
+e2_probe <- probe_trials %>% 
+  filter(APOE == "E2HN" | APOE == "E22")
+
+e3_probe <- probe_trials %>% 
+  filter(APOE == "E3HN" | APOE == "E33")
+
+e4 <- reg_trials %>% 
+  filter(APOE == "E4HN" | APOE == "E44")
+
+e4_probe <- probe_trials %>% 
+  filter(APOE == "E4HN" | APOE == "E44")
+
+```
+
+```{r post-hoc}
+
+fm1<-lmer(NormSWDist ~ Stage*APOE*Sex*Diet+(1 | Animal), probe_trials)
+a1<-anova(fm1)
+
+a1
+
+lm1<-lm(NormSWDist ~ Sex + factor(APOE), probe_trials)
+model<-emmeans(lm1, "Sex", adjust = "Tukey")
+pairs(model)
+
+
+summary(fm1)
+confint(fm1)
+
+a1<-anova(fm1)
+
+model<-emmeans(fm1, "Sex", adjust = "Tukey")
+pairs(model)
+
+model<-emmeans(fm1, "APOE", adjust = "Tukey")
+pairs(model)
+
+
+
+```
+
+
+lm <- lm(Duration ~ Sex*APOE*Diet, reg_trials)
+summary(lm)
+anova(lm)
+```{r reg-norm-sw-dist}
+```
+
+```{r probe-norm-sw-dist}
+ggline(probe_trials, x='Stage', y='NormSWDist',
+       color='APOE', fill='APOE', facet.by='Diet', 
+       error.plot='errorbar', add='mean_se',
+       palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, legend='top')
+
+ggline(hn_probe, x='Stage', y='NormSWDist',
+       color='APOE', fill='APOE', facet.by='Diet',
+       error.plot='errorbar', add='mean_se', 
+       palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, legend='top')
+
+ggline(e_probe, x='Stage', y='NormSWDist', 
+       color='APOE', fill='APOE', facet.by='Diet',
+       error.plot='errorbar', add='mean_se', 
+       palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5,  legend='top')
+
+ggline(e2_probe, x='Stage', y='NormSWDist', 
+       color='APOE', fill='APOE', facet.by='Diet',
+       error.plot='errorbar', add='mean_se', 
+       palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5,  legend='top')
+
+ggline(e3_probe, x='Stage', y='NormSWDist', 
+       color='APOE', fill='APOE', facet.by='Diet',
+       error.plot='errorbar', add='mean_se', 
+       palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5,  legend='top')
+
+ggline(e4_probe, x='Stage', y='NormSWDist', 
+       color='APOE', fill='APOE', facet.by='Diet',
+       error.plot='errorbar', add='mean_se', 
+       palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5,  legend='top')
+```
+
+```{r violin}
+probe_trials %>% 
+  filter(Stage == "Probe_Day5")
+
+ggplot(probe_trials, aes(Diet, NormSWDist, fill = Sex)) +
+  geom_violin(alpha = 0.5) +
+  facet_grid(. ~ APOE)  +
+  #geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(size = 0.5, height = 0, width = 0.3, aes(color = Sex)) 
+```
+
+```{r probe-dist}
+ggline(probe_trials, x='Stage', y='Distance', color='APOE', fill='APOE',
+       error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, legend='top')
+
+ggline(hn_probe, x='Stage', y='Distance', color='APOE', fill='APOE',
+       error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, legend='top')
+
+ggline(e_probe, x='Stage', y='Distance', color='APOE', fill='APOE',
+       error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, legend='top')
+
+ggline(e2_probe, x='Stage', y='Distance', color='APOE', fill='APOE',
+       error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, legend='top')
+
+ggline(e3_probe, x='Stage', y='Distance', color='APOE', fill='APOE',
+       error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, legend='top')
+
+ggline(e4_probe, x='Stage', y='Distance', color='APOE', fill='APOE',
+       error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, legend='top')
 ```
 
 ```{r andrei-plots, message = FALSE}
 ggline(reg_trials, x='Stage', y='Duration', color='APOE', fill='APOE',
        error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
        point.size=1.5, xlab='', ylab='Time to Platform (s)', legend='top')
+
+# probe distance
+
+
+
+
+ggline(hn_trials, x='Stage', y='Duration', color='APOE', fill='APOE',
+       error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, xlab='', ylab='Time to Platform (s)', legend='top')
+
+ggline(e_trials, x='Stage', y='Duration', color='APOE', fill='APOE',
+       error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, xlab='', ylab='Time to Platform (s)', legend='top')
+
+ggline(e2, x='Stage', y='Duration', color='APOE', fill='APOE',
+       error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, xlab='', ylab='Time to Platform (s)', legend='top')
+
+ggline(e3, x='Stage', y='Duration', color='APOE', fill='APOE',
+       error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, xlab='', ylab='Time to Platform (s)', legend='top')
+
+ggline(e4, x='Stage', y='Duration', color='APOE', fill='APOE',
+       error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
+       point.size=1.5, xlab='', ylab='Time to Platform (s)', legend='top')
+
+
+
+
 
 ggline(reg_trials, x='Stage', y='SW.time', color='APOE', fill='APOE',
        error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
@@ -72,12 +273,6 @@ ggline(reg_trials, x='Stage', y='SW.distance', color='APOE', fill='APOE',
        error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
        point.size=1.5, xlab='', ylab='DW Distance', legend='top')
 ```
-ggplot(reg_trials, aes(Day, Duration, 
-                 color = APOE, fill = APOE)) +
-  geom_boxplot() +
-  theme_bw() +
-  labs(title = "MWM Duration - all genotypes",
-       subtitle = "Males and females")
        
 ```{r duration, message = FALSE}
 
