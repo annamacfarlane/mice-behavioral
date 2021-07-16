@@ -1,0 +1,112 @@
+---
+title: "MWM Analysis"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(ggplot2)
+library(patternplot)
+library(lme4)
+library(visreg)
+library(tidyr)
+library(magrittr) 
+library(dplyr)
+library(ggpubr)
+library(tidyverse)
+
+info<-read.csv("apoe22_33_44__2HN_3HN_4HN_mwm_combined copy.csv", header=TRUE)
+
+test<-info %>% 
+  filter(Sex != "FHet") %>% 
+  filter(Stage != "Probe_D5" | Stage != "Probe_D8") %>% 
+  # aesthetic purposes:
+  mutate(Stage = case_when( 
+    Stage == "Day1" ~ "Day 1",
+    Stage == "Day2" ~ "Day 2",
+    Stage == "Day3" ~ "Day 3",
+    Stage == "Day4" ~ "Day 4",
+    Stage == "Day5" ~ "Day 5"
+  )) %>% 
+  filter(! is.na(Stage)) %>% 
+  mutate(Sex = case_when(
+    Sex == "F" ~ "Female",
+    Sex == "M" ~ "Male"
+  )) %>% 
+  group_by(Animal, Stage, add = TRUE) %>% 
+  #group_by(Stage) %>% 
+  summarize(
+    Duration = mean(Duration),
+    Distance = mean(Distance)
+  )
+
+reg_trials<-info %>% 
+  filter(Sex != "FHet") %>% 
+  filter(Stage != "Probe_D5" | Stage != "Probe_D8") %>% 
+  # aesthetic purposes:
+  mutate(Day = case_when( 
+    Stage == "Day1" ~ 1,
+    Stage == "Day2" ~ 2,
+    Stage == "Day3" ~ 3,
+    Stage == "Day4" ~ 4,
+    Stage == "Day5" ~ 5
+  )) %>% 
+  filter(! is.na(Day)) %>% 
+  mutate(Sex = case_when(
+    Sex == "F" ~ "Female",
+    Sex == "M" ~ "Male"
+  )) 
+
+group_hn <- reg_trials %>% 
+  filter(APOE=='E2HN')
+
+group_hn
+  
+#hn_trials <- reg_trials %>% 
+#  filter(APOE == "E2HN" | APOE == "E3HN" | APOE == "E4HN")
+#hn_trials
+
+#e_trials <- reg_trials %>% 
+#  filter(APOE == "E22", APOE == "E33", APOE == "E44")
+```
+
+```{r winding}
+ggplot(reg_trials, aes(Day, Winding, 
+                 color = APOE, fill = APOE)) +
+  geom_point() +
+  geom_smooth(method = "lm", alpha = 0.2) +
+  facet_grid(. ~ Sex) 
+
+ggplot(hn_trials, aes(Day, Winding, 
+                 color = APOE, fill = APOE)) +
+  geom_point() +
+  geom_smooth(method = "lm", alpha = 0.2) +
+  facet_grid(. ~ Sex) 
+
+ggplot(e_trials, aes(Day, Winding, 
+                 color = APOE, fill = APOE)) +
+  geom_point() +
+  geom_smooth(method = "lm", alpha = 0.2) +
+  facet_grid(. ~ Sex) 
+```
+
+```{r duration}
+ggplot(reg_trials, aes(Day, Duration, 
+                 color = APOE, fill = APOE)) +
+  geom_point() +
+  geom_smooth(method = "lm", alpha = 0.2) +
+  facet_grid(. ~ Sex)
+
+ggplot(hn_trials, aes(Day, Duration, 
+                 color = APOE, fill = APOE)) +
+  geom_point() +
+  geom_smooth(method = "lm", alpha = 0.2) +
+  facet_grid(. ~ Sex)
+
+ggplot(e_trials, aes(Day, Duration, 
+                 color = APOE, fill = APOE)) +
+  geom_point() +
+  geom_smooth(method = "lm", alpha = 0.2) +
+  facet_grid(. ~ Sex) 
+```

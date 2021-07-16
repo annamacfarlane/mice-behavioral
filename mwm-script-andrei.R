@@ -43,10 +43,16 @@ dfFin$NormSWTime<-dfFin$SW.time/dfFin$Duration
 dfFin$NormSWDist<-dfFin$SW.distance/dfFin$Distance
 dfFin<-subset(dfFin, (NormSWTime <= 1))
 
+dfFin$Animal<-as.numeric(factor(c(dfFin$Animal)))
+dfFin$APOE<-as.numeric(factor(c(dfFin$APOE)))
+dfFin$Sex<-as.numeric(factor(c("M", "F")))
+dfFin$Stage<-as.numeric(factor(c(dfFin$Stage)))
+
 #Averages 4 trials per day for each mouse
 #dfAveraged<-aggregate(.~Animal+APOE+Sex+Stage, dfFin, mean, na.action=na.pass)
-#dfAveraged<-aggregate(dfFin, list(dfFin$Animal,dfFin$APOE,dfFin$Sex,dfFin$Stage), mean)
-dfAveraged<-aggregate(.~Animal+APOE+Sex+Stage, dfFin, FUN='mean', na.action=na.pass)
+dfAveraged<-aggregate(dfFin, by = list(dfFin$Animal,dfFin$APOE,dfFin$Sex,dfFin$Stage), mean)
+#dfAveraged<-aggregate(dfFin, by = list(dfFin$Animal,dfFin$APOE,dfFin$Sex,dfFin$Stage), mean)
+#dfAveraged<-aggregate(.~Animal+APOE+Sex+Stage, dfFin, FUN='mean', na.action=na.pass)
 dfAPOE<-subset(dfAveraged, (APOE=='E22' | APOE=='E33' | APOE=='E44'))
 dfHN<-subset(dfAveraged, (APOE=='E2HN' | APOE=='E3HN' | APOE=='E4HN'))
 
@@ -1136,4 +1142,5 @@ ggline(dfSW, x='Genotype', y='DistNorm', color='Genotype', fill='Genotype',
        point.size = 1.5, xlab='', ylab='Distance (m)', legend='top', facet.by='Day')
 ggsave(paste(outpath,'NormSWDistAPOEProbe.pdf',sep=''), plot = last_plot(), device = 'pdf',
        scale = 1, width = 5, height = 5, units = c("in"),dpi = 300)
+
 
