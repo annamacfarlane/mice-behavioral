@@ -1,0 +1,338 @@
+---
+title: "HFD Cohort 1: Body Mass and Glucose"
+date: "6/24/2021"
+output: pdf_document 
+---
+
+
+```{r setup, include=FALSE}
+library(tidyverse)  # importing tidyverse
+library(gplots)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)   # gets rid of warning messages in output
+
+# uploading csv files with body mass and glucose data
+ch1 <- read.csv("HFD_Cohort1_Weights.csv")
+ch1_glucose <- read.csv("HFD_Cohort1_Glucose.csv")
+hfd <- read.csv("all_data.csv")
+
+```
+
+``` {r glucose-violin, echo=FALSE}
+hfd_gluc <- hfd %>% # renaming elements in sex column for key in plot
+  filter(! is.na(glucose)) %>% 
+  mutate(sex = case_when(
+    sex == "F" ~ "Female",
+    sex == "M" ~ "Male"
+  ))
+
+# violin plot
+ggplot(hfd_gluc, aes(x=genotype, y=glucose)) +
+  geom_violin() + 
+  geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(height = 0, width = 0.3, aes(color = sex)) +
+  labs(x = "Genotype", y = "Glucose",
+       title = "Distribution of glucose levels by genotype")
+
+# one-way ANOVA 
+res.aov <- aov(glucose ~ genotype, data = hfd_gluc)
+summary(res.aov)
+```
+
+``` {r mean-fxn, echo=FALSE}
+# function to calculate mean, confidence intervals etc
+# taken from attached link below
+
+# http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/#Helper%20functions
+# sd = standard deviation, se = standard error, ci = confidence interval
+  
+summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=FALSE,
+                      conf.interval=.95, .drop=TRUE) {
+    library(plyr)
+
+    # New version of length which can handle NA's: if na.rm==T, don't count them
+    length2 <- function (x, na.rm=FALSE) {
+        if (na.rm) sum(!is.na(x))
+        else       length(x)
+    }
+
+    # This does the summary. For each group's data frame, return a vector with
+    # N, mean, and sd
+    datac <- ddply(data, groupvars, .drop=.drop,
+      .fun = function(xx, col) {
+        c(N    = length2(xx[[col]], na.rm=na.rm),
+          mean = mean   (xx[[col]], na.rm=na.rm),
+          sd   = sd     (xx[[col]], na.rm=na.rm)
+        )
+      },
+      measurevar
+    )
+
+    # Rename the "mean" column    
+    datac <- rename(datac, c("mean" = measurevar))
+
+    datac$se <- datac$sd / sqrt(datac$N)  # Calculate standard error of the mean
+
+    # Confidence interval multiplier for standard error
+    # Calculate t-statistic for confidence interval: 
+    # e.g., if conf.interval is .95, use .975 (above/below), and use df=N-1
+    ciMult <- qt(conf.interval/2 + .5, datac$N-1)
+    datac$ci <- datac$se * ciMult
+
+    return(datac)
+}
+```
+
+``` {r weight-ci, echo=FALSE}
+
+hfd <- hfd %>% 
+  filter(! is.na(weight)) # filtering out animals that were sacrificed
+
+hfd_sum <- summarySE(hfd, measurevar="weight", groupvars=c("genotype","date", 
+                                                           "week"))
+hfd_sum # printing data frame with sd, se, and ci for each genotype at each date
+
+ggplot(hfd_sum, aes(x=week, y=weight, colour=genotype)) + 
+    geom_errorbar(aes(ymin=weight-se, ymax=weight+se), width=.1) +
+    geom_line() +
+    geom_point() +
+  labs(x = "Week", y = "Body mass (g)", 
+       title = "Averaged body mass by week across genotypes",
+       subtitle = "With error bars indicating a 95% confidence interval")
+
+# one-way ANOVA 
+res.aov <- aov(weight ~ genotype, data = hfd)
+summary(res.aov)
+
+```
+
+hfd4 <- hfd %>% 
+  filter(week == 0) %>% 
+  count(genotype == "E4HN")
+
+hfd3 <- hfd %>% 
+  filter(week == 0) %>% 
+  count(genotype == "E3HN")
+
+hfd33 <- hfd %>% 
+  filter(week == 0) %>% 
+  count(genotype == "E33")
+
+
+## Body Mass
+
+```{r hfd-1-avg, echo=FALSE}
+ch1 <- ch1 %>% 
+  filter(!is.na(X201012.1)) # filtering for data with values for body mass
+
+# line graph with average body masses for each genotype
+# color coded to match original xlsx file 
+ggplot(data = ch1, aes(x = week, group = 1)) +
+  labs(x = "Week", y = "Body mass (g)", 
+       title = "HFD cohort 1: average body mass over time by genotype",
+       subtitle = "2020-2021") +
+  geom_line(aes(y = E4HN), color = "darkolivegreen3") +
+  geom_line(aes(y = E3HN), color = "darksalmon") +
+  geom_line(aes(y = E33), color = "darkgoldenrod1") +
+  scale_colour_manual("", 
+                      breaks = c("E4HN", "E3HN", "E33"),
+                      values = c("E4HN"="darkolivegreen3", "E3HN"="darksalmon", 
+                                 "E33"="darkgoldenrod1"))
+
+```
+
+
+
+```{r hfd-1, echo=FALSE}
+# lane graphs with data for each mouse for body mass   
+ggplot(data = ch1, aes(x = week, group = 1)) +
+  labs(x = "Week", y = "Body mass (g)", 
+       title = "HFD cohort 1: body mass over time",
+       subtitle = "2020-2021") +
+  geom_line(aes(y = X201012.1, color = "E4HN")) +
+  geom_line(aes(y = X201012.2, color = "E4HN")) +
+  geom_line(aes(y = X201012.3, color = "E4HN")) +
+  geom_line(aes(y = X201012.4, color = "E4HN")) +
+  geom_line(aes(y = X201012.5, color = "E4HN")) +
+  geom_line(aes(y = X201012.6, color = "E4HN")) +
+  geom_line(aes(y = X201012.7, color = "E4HN")) +
+  geom_line(aes(y = X201012.8, color = "E4HN")) +
+  geom_line(aes(y = X201012.9, color = "E4HN")) +
+  geom_line(aes(y = X201012.10, color = "E4HN")) +
+  geom_line(aes(y = X201012.11, color = "E3HN")) +
+  geom_line(aes(y = X201012.12, color = "E3HN")) +
+  geom_line(aes(y = X201012.13, color = "E3HN")) +
+  geom_line(aes(y = X201012.15, color = "E33")) +
+  geom_line(aes(y = X201012.16, color = "E33")) +
+  geom_line(aes(y = X201012.17, color = "E33")) +
+  geom_line(aes(y = X201012.18, color = "E33")) +
+  geom_line(aes(y = X201012.19, color = "E33")) +
+  geom_line(aes(y = X201012.20, color = "E33")) +
+  geom_line(aes(y = X201012.21, color = "E33")) +
+  geom_line(aes(y = X201012.22, color = "E33")) +
+  geom_line(aes(y = X201012.23, color = "E33")) +
+  geom_line(aes(y = X201012.24, color = "E33")) +
+  geom_line(aes(y = X201012.25, color = "E33")) +
+  geom_line(aes(y = X201012.26, color = "E33")) +
+  geom_line(aes(y = X201012.27, color = "E33")) +
+  scale_colour_manual("", 
+                      breaks = c("E4HN", "E3HN", "E33"),
+                      values = c("E4HN"="darkolivegreen3", "E3HN"="darksalmon", 
+                                 "E33"="darkgoldenrod1"))
+
+
+
+
+ggplot(data = ch1, aes(x = week, group = 1)) +
+  labs(x = "Week", y = "Body mass (g)", 
+       title = "HFD cohort 1: body mass over time",
+       subtitle = "E4HN") +
+  geom_line(aes(y = X201012.1), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.2), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.3), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.4), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.5), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.6), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.7), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.8), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.9), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.10), color = "darkolivegreen3")
+
+
+
+
+ggplot(data = ch1, aes(x = week, group = 1)) +
+  labs(x = "Week", y = "Body mass (g)", 
+       title = "HFD cohort 1: body mass over time",
+       subtitle = "E3HN") +
+  geom_line(aes(y = X201012.11), color = "darksalmon") +
+  geom_line(aes(y = X201012.12), color = "darksalmon") +
+  geom_line(aes(y = X201012.13), color = "darksalmon")
+
+
+
+
+ggplot(data = ch1, aes(x = week, group = 1)) +
+  labs(x = "Week", y = "Body mass (g)", 
+       title = "HFD cohort 1: body mass over time",
+       subtitle = "E33") +
+  geom_line(aes(y = X201012.15), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.16), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.17), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.18), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.19), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.20), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.21), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.22), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.23), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.24), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.25), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.26), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.27), color = "darkgoldenrod1")
+
+```
+
+
+
+## Glucose
+
+```{r hfd-glucose, echo = FALSE, message = FALSE}
+
+# line graph for average glucose levels for each genotype
+# color coded to match original xlsx file
+ggplot(data = ch1_glucose, aes(x = week, group = 1)) +
+  labs(x = "Week", y = "Glucose", 
+       title = "HFD cohort 1: average glucose over time by genotype",
+       subtitle = "2020-2021") +
+  geom_line(aes(y = E4HN), color = "darkolivegreen3") +
+  geom_line(aes(y = E3HN), color = "darksalmon") +
+  geom_line(aes(y = E33), color = "darkgoldenrod1") 
+  #scale_colour_manual("", 
+  #                    breaks = c("E4HN", "E3HN", "E33"),
+  #                    values = c("E4HN"="darkolivegreen3", "E3HN"="darksalmon", 
+   #                              "E33"="darkgoldenrod1"))
+
+
+# line graphs with glucose data for each mouse
+ggplot(data = ch1_glucose, aes(x = week, group = 1)) +
+  labs(x = "Week", y = "Glucose", 
+       title = "HFD cohort 1: glucose over time",
+       subtitle = "2020-2021") +
+  geom_line(aes(y = X201012.1, color = "E4HN")) +
+  geom_line(aes(y = X201012.2, color = "E4HN")) +
+  geom_line(aes(y = X201012.3, color = "E4HN")) +
+  geom_line(aes(y = X201012.4, color = "E4HN")) +
+  geom_line(aes(y = X201012.5, color = "E4HN")) +
+  geom_line(aes(y = X201012.6, color = "E4HN")) +
+  geom_line(aes(y = X201012.7, color = "E4HN")) +
+  geom_line(aes(y = X201012.8, color = "E4HN")) +
+  geom_line(aes(y = X201012.9, color = "E4HN")) +
+  geom_line(aes(y = X201012.10, color = "E4HN")) +
+  geom_line(aes(y = X201012.11, color = "E3HN")) +
+  geom_line(aes(y = X201012.12, color = "E3HN")) +
+  geom_line(aes(y = X201012.13, color = "E3HN")) +
+  geom_line(aes(y = X201012.15, color = "E33")) +
+  geom_line(aes(y = X201012.16, color = "E33")) +
+  geom_line(aes(y = X201012.17, color = "E33")) +
+  geom_line(aes(y = X201012.18, color = "E33")) +
+  geom_line(aes(y = X201012.19, color = "E33")) +
+  geom_line(aes(y = X201012.20, color = "E33")) +
+  geom_line(aes(y = X201012.21, color = "E33")) +
+  geom_line(aes(y = X201012.22, color = "E33")) +
+  geom_line(aes(y = X201012.23, color = "E33")) +
+  geom_line(aes(y = X201012.24, color = "E33")) +
+  geom_line(aes(y = X201012.25, color = "E33")) +
+  geom_line(aes(y = X201012.26, color = "E33")) +
+  geom_line(aes(y = X201012.27, color = "E33")) +
+  scale_colour_manual("", 
+                      breaks = c("E4HN", "E3HN", "E33"),
+                      values = c("E4HN"="darkolivegreen3", "E3HN"="darksalmon", 
+                                 "E33"="darkgoldenrod1"))
+
+
+
+ggplot(data = ch1_glucose, aes(x = week, group = 1)) +
+  labs(x = "Week", y = "Glucose", 
+       title = "HFD cohort 1: glucose over time",
+       subtitle = "E4HN") +
+  geom_line(aes(y = X201012.1), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.2), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.3), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.4), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.5), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.6), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.7), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.8), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.9), color = "darkolivegreen3") +
+  geom_line(aes(y = X201012.10), color = "darkolivegreen3")
+
+
+
+ggplot(data = ch1_glucose, aes(x = week, group = 1)) +
+  labs(x = "Week", y = "Glucose", 
+       title = "HFD cohort 1: glucose over time",
+       subtitle = "E3HN") +
+  geom_line(aes(y = X201012.11), color = "darksalmon") +
+  geom_line(aes(y = X201012.12), color = "darksalmon") +
+  geom_line(aes(y = X201012.13), color = "darksalmon")
+
+
+
+ggplot(data = ch1_glucose, aes(x = week, group = 1)) +
+  labs(x = "Week", y = "Glucose", 
+       title = "HFD cohort 1: glucose over time",
+       subtitle = "E33") +
+  geom_line(aes(y = X201012.15), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.16), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.17), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.18), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.19), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.20), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.21), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.22), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.23), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.24), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.25), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.26), color = "darkgoldenrod1") +
+  geom_line(aes(y = X201012.27), color = "darkgoldenrod1")
+
+```
