@@ -22,6 +22,7 @@ library(lsmeans)
 library(emmeans)
 
 info<-read.csv("apoe22_33_44__2HN_3HN_4HN_mwm_combined copy.csv", header=TRUE)
+view(info)
 
 reg_trials<-info %>% 
   filter(Sex != "FHet") %>% 
@@ -98,6 +99,38 @@ e4_probe <- probe_trials %>%
 ```
 
 ```{r post-hoc}
+outpath='/Users/AnnaMacFarlane/Documents/mice-behavioral-plots'
+data.lm<-lm(NormSWDist~APOE+Stage, reg_trials)
+data.aov <- aov(data.lm)
+tukey.test <- TukeyHSD(data.aov)
+
+mytTable<-as_tibble(
+  cbind(testMethod$data.name, testMethod$statistic, testMethod$p.value, testMethod$parameter[1], nrow(dfAveraged))
+)
+
+mycolnames<-c('contrast', 'statistic', 'p.value', 'df', 'observations')
+
+postHocTable<-matrix(nrow=11, ncol=5)
+postHocTable[1,]=c('', '', '', '', '')
+postHocTable[2,]=c('TukeyHSD', 'mean diff', 'CIlwr', 'CIhi', 'p-value')
+postHocTable[3,]=c('APOE3/3-APOE2/2', tukey.test$APOE[2,1], tukey.test$APOE[2,2], tukey.test$APOE[2,3], tukey.test$APOE[2,4])
+postHocTable[4,]=c('APOE4/4-APOE2/2', tukey.test$APOE[4,1], tukey.test$APOE[4,2], tukey.test$APOE[4,3], tukey.test$APOE[4,4])
+postHocTable[5,]=c('APOE4/4-APOE3/3', tukey.test$APOE[11,1], tukey.test$APOE[11,2], tukey.test$APOE[11,3], tukey.test$APOE[11,4])
+postHocTable[6,]=c('E2HN-E3HN', tukey.test$APOE[7,1], tukey.test$APOE[7,2], tukey.test$APOE[7,3], tukey.test$APOE[7,4])
+postHocTable[7,]=c('E4HN-E2HN', tukey.test$APOE[9,1], tukey.test$APOE[9,2], tukey.test$APOE[9,3], tukey.test$APOE[9,4])
+postHocTable[8,]=c('E4HN-E3HN', tukey.test$APOE[12,1], tukey.test$APOE[12,2], tukey.test$APOE[12,3], tukey.test$APOE[12,4])
+postHocTable[9,]=c('APOE2/2-E2HN', tukey.test$APOE[1,1], tukey.test$APOE[1,2], tukey.test$APOE[1,3], tukey.test$APOE[1,4])
+postHocTable[10,]=c('APOE3/3-E3HN', tukey.test$APOE[10,1], tukey.test$APOE[10,2], tukey.test$APOE[10,3], tukey.test$APOE[10,4])
+postHocTable[11,]=c('APOE4/4-E4HN', tukey.test$APOE[15,1], tukey.test$APOE[15,2], tukey.test$APOE[15,3], tukey.test$APOE[15,4])
+
+myfile<-paste(outpath,'poolTimestats.csv')
+write.table(mytTable, file=myfile, col.names = mycolnames , sep = "," , row.names = F,append=TRUE)
+write.table(postHocTable, file=myfile, sep=",", row.names=F, append=TRUE, col.names=F)
+
+```
+
+```{r lmer}
+
 fm1<-lmer(NormSWDist ~ Stage*APOE*Sex*Diet+(1 | Animal), probe_trials)
 
 summary(fm1)

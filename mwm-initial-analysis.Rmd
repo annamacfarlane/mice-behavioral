@@ -4,6 +4,8 @@ author: "Anna MacFarlane"
 output: pdf_document
 ---
 
+12 months vs. 18 months
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
@@ -90,33 +92,45 @@ reg_trials$NormSWTime<-reg_trials$SW.time/reg_trials$Duration
 reg_trials$NormSWDist<-reg_trials$SW.distance/reg_trials$Distance
 reg_trials<-subset(reg_trials, (NormSWTime <= 1))
 
+#Normalize Probe Distances
+probe_trials$DistTot<-probe_trials$NE.distance+probe_trials$NW.distance+probe_trials$SE.distance+probe_trials$SW.distance
+probe_trials$NE.Dist.Norm<-probe_trials$NE.distance/probe_trials$DistTot
+probe_trials$NW.Dist.Norm<-probe_trials$NW.distance/probe_trials$DistTot
+probe_trials$SE.Dist.Norm<-probe_trials$SE.distance/probe_trials$DistTot
+probe_trials$SW.Dist.Norm<-probe_trials$SW.distance/probe_trials$DistTot
+
+#Normalize Probe Times
+probe_trials$TimeTot<-probe_trials$NE.time+probe_trials$NW.time+probe_trials$SE.time+probe_trials$SW.time
+probe_trials$NE.Time.Norm<-probe_trials$NE.time/probe_trials$TimeTot
+probe_trials$NW.Time.Norm<-probe_trials$NW.time/probe_trials$TimeTot
+probe_trials$SE.Time.Norm<-probe_trials$SE.time/probe_trials$TimeTot
+probe_trials$SW.Time.Norm<-probe_trials$SW.time/probe_trials$TimeTot
+
+# Converting NormSWDiet values to numeric
 reg_trials$NormSWDist <- as.numeric(reg_trials$NormSWDist)
 probe_trials$NormSWDist <- as.numeric(probe_trials$NormSWDist)
 
+# Individual datasets for regular trials 
 hn_trials <- reg_trials %>% 
   filter(APOE == "E2HN" | APOE == "E3HN" | APOE == "E4HN") 
-
-hn_probe <- probe_trials %>% 
-  filter(APOE == "E2HN" | APOE == "E3HN" | APOE == "E4HN") 
-
 e_trials <- reg_trials %>% 
   filter(APOE == "E22" | APOE == "E33" | APOE == "E44")
-
-e_probe <- probe_trials %>% 
-  filter(APOE == "E22" | APOE == "E33" | APOE == "E44")
-
 e2 <- reg_trials %>% 
   filter(APOE == "E2HN" | APOE == "E22")
-
-e2_probe <- probe_trials %>% 
-  filter(APOE == "E2HN" | APOE == "E22")
-
-e3_probe <- probe_trials %>% 
+e3 <- reg_trials %>% 
   filter(APOE == "E3HN" | APOE == "E33")
-
 e4 <- reg_trials %>% 
   filter(APOE == "E4HN" | APOE == "E44")
 
+# Individual datasets for probe trials
+hn_probe <- probe_trials %>% 
+  filter(APOE == "E2HN" | APOE == "E3HN" | APOE == "E4HN") 
+e_probe <- probe_trials %>% 
+  filter(APOE == "E22" | APOE == "E33" | APOE == "E44")
+e2_probe <- probe_trials %>% 
+  filter(APOE == "E2HN" | APOE == "E22")
+e3_probe <- probe_trials %>% 
+  filter(APOE == "E3HN" | APOE == "E33")
 e4_probe <- probe_trials %>% 
   filter(APOE == "E4HN" | APOE == "E44")
 
@@ -132,7 +146,7 @@ a1
 lm1<-lm(NormSWDist ~ Sex + factor(APOE), probe_trials)
 model<-emmeans(lm1, "Sex", adjust = "Tukey")
 pairs(model)
-
+zz
 
 summary(fm1)
 confint(fm1)
@@ -153,10 +167,12 @@ pairs(model)
 lm <- lm(Duration ~ Sex*APOE*Diet, reg_trials)
 summary(lm)
 anova(lm)
+
 ```{r reg-norm-sw-dist}
 ```
 
 ```{r probe-norm-sw-dist}
+
 ggline(probe_trials, x='Stage', y='NormSWDist',
        color='APOE', fill='APOE', facet.by='Diet', 
        error.plot='errorbar', add='mean_se',
@@ -195,14 +211,25 @@ ggline(e4_probe, x='Stage', y='NormSWDist',
 ```
 
 ```{r violin}
-probe_trials %>% 
-  filter(Stage == "Probe_Day5")
+day5<- probe_trials %>% 
+  filter(Stage == "Probe_D5")
 
-ggplot(probe_trials, aes(Diet, NormSWDist, fill = Sex)) +
+day8<-probe_trials %>% 
+  filter(Stage == "Probe_D8")
+
+ggplot(day5, aes(Diet, NormSWDist, fill = Sex)) +
   geom_violin(alpha = 0.5) +
   facet_grid(. ~ APOE)  +
   #geom_boxplot(width = 0.1, outlier.color = "red") +
-  geom_jitter(size = 0.5, height = 0, width = 0.3, aes(color = Sex)) 
+  geom_jitter(size = 0.5, height = 0, width = 0.3, aes(color = Sex)) + 
+  labs(title = "Probe Trial: Day 5")
+
+ggplot(day8, aes(Diet, NormSWDist, fill = Sex)) +
+  geom_violin(alpha = 0.5) +
+  facet_grid(. ~ APOE)  +
+  #geom_boxplot(width = 0.1, outlier.color = "red") +
+  geom_jitter(size = 0.5, height = 0, width = 0.3, aes(color = Sex)) +
+  labs(title = "Probe Trial: Day 8")
 ```
 
 ```{r probe-dist}
