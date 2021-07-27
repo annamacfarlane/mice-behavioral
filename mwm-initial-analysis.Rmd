@@ -173,6 +173,42 @@ anova(lm)
 
 ```{r probe-norm-sw-dist}
 
+#data_summary <- function(data, varname, groupnames){
+#  require(plyr)
+#  summary_func <- function(x, col){
+#    c(mean = mean(x[[col]], na.rm=TRUE),
+#      sd = sd(x[[col]], na.rm=TRUE))
+#  }
+#  data_sum<-ddply(data, groupnames, .fun=summary_func,
+#                  varname)
+#  data_sum <- rename(data_sum, c("mean" = varname))
+# return(data_sum)
+#}
+
+probe_summary <- probe_trials %>% 
+  group_by(Stage, APOE, Diet, Sex) %>% 
+  summarize(
+    sd = sd(NormSWDist, na.rm = TRUE),
+    NormSWDist = mean(NormSWDist)
+  )
+
+probe_summary
+
+ggplot(probe_summary, aes(x=Stage, y=NormSWDist, group = 1, 
+                        color = APOE, fill = APOE)) + 
+  geom_line() + 
+  geom_point() +
+  #geom_errorbar(aes(x=Stage, y=NormSWDist, ymin=len-sd,ymax=len+sd),
+  #              data = probe_summary,
+  #              inherit.aes = FALSE)+
+  geom_errorbar(aes(ymin=NormSWDist-sd, ymax=NormSWDist+sd), width=.2,
+                 position=position_dodge(0.05)) +
+  facet_grid(. ~ Diet+Sex) + 
+  background_grid(major = 'xy', minor = "none") + # add thin horizontal lines 
+  panel_border() + 
+  theme_bw()+
+  theme(legend.position="none")
+
 ggline(probe_trials, x='Stage', y='NormSWDist',
        color='APOE', fill='APOE', facet.by='Diet', 
        error.plot='errorbar', add='mean_se',
