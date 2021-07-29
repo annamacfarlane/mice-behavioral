@@ -1,6 +1,7 @@
 ---
-title: "MWM Analysis"
+title: "MWM Line Graphs"
 author: "Anna MacFarlane"
+date: "7/29/2021"
 output: pdf_document
 ---
 
@@ -139,37 +140,7 @@ e4_probe <- probe_trials %>%
 
 ```
 
-```{r post-hoc}
-
-fm1<-lmer(NormSWDist ~ Stage*APOE*Sex*Diet+(1 | Animal), probe_trials)
-a1<-anova(fm1)
-
-a1
-
-lm1<-lm(NormSWDist ~ Sex + factor(APOE), probe_trials)
-model<-emmeans(lm1, "Sex", adjust = "Tukey")
-pairs(model)
-
-summary(fm1)
-confint(fm1)
-
-a1<-anova(fm1)
-
-model<-emmeans(fm1, "Sex", adjust = "Tukey")
-pairs(model)
-
-model<-emmeans(fm1, "APOE", adjust = "Tukey")
-pairs(model)
-
-
-
-```
-
-
-lm <- lm(Duration ~ Sex*APOE*Diet, reg_trials)
-summary(lm)
-anova(lm)
-
+### Normalized SW Distance for Regular Trials 
 ```{r reg-norm-sw-dist}
 ggline(reg_trials, x='Stage', y='NormSWDist',
        color='APOE', fill='APOE', facet.by=c('Diet','Sex'), 
@@ -208,6 +179,8 @@ ggline(e4, x='Stage', y='NormSWDist',
        point.size=1.5,  legend='top')
 ```
 
+
+### Normalized SW Distance for Probe Trials
 ```{r probe-norm-sw-dist}
 ggline(probe_trials, x='Stage', y='NormSWDist',
        color='APOE', fill='APOE', facet.by=c('Diet','Sex'), 
@@ -246,27 +219,7 @@ ggline(e4_probe, x='Stage', y='NormSWDist',
        point.size=1.5,  legend='top')
 ```
 
-```{r violin}
-day5<- probe_trials %>% 
-  filter(Stage == "Probe_D5")
-
-day8<-probe_trials %>% 
-  filter(Stage == "Probe_D8")
-
-ggplot(day5, aes(Diet, NormSWDist, fill = Sex)) +
-  geom_violin(alpha = 0.5) +
-  facet_grid(. ~ APOE)  +
-  #geom_boxplot(width = 0.1, outlier.color = "red") +
-  geom_jitter(size = 0.5, height = 0, width = 0.3, aes(color = Sex)) + 
-  labs(title = "Probe Trial: Day 5")
-
-ggplot(day8, aes(Diet, NormSWDist, fill = Sex)) +
-  geom_violin(alpha = 0.5) +
-  facet_grid(. ~ APOE)  +
-  #geom_boxplot(width = 0.1, outlier.color = "red") +
-  geom_jitter(size = 0.5, height = 0, width = 0.3, aes(color = Sex)) +
-  labs(title = "Probe Trial: Day 8")
-```
+### Distance in Probe Trials 
 
 ```{r probe-dist}
 ggline(probe_trials, x='Stage', y='Distance', color='APOE', fill='APOE', facet.by=c('Diet','Sex'),
@@ -294,6 +247,10 @@ ggline(e4_probe, x='Stage', y='Distance', color='APOE', fill='APOE', facet.by=c(
        point.size=1.5, legend='top')
 ```
 
+### Duration Regular Trials 
+
+
+
 ```{r reg-duration, message = FALSE}
 ggline(reg_trials, x='Stage', y='Duration', color='APOE', fill='APOE', facet.by=c('Diet','Sex'),
        error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
@@ -318,314 +275,4 @@ ggline(e3, x='Stage', y='Duration', color='APOE', fill='APOE', facet.by=c('Diet'
 ggline(e4, x='Stage', y='Duration', color='APOE', fill='APOE', facet.by=c('Diet','Sex'),
        error.plot='errorbar', add='mean_se', palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', 'orange'), size=1,
        point.size=1.5, xlab='', ylab='Time to Platform (s)', legend='top')
-```
-       
-```{r duration, message = FALSE}
-
-plot1<-ggplot(reg_trials, aes(Day, Duration, 
-                 color = APOE, fill = APOE)) +
-  geom_jitter(size = .5) +
-  theme_bw() +
-  labs(title = "MWM Duration - all genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(reg_trials, aes(Day, Duration, 
-                 color = APOE, fill = APOE)) +
-  geom_jitter(size = .5) +
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-
-plot1<-ggplot(hn_trials, aes(Day, Duration, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-  theme_bw() +
-  labs(title = "MWM Duration - HN genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(hn_trials, aes(Day, Duration, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-
-plot1<-ggplot(e_trials, aes(Day, Duration, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "MWM Duration - non-HN genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(e_trials, aes(Day, Duration, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-```
-
-
-```{r sw-distance, message = FALSE}
-plot1<-ggplot(reg_trials, aes(Day, SW.distance, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "SW Distance - all genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(reg_trials, aes(Day, SW.distance, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-
-plot1<-ggplot(hn_trials, aes(Day, SW.distance, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "SW Distance - HN genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(hn_trials, aes(Day, SW.distance, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-
-plot1<-ggplot(e_trials, aes(Day, SW.distance, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "SW Distance - non-HN genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(e_trials, aes(Day, SW.distance, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-```
-
-```{r norm-sw-distance, message = FALSE}
-plot1<-ggplot(reg_trials, aes(Day, NormSWDist, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "Normalized SW Distance - all genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(reg_trials, aes(Day, NormSWDist, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-
-plot1<-ggplot(hn_trials, aes(Day, NormSWDist, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "Normalized SW Distance - HN genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(hn_trials, aes(Day, NormSWDist, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-
-plot1<-ggplot(e_trials, aes(Day, NormSWDist, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "Normalized SW Distance - non-HN genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(e_trials, aes(Day, NormSWDist, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-```
-
-```{r sw-time, message = FALSE}
-plot1<-ggplot(reg_trials, aes(Day, SW.time, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "SW Time - all genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(reg_trials, aes(Day, SW.time, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-
-plot1<-ggplot(hn_trials, aes(Day, SW.time, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "SW Time - HN genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(hn_trials, aes(Day, SW.time, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-
-plot1<-ggplot(e_trials, aes(Day, SW.time, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "SW Time - non-HN genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(e_trials, aes(Day, SW.time, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-```
-
-
-```{r norm-sw-time, message = FALSE}
-plot1<-ggplot(reg_trials, aes(Day, NormSWTime, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "Normalized SW Time - all genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(reg_trials, aes(Day, NormSWTime, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-
-plot1<-ggplot(hn_trials, aes(Day, NormSWTime, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "Normalized SW Time - HN genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(hn_trials, aes(Day, NormSWTime, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
-
-plot1<-ggplot(e_trials, aes(Day, NormSWTime, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  theme_bw() +
-  labs(title = "Normalized SW Time - non-HN genotypes",
-       subtitle = "Males and females")
-
-plot2<-ggplot(e_trials, aes(Day, NormSWTime, 
-                 color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
-  facet_grid(. ~ Sex) +
-  theme_bw()  +
-  theme(legend.position="none")
-
-ggdraw() + 
-  draw_plot(plot1, 0, .5, 1, .5) +
-  draw_plot(plot2, 0, 0, 1, .5) 
 ```
