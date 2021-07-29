@@ -22,6 +22,7 @@ library(ggpubr)
 library(lme4)
 library(lsmeans)
 library(emmeans)
+library(zoo)
 
 info<-read.csv("apoe22_33_44__2HN_3HN_4HN_mwm_combined copy.csv", header=TRUE)
 
@@ -324,14 +325,16 @@ ggline(e4, x='Stage', y='Duration', color='APOE', fill='APOE', facet.by=c('Diet'
 
 plot1<-ggplot(reg_trials, aes(Day, Duration, 
                  color = APOE, fill = APOE)) +
-  geom_jitter(size = .5) +
+  geom_jitter(size = .5, alpha = 0.25) +
+  geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "MWM Duration - all genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(reg_trials, aes(Day, Duration, 
                  color = APOE, fill = APOE)) +
-  geom_jitter(size = .5) +
+  geom_jitter(size = .5, alpha = 0.25) +
+  geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -342,15 +345,16 @@ ggdraw() +
 
 plot1<-ggplot(hn_trials, aes(Day, Duration, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
+   geom_jitter(size = .5, alpha = 0.25) +
+  geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "MWM Duration - HN genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(hn_trials, aes(Day, Duration, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -361,16 +365,16 @@ ggdraw() +
 
 plot1<-ggplot(e_trials, aes(Day, Duration, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "MWM Duration - non-HN genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(e_trials, aes(Day, Duration, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -384,16 +388,16 @@ ggdraw() +
 ```{r sw-distance, message = FALSE}
 plot1<-ggplot(reg_trials, aes(Day, SW.distance, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "SW Distance - all genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(reg_trials, aes(Day, SW.distance, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -404,16 +408,16 @@ ggdraw() +
 
 plot1<-ggplot(hn_trials, aes(Day, SW.distance, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "SW Distance - HN genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(hn_trials, aes(Day, SW.distance, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -424,16 +428,16 @@ ggdraw() +
 
 plot1<-ggplot(e_trials, aes(Day, SW.distance, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "SW Distance - non-HN genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(e_trials, aes(Day, SW.distance, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -446,16 +450,16 @@ ggdraw() +
 ```{r norm-sw-distance, message = FALSE}
 plot1<-ggplot(reg_trials, aes(Day, NormSWDist, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "Normalized SW Distance - all genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(reg_trials, aes(Day, NormSWDist, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -466,16 +470,16 @@ ggdraw() +
 
 plot1<-ggplot(hn_trials, aes(Day, NormSWDist, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "Normalized SW Distance - HN genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(hn_trials, aes(Day, NormSWDist, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -486,16 +490,16 @@ ggdraw() +
 
 plot1<-ggplot(e_trials, aes(Day, NormSWDist, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "Normalized SW Distance - non-HN genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(e_trials, aes(Day, NormSWDist, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -508,16 +512,16 @@ ggdraw() +
 ```{r sw-time, message = FALSE}
 plot1<-ggplot(reg_trials, aes(Day, SW.time, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "SW Time - all genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(reg_trials, aes(Day, SW.time, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -528,16 +532,16 @@ ggdraw() +
 
 plot1<-ggplot(hn_trials, aes(Day, SW.time, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "SW Time - HN genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(hn_trials, aes(Day, SW.time, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -548,16 +552,16 @@ ggdraw() +
 
 plot1<-ggplot(e_trials, aes(Day, SW.time, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "SW Time - non-HN genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(e_trials, aes(Day, SW.time, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -571,16 +575,16 @@ ggdraw() +
 ```{r norm-sw-time, message = FALSE}
 plot1<-ggplot(reg_trials, aes(Day, NormSWTime, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+  geom_jitter(size = .5, alpha = 0.25) +
+  geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "Normalized SW Time - all genotypes",
-       subtitle = "Males and females")
+       subtitle = "Males and females") 
 
 plot2<-ggplot(reg_trials, aes(Day, NormSWTime, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+  geom_jitter(size = .5, alpha = 0.25) +
+  geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -591,16 +595,16 @@ ggdraw() +
 
 plot1<-ggplot(hn_trials, aes(Day, NormSWTime, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+  geom_jitter(size = .5, alpha = 0.25) +
+  geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "Normalized SW Time - HN genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(hn_trials, aes(Day, NormSWTime, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+  geom_jitter(size = .5, alpha = 0.25) +
+  geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
@@ -611,16 +615,16 @@ ggdraw() +
 
 plot1<-ggplot(e_trials, aes(Day, NormSWTime, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   theme_bw() +
   labs(title = "Normalized SW Time - non-HN genotypes",
        subtitle = "Males and females")
 
 plot2<-ggplot(e_trials, aes(Day, NormSWTime, 
                  color = APOE, fill = APOE)) +
-   geom_jitter(size = .5) +
-   
+   geom_jitter(size = .5, alpha = 0.25) +
+   geom_line(aes(y=rollmean(NormSWTime, 7, na.pad=TRUE))) +
   facet_grid(. ~ Sex) +
   theme_bw()  +
   theme(legend.position="none")
