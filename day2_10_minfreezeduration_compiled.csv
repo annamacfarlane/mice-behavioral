@@ -1,0 +1,592 @@
+﻿Animal_ID,Experiment,Trial,Box,Treatment,Sex,Genotype,Component Name,Freeze Cnt,Time Freezing,Pct Total Time Freezing,Pct Component Time Freezing,Avg Motion Index,Min Motion Index,Max Motion Index,Month
+210809-1,VF090121_120333,day2_trial1,Chamber1,Control,female,APOAPOE33HN,Day2_Acclimation,41,64.067,14.24,35.59,90.26,0,1320,August
+210809-1,VF090121_120333,day2_trial1,Chamber1,Control,female,APOAPOE33HN,Day2_CSTone,73,140.633,31.25,39.06,54.94,0,1017,August
+210809-1,VF090121_120333,day2_trial1,Chamber1,Control,female,APOAPOE33HN,Day2_Exploration,21,17.567,3.9,3.9,92.88,0,1017,August
+,,,,,,,,,,,,,,,
+210809-2,VF090121_120333,day2_trial1,Chamber 2,Control,female,APOAPOE33HN,Day2_Acclimation,36,96.967,21.55,53.87,53.94,0,1493,August
+210809-2,VF090121_120333,day2_trial1,Chamber 2,Control,female,APOAPOE33HN,Day2_CSTone,26,232.267,51.61,64.52,6.72,0,349,August
+210809-2,VF090121_120333,day2_trial1,Chamber 2,Control,female,APOAPOE33HN,Day2_Exploration,13,58.667,13.04,13.04,15.78,0,313,August
+,,,,,,,,,,,,,,,
+210809-3,VF090121_121241,day2_trial2,Chamber1,Control,female,APOAPOE33HN,Day2_Acclimation,20,44.7,9.93,24.83,131.25,0,1203,August
+210809-3,VF090121_121241,day2_trial2,Chamber1,Control,female,APOAPOE33HN,Day2_CSTone,56,212.533,47.23,59.04,34.1,0,4255,August
+210809-3,VF090121_121241,day2_trial2,Chamber1,Control,female,APOAPOE33HN,Day2_Exploration,25,68.233,15.16,15.16,9.29,0,235,August
+,,,,,,,,,,,,,,,
+210809-4,VF090121_121241,day2_trial2,Chamber 2,Control,female,APOAPOE33HN,Day2_Acclimation,6,4.233,0.94,2.35,249.96,0,1781,August
+210809-4,VF090121_121241,day2_trial2,Chamber 2,Control,female,APOAPOE33HN,Day2_CSTone,55,77.167,17.15,21.44,130.03,0,2134,August
+210809-4,VF090121_121241,day2_trial2,Chamber 2,Control,female,APOAPOE33HN,Day2_Exploration,14,11.367,2.53,2.53,159.19,0,2134,August
+,,,,,,,,,,,,,,,
+210809-5,VF090121_122309,day2_trial3,Chamber1,HFD,male,APOE22HN,Day2_Acclimation,33,57.267,12.73,31.81,132.09,0,1180,August
+210809-5,VF090121_122309,day2_trial3,Chamber1,HFD,male,APOE22HN,Day2_CSTone,50,187,41.56,51.94,38.97,0,840,August
+210809-5,VF090121_122309,day2_trial3,Chamber1,HFD,male,APOE22HN,Day2_Exploration,19,39.233,8.72,8.72,85.09,0,776,August
+,,,,,,,,,,,,,,,
+210809-6,VF090121_122309,day2_trial3,Chamber 2,HFD,male,APOE22HN,Day2_Acclimation,27,31.7,7.04,17.61,139.89,0,1717,August
+210809-6,VF090121_122309,day2_trial3,Chamber 2,HFD,male,APOE22HN,Day2_CSTone,50,188.567,41.9,52.38,29.43,0,1117,August
+210809-6,VF090121_122309,day2_trial3,Chamber 2,HFD,male,APOE22HN,Day2_Exploration,20,40.633,9.03,9.03,49.36,0,699,August
+,,,,,,,,,,,,,,,
+210809-7,VF090121_123401,day2_trial4,Chamber1,HFD,male,APOE22HN,Day2_Acclimation,32,26.333,5.85,14.63,196.95,0,1740,August
+210809-7,VF090121_123401,day2_trial4,Chamber1,HFD,male,APOE22HN,Day2_CSTone,86,129.3,28.73,35.92,85.71,0,1468,August
+210809-7,VF090121_123401,day2_trial4,Chamber1,HFD,male,APOE22HN,Day2_Exploration,20,23.2,5.16,5.16,137.85,0,1364,August
+,,,,,,,,,,,,,,,
+210809-8,VF090121_123401,day2_trial4,Chamber 2,HFD,male,APOE22HN,Day2_Acclimation,16,22.4,4.98,12.44,110.31,0,1068,August
+210809-8,VF090121_123401,day2_trial4,Chamber 2,HFD,male,APOE22HN,Day2_CSTone,50,123.8,27.51,34.39,44.96,0,636,August
+210809-8,VF090121_123401,day2_trial4,Chamber 2,HFD,male,APOE22HN,Day2_Exploration,11,9.633,2.14,2.14,73.41,0,636,August
+,,,,,,,,,,,,,,,
+210906-1,VF092921_094426,day2_trial1,Chamber1,Control,female,APOE22HN,Day2_Acclimation,7,4,0.89,2.22,180.11,0,2218,September
+210906-1,VF092921_094426,day2_trial1,Chamber1,Control,female,APOE22HN,Day2_CSTone,54,59.667,13.26,16.57,131.07,0,2929,September
+210906-1,VF092921_094426,day2_trial1,Chamber1,Control,female,APOE22HN,Day2_Exploration,10,6.2,1.38,1.38,212.09,0,2195,September
+,,,,,,,,,,,,,,,
+210906-2,VF092921_094426,day2_trial1,Chamber 2,Control,female,APOE22HN,Day2_Acclimation,48,34.667,7.7,19.26,103.22,0,1208,September
+210906-2,VF092921_094426,day2_trial1,Chamber 2,Control,female,APOE22HN,Day2_CSTone,85,82.8,18.4,23,79.68,0,1438,September
+210906-2,VF092921_094426,day2_trial1,Chamber 2,Control,female,APOE22HN,Day2_Exploration,16,12.667,2.81,2.81,124.13,0,1285,September
+,,,,,,,,,,,,,,,
+210906-3,VF092921_095422,day2_trial2,Chamber1,Control,female,APOE22HN,Day2_Acclimation,27,49.133,10.92,27.3,93.59,0,835,September
+210906-3,VF092921_095422,day2_trial2,Chamber1,Control,female,APOE22HN,Day2_CSTone,44,135.267,30.06,37.57,61.68,0,748,September
+210906-3,VF092921_095422,day2_trial2,Chamber1,Control,female,APOE22HN,Day2_Exploration,9,20.933,4.65,4.65,111.45,0,748,September
+,,,,,,,,,,,,,,,
+210906-4,VF092921_095422,day2_trial2,Chamber 2,Control,female,APOE22HN,Day2_Acclimation,9,4.367,0.97,2.43,164.71,0,1567,September
+210906-4,VF092921_095422,day2_trial2,Chamber 2,Control,female,APOE22HN,Day2_CSTone,62,52.567,11.68,14.6,88.68,0,1584,September
+210906-4,VF092921_095422,day2_trial2,Chamber 2,Control,female,APOE22HN,Day2_Exploration,19,19.5,4.33,4.33,91.9,0,1584,September
+,,,,,,,,,,,,,,,
+210906-5,VF092921_102223,day2_trial3,Chamber1,Control,female,APOE22HN,Day2_Acclimation,45,69.5,15.44,38.61,69.08,0,623,September
+210906-5,VF092921_102223,day2_trial3,Chamber1,Control,female,APOE22HN,Day2_CSTone,72,134.267,29.84,37.3,43.83,0,719,September
+210906-5,VF092921_102223,day2_trial3,Chamber1,Control,female,APOE22HN,Day2_Exploration,24,35.7,7.93,7.93,50.19,0,562,September
+,,,,,,,,,,,,,,,
+210906-6,VF092921_102223,day2_trial3,Chamber 2,Control,male,APOE22HN,Day2_Acclimation,45,48.333,10.74,26.85,106.31,0,980,September
+210906-6,VF092921_102223,day2_trial3,Chamber 2,Control,male,APOE22HN,Day2_CSTone,68,170.433,37.87,47.34,28.92,0,962,September
+210906-6,VF092921_102223,day2_trial3,Chamber 2,Control,male,APOE22HN,Day2_Exploration,23,24.067,5.35,5.35,50.54,0,446,September
+,,,,,,,,,,,,,,,
+210906-7,VF092921_103213,day2_trial4,Chamber1,Control,female,APOE22HN,Day2_Acclimation,35,19.133,4.25,10.63,166.64,0,1436,September
+210906-7,VF092921_103213,day2_trial4,Chamber1,Control,female,APOE22HN,Day2_CSTone,70,81.967,18.21,22.77,125.3,0,1282,September
+210906-7,VF092921_103213,day2_trial4,Chamber1,Control,female,APOE22HN,Day2_Exploration,9,8.467,1.88,1.88,181.14,0,1282,September
+,,,,,,,,,,,,,,,
+210906-8,VF092921_103213,day2_trial4,Chamber 2,Control,female,APOE22HN,Day2_Acclimation,9,8.833,1.96,4.91,226.99,0,1591,September
+210906-8,VF092921_103213,day2_trial4,Chamber 2,Control,female,APOE22HN,Day2_CSTone,62,92.367,20.53,25.66,108.49,0,1674,September
+210906-8,VF092921_103213,day2_trial4,Chamber 2,Control,female,APOE22HN,Day2_Exploration,13,16.767,3.73,3.73,128.09,0,1674,September
+,,,,,,,,,,,,,,,
+210906-9,VF092921_104429,day2_trial5,Chamber1,HFD,female,APOE44,Day2_Acclimation,23,26.233,5.83,14.57,119.19,0,1002,September
+210906-9,VF092921_104429,day2_trial5,Chamber1,HFD,female,APOE44,Day2_CSTone,59,129.433,28.76,35.95,47.68,0,2253,September
+210906-9,VF092921_104429,day2_trial5,Chamber1,HFD,female,APOE44,Day2_Exploration,19,32.833,7.3,7.3,46.91,0,627,September
+,,,,,,,,,,,,,,,
+210906-10,VF092921_104429,day2_trial5,Chamber 2,HFD,female,APOE44,Day2_Acclimation,30,72.433,16.1,40.24,69.61,0,1335,September
+210906-10,VF092921_104429,day2_trial5,Chamber 2,HFD,female,APOE44,Day2_CSTone,61,189.767,42.17,52.71,14.11,0,537,September
+210906-10,VF092921_104429,day2_trial5,Chamber 2,HFD,female,APOE44,Day2_Exploration,20,46.867,10.41,10.41,23.89,0,437,September
+,,,,,,,,,,,,,,,
+210906-11,VF092921_105501,day2_trial6,Chamber1,HFD,female,APOE44,Day2_Acclimation,1,0.533,0.12,0.3,193.35,0,1177,September
+210906-11,VF092921_105501,day2_trial6,Chamber1,HFD,female,APOE44,Day2_CSTone,42,38.767,8.61,10.77,113.93,0,1046,September
+210906-11,VF092921_105501,day2_trial6,Chamber1,HFD,female,APOE44,Day2_Exploration,6,4.3,0.96,0.96,115.79,0,1046,September
+,,,,,,,,,,,,,,,
+210906-12,VF092921_105501,day2_trial6,Chamber 2,HFD,female,APOE44,Day2_Acclimation,9,18.5,4.11,10.28,131.89,0,1516,September
+210906-12,VF092921_105501,day2_trial6,Chamber 2,HFD,female,APOE44,Day2_CSTone,32,230.8,51.29,64.11,13.31,0,3300,September
+210906-12,VF092921_105501,day2_trial6,Chamber 2,HFD,female,APOE44,Day2_Exploration,19,81.8,18.18,18.18,3.53,0,206,September
+,,,,,,,,,,,,,,,
+210906-13,VF092921_110535,day2_trial7,Chamber1,HFD,female,APOE44,Day2_Acclimation,9,25.467,5.66,14.15,169.85,0,1377,September
+210906-13,VF092921_110535,day2_trial7,Chamber1,HFD,female,APOE44,Day2_CSTone,26,162,36,45,65.2,0,1179,September
+210906-13,VF092921_110535,day2_trial7,Chamber1,HFD,female,APOE44,Day2_Exploration,7,35.433,7.87,7.87,100.25,0,839,September
+,,,,,,,,,,,,,,,
+210906-14,VF092921_110535,day2_trial7,Chamber 2,HFD,female,APOE44,Day2_Acclimation,5,3.067,0.68,1.7,195.94,0,1652,September
+210906-14,VF092921_110535,day2_trial7,Chamber 2,HFD,female,APOE44,Day2_CSTone,81,89.133,19.81,24.76,90.17,0,3103,September
+210906-14,VF092921_110535,day2_trial7,Chamber 2,HFD,female,APOE44,Day2_Exploration,21,15.867,3.53,3.53,83.01,0,981,September
+,,,,,,,,,,,,,,,
+210906-15,VF092921_111555,day2_trial8,Chamber1,HFD,female,APOE44,Day2_Acclimation,14,14.767,3.28,8.2,216.96,0,1466,September
+210906-15,VF092921_111555,day2_trial8,Chamber1,HFD,female,APOE44,Day2_CSTone,69,115.633,25.7,32.12,67.5,0,928,September
+210906-15,VF092921_111555,day2_trial8,Chamber1,HFD,female,APOE44,Day2_Exploration,19,15,3.33,3.33,104.83,0,868,September
+,,,,,,,,,,,,,,,
+210906-16,VF092921_111555,day2_trial8,Chamber 2,HFD,female,APOE44,Day2_Acclimation,20,17.367,3.86,9.65,148.98,0,1272,September
+210906-16,VF092921_111555,day2_trial8,Chamber 2,HFD,female,APOE44,Day2_CSTone,70,137.433,30.54,38.18,53.22,0,1419,September
+210906-16,VF092921_111555,day2_trial8,Chamber 2,HFD,female,APOE44,Day2_Exploration,32,38.567,8.57,8.57,36.72,0,760,September
+,,,,,,,,,,,,,,,
+210906-17,VF092921_112618,day2_trial9,Chamber1,HFD,female,APOE44,Day2_Acclimation,2,1.8,0.4,1,226.59,0,1252,September
+210906-17,VF092921_112618,day2_trial9,Chamber1,HFD,female,APOE44,Day2_CSTone,44,98.1,21.8,27.25,75.96,0,1083,September
+210906-17,VF092921_112618,day2_trial9,Chamber1,HFD,female,APOE44,Day2_Exploration,4,5.733,1.27,1.27,149.38,0,1083,September
+,,,,,,,,,,,,,,,
+210906-18,VF092921_112618,day2_trial9,Chamber 2,HFD,female,APOE44,Day2_Acclimation,18,8.5,1.89,4.72,99.27,0,975,September
+210906-18,VF092921_112618,day2_trial9,Chamber 2,HFD,female,APOE44,Day2_CSTone,78,119.1,26.47,33.08,40.49,0,1094,September
+210906-18,VF092921_112618,day2_trial9,Chamber 2,HFD,female,APOE44,Day2_Exploration,21,35.367,7.86,7.86,38.11,0,880,September
+,,,,,,,,,,,,,,,
+210906-19,VF092921_113655,day2_trial10,Chamber1,HFD,male,APOE44,Day2_Acclimation,31,74.9,16.64,41.61,63.22,0,937,September
+210906-19,VF092921_113655,day2_trial10,Chamber1,HFD,male,APOE44,Day2_CSTone,60,127.833,28.41,35.51,54.6,0,1053,September
+210906-19,VF092921_113655,day2_trial10,Chamber1,HFD,male,APOE44,Day2_Exploration,19,27.6,6.13,6.13,74.19,0,848,September
+,,,,,,,,,,,,,,,
+210906-20,VF092921_113655,day2_trial10,Chamber 2,HFD,male,APOE44,Day2_Acclimation,22,45.633,10.14,25.35,76.33,0,878,September
+210906-20,VF092921_113655,day2_trial10,Chamber 2,HFD,male,APOE44,Day2_CSTone,38,191.1,42.47,53.08,19.56,0,723,September
+210906-20,VF092921_113655,day2_trial10,Chamber 2,HFD,male,APOE44,Day2_Exploration,13,38.833,8.63,8.63,30.19,0,415,September
+,,,,,,,,,,,,,,,
+210906-21,VF092921_114742,day2_trial11,Chamber1,HFD,male,APOE44,Day2_Acclimation,5,3,0.67,1.67,193.32,0,1349,September
+210906-21,VF092921_114742,day2_trial11,Chamber1,HFD,male,APOE44,Day2_CSTone,79,170,37.78,47.22,48.95,0,861,September
+210906-21,VF092921_114742,day2_trial11,Chamber1,HFD,male,APOE44,Day2_Exploration,14,25.367,5.64,5.64,107.94,0,861,September
+,,,,,,,,,,,,,,,
+210906-22,VF092921_114742,day2_trial11,Chamber 2,HFD,male,APOE44,Day2_Acclimation,33,79.433,17.65,44.13,69.87,0,1050,September
+210906-22,VF092921_114742,day2_trial11,Chamber 2,HFD,male,APOE44,Day2_CSTone,35,188.233,41.83,52.29,28.39,0,1121,September
+210906-22,VF092921_114742,day2_trial11,Chamber 2,HFD,male,APOE44,Day2_Exploration,14,20.467,4.55,4.55,76.62,0,1121,September
+,,,,,,,,,,,,,,,
+210906-23,VF092921_115821,day2_trial12,Chamber1,Control,female,APOE44,Day2_Acclimation,13,10.4,2.31,5.78,214.14,0,1432,September
+210906-23,VF092921_115821,day2_trial12,Chamber1,Control,female,APOE44,Day2_CSTone,81,116.167,25.81,32.27,67.23,0,2533,September
+210906-23,VF092921_115821,day2_trial12,Chamber1,Control,female,APOE44,Day2_Exploration,15,12.733,2.83,2.83,95.57,0,768,September
+,,,,,,,,,,,,,,,
+210906-24,VF092921_115821,day2_trial12,Chamber 2,Control,female,APOE44,Day2_Acclimation,27,33.733,7.5,18.74,162.18,0,1362,September
+210906-24,VF092921_115821,day2_trial12,Chamber 2,Control,female,APOE44,Day2_CSTone,76,161.833,35.96,44.95,45.58,0,1382,September
+210906-24,VF092921_115821,day2_trial12,Chamber 2,Control,female,APOE44,Day2_Exploration,21,44.533,9.9,9.9,51.02,0,800,September
+,,,,,,,,,,,,,,,
+211004-1,VF102721_100039,day2_trial1,Chamber1,Control,male,APOE33,Day2_Acclimation,52,59.1,13.13,32.83,73.88,0,1009,October
+211004-1,VF102721_100039,day2_trial1,Chamber1,Control,male,APOE33,Day2_CSTone,49,134.3,29.84,37.31,61.36,0,1180,October
+211004-1,VF102721_100039,day2_trial1,Chamber1,Control,male,APOE33,Day2_Exploration,14,16.3,3.62,3.62,112.04,0,1180,October
+,,,,,,,,,,,,,,,
+211004-2,VF102721_100039,day2_trial1,Chamber 2,Control,male,APOE33,Day2_Acclimation,32,42.133,9.36,23.41,157.9,0,1517,October
+211004-2,VF102721_100039,day2_trial1,Chamber 2,Control,male,APOE33,Day2_CSTone,61,127.467,28.33,35.41,65.6,0,3857,October
+211004-2,VF102721_100039,day2_trial1,Chamber 2,Control,male,APOE33,Day2_Exploration,11,9.467,2.1,2.1,108.84,0,935,October
+,,,,,,,,,,,,,,,
+211004-3,VF102721_101020,day2_trial2,Chamber1,Control,male,APOE33,Day2_Acclimation,26,27.433,6.1,15.24,141.52,0,1373,October
+211004-3,VF102721_101020,day2_trial2,Chamber1,Control,male,APOE33,Day2_CSTone,32,143.733,31.94,39.93,53.41,0,788,October
+211004-3,VF102721_101020,day2_trial2,Chamber1,Control,male,APOE33,Day2_Exploration,7,5.6,1.24,1.24,121.51,0,788,October
+,,,,,,,,,,,,,,,
+211004-5,VF102721_101020,day2_trial2,Chamber 2,HFD,female,APOE33,Day2_Acclimation,3,2.667,0.59,1.48,239.1,0,1553,October
+211004-5,VF102721_101020,day2_trial2,Chamber 2,HFD,female,APOE33,Day2_CSTone,52,86.4,19.2,24,117.5,0,1423,October
+211004-5,VF102721_101020,day2_trial2,Chamber 2,HFD,female,APOE33,Day2_Exploration,8,9.933,2.21,2.21,167.65,0,1141,October
+,,,,,,,,,,,,,,,
+211004-9,VF102721_102129,day2_trial3,Chamber1,HFD,female,APOE33,Day2_Acclimation,24,28.867,6.41,16.04,177.36,0,1364,October
+211004-9,VF102721_102129,day2_trial3,Chamber1,HFD,female,APOE33,Day2_CSTone,24,213.9,47.53,59.42,23.84,0,706,October
+211004-9,VF102721_102129,day2_trial3,Chamber1,HFD,female,APOE33,Day2_Exploration,7,69.467,15.44,15.44,23.88,0,579,October
+,,,,,,,,,,,,,,,
+211004-10,VF102721_102129,day2_trial3,Chamber 2,Control,female,APOE44HN,Day2_Acclimation,4,2.067,0.46,1.15,223.39,0,1424,October
+211004-10,VF102721_102129,day2_trial3,Chamber 2,Control,female,APOE44HN,Day2_CSTone,47,42,9.33,11.67,86.73,0,2825,October
+211004-10,VF102721_102129,day2_trial3,Chamber 2,Control,female,APOE44HN,Day2_Exploration,10,7.333,1.63,1.63,97.61,0,1305,October
+,,,,,,,,,,,,,,,
+211004-11,VF102721_103229,day2_trial4,Chamber1,Control,female,APOE44HN,Day2_Acclimation,25,28.6,6.36,15.89,169.66,0,1450,October
+211004-11,VF102721_103229,day2_trial4,Chamber1,Control,female,APOE44HN,Day2_CSTone,69,136.767,30.39,37.99,56.91,0,831,October
+211004-11,VF102721_103229,day2_trial4,Chamber1,Control,female,APOE44HN,Day2_Exploration,20,25.5,5.67,5.67,112.67,0,831,October
+,,,,,,,,,,,,,,,
+211004-12,VF102721_103229,day2_trial4,Chamber 2,Control,female,APOE44HN,Day2_Acclimation,15,12.467,2.77,6.93,154.7,0,1636,October
+211004-12,VF102721_103229,day2_trial4,Chamber 2,Control,female,APOE44HN,Day2_CSTone,65,117.1,26.02,32.53,49.04,0,723,October
+211004-12,VF102721_103229,day2_trial4,Chamber 2,Control,female,APOE44HN,Day2_Exploration,14,22.967,5.1,5.1,75.9,0,723,October
+,,,,,,,,,,,,,,,
+211004-13,VF102721_104330,day2_trial5,Chamber1,Control,female,APOE44HN,Day2_Acclimation,14,11.167,2.48,6.2,149.55,0,1221,October
+211004-13,VF102721_104330,day2_trial5,Chamber1,Control,female,APOE44HN,Day2_CSTone,68,98.3,21.84,27.31,50.98,0,774,October
+211004-13,VF102721_104330,day2_trial5,Chamber1,Control,female,APOE44HN,Day2_Exploration,16,16.5,3.67,3.67,81.34,0,774,October
+,,,,,,,,,,,,,,,
+211004-14,VF102721_104330,day2_trial5,Chamber 2,HFD,male,APOE44HN,Day2_Acclimation,15,9.333,2.07,5.19,107.89,0,1335,October
+211004-14,VF102721_104330,day2_trial5,Chamber 2,HFD,male,APOE44HN,Day2_CSTone,77,84.067,18.68,23.35,56.4,0,1337,October
+211004-14,VF102721_104330,day2_trial5,Chamber 2,HFD,male,APOE44HN,Day2_Exploration,15,10.533,2.34,2.34,76.49,0,1009,October
+,,,,,,,,,,,,,,,
+211004-15,VF102721_105409,day2_trial6,Chamber1,HFD,male,APOE44HN,Day2_Acclimation,28,36.567,8.13,20.31,115.98,0,1174,October
+211004-15,VF102721_105409,day2_trial6,Chamber1,HFD,male,APOE44HN,Day2_CSTone,59,161.767,35.95,44.94,32.12,0,739,October
+211004-15,VF102721_105409,day2_trial6,Chamber1,HFD,male,APOE44HN,Day2_Exploration,17,22.1,4.91,4.91,71.56,0,739,October
+,,,,,,,,,,,,,,,
+211004-16,VF102721_105409,day2_trial6,Chamber 2,HFD,male,APOE44HN,Day2_Acclimation,7,4.333,0.96,2.41,172.71,0,1349,October
+211004-16,VF102721_105409,day2_trial6,Chamber 2,HFD,male,APOE44HN,Day2_CSTone,66,47.767,10.61,13.27,90.93,0,1172,October
+211004-16,VF102721_105409,day2_trial6,Chamber 2,HFD,male,APOE44HN,Day2_Exploration,11,7.167,1.59,1.59,110.57,0,892,October
+,,,,,,,,,,,,,,,
+211004-17,VF102721_110501,day2_trial7,Chamber1,HFD,male,APOE44HN,Day2_Acclimation,18,17.767,3.95,9.87,131.39,0,1076,October
+211004-17,VF102721_110501,day2_trial7,Chamber1,HFD,male,APOE44HN,Day2_CSTone,76,129.433,28.76,35.95,45.04,0,656,October
+211004-17,VF102721_110501,day2_trial7,Chamber1,HFD,male,APOE44HN,Day2_Exploration,21,21.667,4.81,4.81,77.62,0,656,October
+,,,,,,,,,,,,,,,
+211004-19,VF102721_110501,day2_trial7,Chamber 2,Control,male,APOE44,Day2_Acclimation,33,41.233,9.16,22.91,89.81,0,1211,October
+211004-19,VF102721_110501,day2_trial7,Chamber 2,Control,male,APOE44,Day2_CSTone,80,89.567,19.9,24.88,80.88,0,1264,October
+211004-19,VF102721_110501,day2_trial7,Chamber 2,Control,male,APOE44,Day2_Exploration,34,35.733,7.94,7.94,48,0,714,October
+,,,,,,,,,,,,,,,
+211004-20,VF102721_111633,day2_trial8,Chamber1,Control,female,APOE44,Day2_Acclimation,35,44.9,9.98,24.94,121.27,0,1203,October
+211004-20,VF102721_111633,day2_trial8,Chamber1,Control,female,APOE44,Day2_CSTone,64,119.767,26.61,33.27,64.63,0,1209,October
+211004-20,VF102721_111633,day2_trial8,Chamber1,Control,female,APOE44,Day2_Exploration,30,48.233,10.72,10.72,47.67,0,1209,October
+,,,,,,,,,,,,,,,
+211004-21,VF102721_111633,day2_trial8,Chamber 2,Control,male,APOE44HN,Day2_Acclimation,30,21.133,4.7,11.74,101.14,0,1130,October
+211004-21,VF102721_111633,day2_trial8,Chamber 2,Control,male,APOE44HN,Day2_CSTone,57,50.3,11.18,13.97,101.2,0,2395,October
+211004-21,VF102721_111633,day2_trial8,Chamber 2,Control,male,APOE44HN,Day2_Exploration,20,21.433,4.76,4.76,98.89,0,2395,October
+,,,,,,,,,,,,,,,
+211122-1,VF121521_095730,day2_trial1,Chamber1,HFD,female,APOE22HN,Day2_Acclimation,27,22.8,5.07,12.67,139.85,0,1347,November
+211122-1,VF121521_095730,day2_trial1,Chamber1,HFD,female,APOE22HN,Day2_CSTone,59,71,15.78,19.72,90.09,0,1029,November
+211122-1,VF121521_095730,day2_trial1,Chamber1,HFD,female,APOE22HN,Day2_Exploration,29,29.5,6.56,6.56,75.01,0,978,November
+,,,,,,,,,,,,,,,
+211122-2,VF121521_095730,day2_trial1,Chamber 2,HFD,female,APOE22HN,Day2_Acclimation,14,9.567,2.13,5.31,137.22,0,1339,November
+211122-2,VF121521_095730,day2_trial1,Chamber 2,HFD,female,APOE22HN,Day2_CSTone,59,109.367,24.3,30.38,65.25,0,1249,November
+211122-2,VF121521_095730,day2_trial1,Chamber 2,HFD,female,APOE22HN,Day2_Exploration,15,16.633,3.7,3.7,88.2,0,1249,November
+,,,,,,,,,,,,,,,
+211122-3,VF121521_100656,day2_trial2,Chamber1,HFD,female,APOE22HN,Day2_Acclimation,18,24.267,5.39,13.48,125.54,0,1222,November
+211122-3,VF121521_100656,day2_trial2,Chamber1,HFD,female,APOE22HN,Day2_CSTone,44,61.267,13.61,17.02,81.33,0,1377,November
+211122-3,VF121521_100656,day2_trial2,Chamber1,HFD,female,APOE22HN,Day2_Exploration,16,18.833,4.19,4.19,88.15,0,1137,November
+,,,,,,,,,,,,,,,
+211122-4,VF121521_100656,day2_trial2,Chamber 2,HFD,female,APOE22HN,Day2_Acclimation,3,2,0.44,1.11,214.07,0,1848,November
+211122-4,VF121521_100656,day2_trial2,Chamber 2,HFD,female,APOE22HN,Day2_CSTone,30,30.567,6.79,8.49,138.23,0,1524,November
+211122-4,VF121521_100656,day2_trial2,Chamber 2,HFD,female,APOE22HN,Day2_Exploration,17,18.867,4.19,4.19,113.48,0,1524,November
+,,,,,,,,,,,,,,,
+211122-5,VF121521_101715,day2_trial3,Chamber1,HFD,female,APOE22HN,Day2_Acclimation,23,24.767,5.5,13.76,116.36,0,942,November
+211122-5,VF121521_101715,day2_trial3,Chamber1,HFD,female,APOE22HN,Day2_CSTone,52,148.867,33.08,41.35,49.94,0,956,November
+211122-5,VF121521_101715,day2_trial3,Chamber1,HFD,female,APOE22HN,Day2_Exploration,10,14.8,3.29,3.29,114.07,0,956,November
+,,,,,,,,,,,,,,,
+211122-6,VF121521_101715,day2_trial3,Chamber 2,HFD,female,APOE22HN,Day2_Acclimation,5,3.767,0.84,2.09,196.33,0,1442,November
+211122-6,VF121521_101715,day2_trial3,Chamber 2,HFD,female,APOE22HN,Day2_CSTone,64,98.267,21.84,27.3,75.78,0,993,November
+211122-6,VF121521_101715,day2_trial3,Chamber 2,HFD,female,APOE22HN,Day2_Exploration,10,12.067,2.68,2.68,109.48,0,783,November
+,,,,,,,,,,,,,,,
+211122-7,VF121521_102748,day2_trial4,Chamber1,HFD,female,APOE22HN,Day2_Acclimation,30,36.6,8.13,20.33,111.45,0,1138,November
+211122-7,VF121521_102748,day2_trial4,Chamber1,HFD,female,APOE22HN,Day2_CSTone,61,153.967,34.21,42.77,62.94,0,1237,November
+211122-7,VF121521_102748,day2_trial4,Chamber1,HFD,female,APOE22HN,Day2_Exploration,17,49.133,10.92,10.92,34.75,0,320,November
+,,,,,,,,,,,,,,,
+211122-8,VF121521_102748,day2_trial4,Chamber 2,HFD,female,APOE22HN,Day2_Acclimation,6,5.4,1.2,3,188.26,0,974,November
+211122-8,VF121521_102748,day2_trial4,Chamber 2,HFD,female,APOE22HN,Day2_CSTone,37,106.4,23.64,29.56,95.26,0,1354,November
+211122-8,VF121521_102748,day2_trial4,Chamber 2,HFD,female,APOE22HN,Day2_Exploration,7,10.267,2.28,2.28,146.13,0,1354,November
+,,,,,,,,,,,,,,,
+211122-9,VF121521_104232,day2_trial5,Chamber1,Control,male,APOE22HN,Day2_Acclimation,41,124.467,27.66,69.15,33.22,0,730,November
+211122-9,VF121521_104232,day2_trial5,Chamber1,Control,male,APOE22HN,Day2_CSTone,71,188.5,41.89,52.36,25.33,0,742,November
+211122-9,VF121521_104232,day2_trial5,Chamber1,Control,male,APOE22HN,Day2_Exploration,21,47.067,10.46,10.46,41.63,0,511,November
+,,,,,,,,,,,,,,,
+211122-10,VF121521_104232,day2_trial5,Chamber 2,Control,male,APOE22HN,Day2_Acclimation,30,35.133,7.81,19.52,153.21,0,1226,November
+211122-10,VF121521_104232,day2_trial5,Chamber 2,Control,male,APOE22HN,Day2_CSTone,62,72.967,16.21,20.27,129.4,0,2373,November
+211122-10,VF121521_104232,day2_trial5,Chamber 2,Control,male,APOE22HN,Day2_Exploration,12,9.5,2.11,2.11,145.06,0,1789,November
+,,,,,,,,,,,,,,,
+211122-11,VF121521_105123,day2_trial6,Chamber1,Control,male,APOE22HN,Day2_Acclimation,19,16.833,3.74,9.35,194.87,0,1646,November
+211122-11,VF121521_105123,day2_trial6,Chamber1,Control,male,APOE22HN,Day2_CSTone,75,149.1,33.13,41.42,52.99,0,1090,November
+211122-11,VF121521_105123,day2_trial6,Chamber1,Control,male,APOE22HN,Day2_Exploration,11,15.767,3.5,3.5,124.32,0,1090,November
+,,,,,,,,,,,,,,,
+211122-12,VF121521_105123,day2_trial6,Chamber 2,Control,male,APOE22HN,Day2_Acclimation,20,15.5,3.44,8.61,190.67,0,1874,November
+211122-12,VF121521_105123,day2_trial6,Chamber 2,Control,male,APOE22HN,Day2_CSTone,91,135.133,30.03,37.54,74.58,0,1271,November
+211122-12,VF121521_105123,day2_trial6,Chamber 2,Control,male,APOE22HN,Day2_Exploration,15,12.633,2.81,2.81,149.42,0,1158,November
+,,,,,,,,,,,,,,,
+211122-13,VF121521_110151,day2_trial7,Chamber1,Control,male,APOE22HN,Day2_Acclimation,64,47.9,10.64,26.61,96.25,0,1009,November
+211122-13,VF121521_110151,day2_trial7,Chamber1,Control,male,APOE22HN,Day2_CSTone,100,182.567,40.57,50.71,35.39,0,1014,November
+211122-13,VF121521_110151,day2_trial7,Chamber1,Control,male,APOE22HN,Day2_Exploration,18,36.967,8.21,8.21,67.16,0,975,November
+,,,,,,,,,,,,,,,
+211122-14,VF121521_110151,day2_trial7,Chamber 2,Control,male,APOE22HN,Day2_Acclimation,1,0.333,0.07,0.19,338.78,0,1573,November
+211122-14,VF121521_110151,day2_trial7,Chamber 2,Control,male,APOE22HN,Day2_CSTone,83,91.167,20.26,25.32,127.32,0,1515,November
+211122-14,VF121521_110151,day2_trial7,Chamber 2,Control,male,APOE22HN,Day2_Exploration,8,5.967,1.33,1.33,202.86,0,1515,November
+,,,,,,,,,,,,,,,
+211122-15,VF121521_111221,day2_trial8,Chamber1,Control,male,APOE22HN,Day2_Acclimation,16,14.733,3.27,8.19,173.69,0,1864,November
+211122-15,VF121521_111221,day2_trial8,Chamber1,Control,male,APOE22HN,Day2_CSTone,51,129.767,28.84,36.05,84.24,0,2849,November
+211122-15,VF121521_111221,day2_trial8,Chamber1,Control,male,APOE22HN,Day2_Exploration,12,23.767,5.28,5.28,102.01,0,817,November
+,,,,,,,,,,,,,,,
+211122-16,VF121521_111221,day2_trial8,Chamber 2,Control,male,APOE22HN,Day2_Acclimation,0,0,0,0,234.16,0,2060,November
+211122-16,VF121521_111221,day2_trial8,Chamber 2,Control,male,APOE22HN,Day2_CSTone,37,30.167,6.7,8.38,163.02,0,4515,November
+211122-16,VF121521_111221,day2_trial8,Chamber 2,Control,male,APOE22HN,Day2_Exploration,8,6.5,1.44,1.44,147.89,0,1493,November
+,,,,,,,,,,,,,,,
+211122-23,VF121521_112241,day2_trial9,Chamber1,Control,male,APOE22HN,Day2_Acclimation,1,0.467,0.1,0.26,254.77,0,1596,November
+211122-23,VF121521_112241,day2_trial9,Chamber1,Control,male,APOE22HN,Day2_CSTone,69,85.7,19.04,23.81,128.01,0,2505,November
+211122-23,VF121521_112241,day2_trial9,Chamber1,Control,male,APOE22HN,Day2_Exploration,10,6.8,1.51,1.51,210.02,0,2337,November
+,,,,,,,,,,,,,,,
+211122-24,VF121521_112241,day2_trial9,Chamber 2,Control,male,APOE22HN,Day2_Acclimation,64,42.133,9.36,23.41,57.35,0,849,November
+211122-24,VF121521_112241,day2_trial9,Chamber 2,Control,male,APOE22HN,Day2_CSTone,111,121.267,26.95,33.69,49.26,0,1065,November
+211122-24,VF121521_112241,day2_trial9,Chamber 2,Control,male,APOE22HN,Day2_Exploration,18,18.9,4.2,4.2,91.92,0,1065,November
+,,,,,,,,,,,,,,,
+211122-25,VF121521_113325,day2_trial10,Chamber1,Control,male,APOE22HN,Day2_Acclimation,33,77.3,17.18,42.94,90.18,0,1147,November
+211122-25,VF121521_113325,day2_trial10,Chamber1,Control,male,APOE22HN,Day2_CSTone,52,112.967,25.1,31.38,94.43,0,1558,November
+211122-25,VF121521_113325,day2_trial10,Chamber1,Control,male,APOE22HN,Day2_Exploration,16,25.5,5.67,5.67,97.72,0,653,November
+,,,,,,,,,,,,,,,
+211122-26,VF121521_113325,day2_trial10,Chamber 2,Control,male,APOE22HN,Day2_Acclimation,4,2.167,0.48,1.2,191.52,0,1567,November
+211122-26,VF121521_113325,day2_trial10,Chamber 2,Control,male,APOE22HN,Day2_CSTone,25,15.467,3.44,4.3,132.84,0,2111,November
+211122-26,VF121521_113325,day2_trial10,Chamber 2,Control,male,APOE22HN,Day2_Exploration,13,6.433,1.43,1.43,99.78,0,1051,November
+,,,,,,,,,,,,,,,
+211122-27,VF121521_114511,day2_trial11,Chamber1,Control,male,APOE22HN,Day2_Acclimation,27,37.7,8.38,20.94,99.02,0,1067,November
+211122-27,VF121521_114511,day2_trial11,Chamber1,Control,male,APOE22HN,Day2_CSTone,47,114.167,25.37,31.71,72.12,0,942,November
+211122-27,VF121521_114511,day2_trial11,Chamber1,Control,male,APOE22HN,Day2_Exploration,10,9.633,2.14,2.14,127.31,0,942,November
+,,,,,,,,,,,,,,,
+211122-28,VF121521_114511,day2_trial11,Chamber 2,Control,male,APOE22HN,Day2_Acclimation,27,33.067,7.35,18.37,129.4,0,1337,November
+211122-28,VF121521_114511,day2_trial11,Chamber 2,Control,male,APOE22HN,Day2_CSTone,67,127.533,28.34,35.43,57.97,0,1282,November
+211122-28,VF121521_114511,day2_trial11,Chamber 2,Control,male,APOE22HN,Day2_Exploration,20,27.067,6.01,6.01,78.93,0,854,November
+,,,,,,,,,,,,,,,
+210112-1,VF050521_110518,,Chamber1,HFD,female,APOE44HN,Day2_Acclimation,65,162.133,36.03,90.07,2.44,0,112,January
+210112-1,VF050521_110518,,Chamber1,HFD,female,APOE44HN,Day2_CSTone,23,263.9,58.64,73.31,0.67,0,153,January
+210112-1,VF050521_110518,,Chamber1,HFD,female,APOE44HN,Day2_Exploration,1,90,20,20,0.01,0,3,January
+,,,,,,,,,,,,,,,January
+210112-2,VF050521_110518,,Chamber 2,HFD,female,APOE44HN,Day2_Acclimation,11,175.933,39.1,97.74,0.65,0,153,January
+210112-2,VF050521_110518,,Chamber 2,HFD,female,APOE44HN,Day2_CSTone,12,266.033,59.12,73.9,0.44,0,153,January
+210112-2,VF050521_110518,,Chamber 2,HFD,female,APOE44HN,Day2_Exploration,1,90,20,20,0.01,0,3,January
+,,,,,,,,,,,,,,,January
+210112-4,VF050521_112235,1_day2,Chamber1,HFD,female,APOE44HN,Day2_Acclimation,85,136.533,30.34,75.85,7.35,0,317,January
+210112-4,VF050521_112235,1_day2,Chamber1,HFD,female,APOE44HN,Day2_CSTone,37,258.4,57.42,71.78,1.37,0,183,January
+210112-4,VF050521_112235,1_day2,Chamber1,HFD,female,APOE44HN,Day2_Exploration,22,84.533,18.79,18.79,1.99,0,128,January
+,,,,,,,,,,,,,,,January
+210112-5,VF050521_112235,1_day2,Chamber 2,Control,male,APOE44HN,Day2_Acclimation,19,177.033,39.34,98.35,0.46,0,62,January
+210112-5,VF050521_112235,1_day2,Chamber 2,Control,male,APOE44HN,Day2_CSTone,19,265.033,58.9,73.62,0.41,0,40,January
+210112-5,VF050521_112235,1_day2,Chamber 2,Control,male,APOE44HN,Day2_Exploration,4,89.767,19.95,19.95,0.2,0,19,January
+,,,,,,,,,,,,,,,January
+210112-6,VF050521_113130,2_day2,Chamber1,Control,male,APOE44HN,Day2_Acclimation,64,164.067,36.46,91.15,2.17,0,165,January
+210112-6,VF050521_113130,2_day2,Chamber1,Control,male,APOE44HN,Day2_CSTone,13,268.6,59.69,74.61,0.21,0,62,January
+210112-6,VF050521_113130,2_day2,Chamber1,Control,male,APOE44HN,Day2_Exploration,9,89.1,19.8,19.8,0.34,0,41,January
+,,,,,,,,,,,,,,,January
+210112-7,VF050521_113130,2_day2,Chamber 2,Control,male,APOE44HN,Day2_Acclimation,68,163.667,36.37,90.93,1.98,0,91,January
+210112-7,VF050521_113130,2_day2,Chamber 2,Control,male,APOE44HN,Day2_CSTone,42,264.7,58.82,73.53,0.7,0,86,January
+210112-7,VF050521_113130,2_day2,Chamber 2,Control,male,APOE44HN,Day2_Exploration,15,87.967,19.55,19.55,0.69,0,86,January
+,,,,,,,,,,,,,,,January
+210112-8,VF050521_114130,3_day2,Chamber1,Control,male,APOE44HN,Day2_Acclimation,98,151,33.56,83.89,5.18,0,388,January
+210112-8,VF050521_114130,3_day2,Chamber1,Control,male,APOE44HN,Day2_CSTone,44,255.767,56.84,71.05,2.08,0,685,January
+210112-8,VF050521_114130,3_day2,Chamber1,Control,male,APOE44HN,Day2_Exploration,16,85.267,18.95,18.95,1.81,0,134,January
+,,,,,,,,,,,,,,,January
+210112-9,VF050521_114130,3_day2,Chamber 2,HFD,male,APOE44HN,Day2_Acclimation,34,171.6,38.13,95.33,1.17,0,68,January
+210112-9,VF050521_114130,3_day2,Chamber 2,HFD,male,APOE44HN,Day2_CSTone,41,258.7,57.49,71.86,0.81,0,58,January
+210112-9,VF050521_114130,3_day2,Chamber 2,HFD,male,APOE44HN,Day2_Exploration,12,86.967,19.33,19.33,0.68,0,55,January
+,,,,,,,,,,,,,,,January
+210112-10,VF050521_115151,4_day2,Chamber1,HFD,male,APOE44HN,Day2_Acclimation,38,172.833,38.41,96.02,1.33,0,150,January
+210112-10,VF050521_115151,4_day2,Chamber1,HFD,male,APOE44HN,Day2_CSTone,18,268.067,59.57,74.46,0.24,0,55,January
+210112-10,VF050521_115151,4_day2,Chamber1,HFD,male,APOE44HN,Day2_Exploration,16,88.167,19.59,19.59,0.61,0,55,January
+,,,,,,,,,,,,,,,January
+210112-11,VF050521_115151,4_day2,Chamber 2,HFD,male,APOE44HN,Day2_Acclimation,23,174.467,38.77,96.93,0.57,0,54,January
+210112-11,VF050521_115151,4_day2,Chamber 2,HFD,male,APOE44HN,Day2_CSTone,1,270,60,75,0.02,0,11,January
+210112-11,VF050521_115151,4_day2,Chamber 2,HFD,male,APOE44HN,Day2_Exploration,1,90,20,20,0.04,0,11,January
+,,,,,,,,,,,,,,,January
+210112-12,VF050521_120243,5_day2,Chamber1,HFD,male,APOE44HN,Day2_Acclimation,34,171.3,38.07,95.17,1.32,0,178,January
+210112-12,VF050521_120243,5_day2,Chamber1,HFD,male,APOE44HN,Day2_CSTone,39,262.5,58.33,72.92,0.83,0,137,January
+210112-12,VF050521_120243,5_day2,Chamber1,HFD,male,APOE44HN,Day2_Exploration,21,85.8,19.07,19.07,1.28,0,137,January
+,,,,,,,,,,,,,,,January
+210112-13,VF050521_120243,5_day2,Chamber 2,Control,female,APOE44HN,Day2_Acclimation,20,177.2,39.38,98.44,0.74,0,71,January
+210112-13,VF050521_120243,5_day2,Chamber 2,Control,female,APOE44HN,Day2_CSTone,10,268.733,59.72,74.65,0.31,0,41,January
+210112-13,VF050521_120243,5_day2,Chamber 2,Control,female,APOE44HN,Day2_Exploration,8,88.833,19.74,19.74,0.67,0,26,January
+,,,,,,,,,,,,,,,January
+210112-14,VF050521_121407,6_day2,Chamber1,Control,female,APOE44HN,Day2_Acclimation,96,117.7,26.16,65.39,8.73,0,412,January
+210112-14,VF050521_121407,6_day2,Chamber1,Control,female,APOE44HN,Day2_CSTone,107,224,49.78,62.22,3.96,0,127,January
+210112-14,VF050521_121407,6_day2,Chamber1,Control,female,APOE44HN,Day2_Exploration,54,55.633,12.36,12.36,8.57,0,127,January
+,,,,,,,,,,,,,,,January
+210112-15,VF050521_121407,6_day2,Chamber 2,Control,female,APOE44HN,Day2_Acclimation,53,165.233,36.72,91.8,1.81,0,72,January
+210112-15,VF050521_121407,6_day2,Chamber 2,Control,female,APOE44HN,Day2_CSTone,23,265.467,58.99,73.74,0.49,0,73,January
+210112-15,VF050521_121407,6_day2,Chamber 2,Control,female,APOE44HN,Day2_Exploration,12,88.9,19.76,19.76,0.52,0,57,January
+,,,,,,,,,,,,,,,
+210112-16,VF050521_122433,7_day2,Chamber1,Control,female,APOE44HN,Day2_Acclimation,40,173.167,38.48,96.2,1.24,0,218,January
+210112-16,VF050521_122433,7_day2,Chamber1,Control,female,APOE44HN,Day2_CSTone,9,268.667,59.7,74.63,0.17,0,63,January
+210112-16,VF050521_122433,7_day2,Chamber1,Control,female,APOE44HN,Day2_Exploration,1,90,20,20,0.06,0,9,January
+,,,,,,,,,,,,,,,January
+210112-17,VF050521_122433,7_day2,Chamber 2,Control,female,APOE44HN,Day2_Acclimation,16,176.967,39.33,98.31,0.52,0,47,January
+210112-17,VF050521_122433,7_day2,Chamber 2,Control,female,APOE44HN,Day2_CSTone,16,265.733,59.05,73.81,0.35,0,54,January
+210112-17,VF050521_122433,7_day2,Chamber 2,Control,female,APOE44HN,Day2_Exploration,7,87.4,19.42,19.42,0.56,0,45,January
+,,,,,,,,,,,,,,,January
+210112-18,VF050521_123603,8_day2,Chamber1,HFD,male,APOE33HN,Day2_Acclimation,27,172.533,38.34,95.85,1.19,0,154,January
+210112-18,VF050521_123603,8_day2,Chamber1,HFD,male,APOE33HN,Day2_CSTone,31,264.533,58.79,73.48,0.79,0,109,January
+210112-18,VF050521_123603,8_day2,Chamber1,HFD,male,APOE33HN,Day2_Exploration,12,89,19.78,19.78,0.64,0,30,January
+,,,,,,,,,,,,,,,January
+210112-19,VF050521_123603,8_day2,Chamber 2,HFD,male,APOE33HN,Day2_Acclimation,23,166.433,36.99,92.46,1.69,0,101,January
+210112-19,VF050521_123603,8_day2,Chamber 2,HFD,male,APOE33HN,Day2_CSTone,16,267.733,59.5,74.37,0.31,0,54,January
+210112-19,VF050521_123603,8_day2,Chamber 2,HFD,male,APOE33HN,Day2_Exploration,8,89.433,19.87,19.87,0.39,0,20,January
+,,,,,,,,,,,,,,,January
+210112-20,VF050521_124543,9_day2,Chamber1,HFD,male,APOE33HN,Day2_Acclimation,5,179.667,39.93,99.81,0.12,0,45,January
+210112-20,VF050521_124543,9_day2,Chamber1,HFD,male,APOE33HN,Day2_CSTone,3,269.867,59.97,74.96,0.05,0,20,January
+210112-20,VF050521_124543,9_day2,Chamber1,HFD,male,APOE33HN,Day2_Exploration,1,90,20,20,0.01,0,5,January
+,,,,,,,,,,,,,,,January
+210112-21,VF050521_124543,9_day2,Chamber 2,HFD,female,APOE33HN,Day2_Acclimation,3,179.933,39.99,99.96,0.11,0,28,January
+210112-21,VF050521_124543,9_day2,Chamber 2,HFD,female,APOE33HN,Day2_CSTone,6,269.8,59.96,74.94,0.11,0,31,January
+210112-21,VF050521_124543,9_day2,Chamber 2,HFD,female,APOE33HN,Day2_Exploration,1,90,20,20,0.08,0,12,January
+,,,,,,,,,,,,,,,January
+210112-23,VF050521_132100,10_day2,Chamber1,HFD,female,APOE33HN,Day2_Acclimation,37,174.367,38.75,96.87,1.08,0,103,January
+210112-23,VF050521_132100,10_day2,Chamber1,HFD,female,APOE33HN,Day2_CSTone,16,269.1,59.8,74.75,0.2,0,51,January
+210112-23,VF050521_132100,10_day2,Chamber1,HFD,female,APOE33HN,Day2_Exploration,13,89.333,19.85,19.85,0.46,0,51,January
+,,,,,,,,,,,,,,,January
+210112-24,VF050521_132100,10_day2,Chamber 2,HFD,female,APOE33HN,Day2_Acclimation,10,179.567,39.9,99.76,0.24,0,36,January
+210112-24,VF050521_132100,10_day2,Chamber 2,HFD,female,APOE33HN,Day2_CSTone,8,269.067,59.79,74.74,0.2,0,38,January
+210112-24,VF050521_132100,10_day2,Chamber 2,HFD,female,APOE33HN,Day2_Exploration,5,89.267,19.84,19.84,0.37,0,25,January
+,,,,,,,,,,,,,,,January
+210112-25,VF050521_132949,11_day2,Chamber1,HFD,male,APOE44,Day2_Acclimation,13,179.3,39.84,99.61,0.21,0,43,January
+210112-25,VF050521_132949,11_day2,Chamber1,HFD,male,APOE44,Day2_CSTone,11,268.967,59.77,74.71,0.21,0,61,January
+210112-25,VF050521_132949,11_day2,Chamber1,HFD,male,APOE44,Day2_Exploration,3,89.6,19.91,19.91,0.1,0,18,January
+,,,,,,,,,,,,,,,January
+210112-26,VF050521_132949,11_day2,Chamber 2,HFD,male,APOE44,Day2_Acclimation,2,179.967,39.99,99.98,0.09,0,18,January
+210112-26,VF050521_132949,11_day2,Chamber 2,HFD,male,APOE44,Day2_CSTone,1,270,60,75,0.02,0,9,January
+210112-26,VF050521_132949,11_day2,Chamber 2,HFD,male,APOE44,Day2_Exploration,1,90,20,20,0.06,0,9,January
+,,,,,,,,,,,,,,,January
+210112-27,VF050521_134121,13_day2,Chamber1,HFD,female,APOE44,Day2_Acclimation,49,172.2,38.27,95.67,1.49,0,178,January
+210112-27,VF050521_134121,13_day2,Chamber1,HFD,female,APOE44,Day2_CSTone,12,268.867,59.75,74.69,0.23,0,93,January
+210112-27,VF050521_134121,13_day2,Chamber1,HFD,female,APOE44,Day2_Exploration,7,89.267,19.84,19.84,0.51,0,93,January
+,,,,,,,,,,,,,,,January
+210112-28,VF050521_134121,13_day2,Chamber 2,HFD,female,APOE44,Day2_Acclimation,15,178.867,39.75,99.37,0.31,0,25,January
+210112-28,VF050521_134121,13_day2,Chamber 2,HFD,female,APOE44,Day2_CSTone,9,269.533,59.9,74.87,0.22,0,29,January
+210112-28,VF050521_134121,13_day2,Chamber 2,HFD,female,APOE44,Day2_Exploration,5,89.667,19.93,19.93,0.36,0,29,January
+,,,,,,,,,,,,,,,January
+210112-29,VF050521_135114,14_day2,Chamber1,HFD,female,APOE44,Day2_Acclimation,20,174.667,38.81,97.04,0.84,0,207,January
+210112-29,VF050521_135114,14_day2,Chamber1,HFD,female,APOE44,Day2_CSTone,5,268.4,59.64,74.56,0.13,0,60,January
+210112-29,VF050521_135114,14_day2,Chamber1,HFD,female,APOE44,Day2_Exploration,3,89.933,19.99,19.99,0.13,0,17,January
+,,,,,,,,,,,,,,,
+201026-1,VF111820_091037_102620_1_D2,,Chamber1,Control,female,APOE44HN,Day2_Acclimation,1,180,31.58,100,0.13,0,13,201026
+201026-1,VF111820_091037_102620_1_D2,,Chamber1,Control,female,APOE44HN,Day2_CSTone,1,360,63.16,100,0.06,0,12,201026
+201026-1,VF111820_091037_102620_1_D2,,Chamber1,Control,female,APOE44HN,Day2_Exploration,1,210,36.84,46.67,0.09,0,13,201026
+,,,,,,,,,,,,,,,201026
+201026-2,VF111820_092532_102620_2_D2,,Chamber1,Control,female,APOE44HN,Day2_Acclimation,2,179.967,31.57,99.98,0.22,0,19,201026
+201026-2,VF111820_092532_102620_2_D2,,Chamber1,Control,female,APOE44HN,Day2_CSTone,1,360,63.16,100,0.07,0,13,201026
+201026-2,VF111820_092532_102620_2_D2,,Chamber1,Control,female,APOE44HN,Day2_Exploration,1,210,36.84,46.67,0.08,0,10,201026
+,,,,,,,,,,,,,,,201026
+201026-3,VF111820_094743_102620_3_D2,,Chamber1,Control,male,APOE44HN,Day2_Acclimation,4,179.6,31.51,99.78,0.2,0,23,201026
+201026-3,VF111820_094743_102620_3_D2,,Chamber1,Control,male,APOE44HN,Day2_CSTone,2,359.967,63.15,99.99,0.11,0,15,201026
+201026-3,VF111820_094743_102620_3_D2,,Chamber1,Control,male,APOE44HN,Day2_Exploration,3,209.933,36.83,46.65,0.19,0,15,201026
+,,,,,,,,,,,,,,,201026
+201026-4,VF111820_095902_102620_4_D2,,Chamber1,Control,male,APOE44HN,Day2_Acclimation,52,164.633,28.88,91.46,1.76,0,71,201026
+201026-4,VF111820_095902_102620_4_D2,,Chamber1,Control,male,APOE44HN,Day2_CSTone,46,353.2,61.96,98.11,0.61,0,63,201026
+201026-4,VF111820_095902_102620_4_D2,,Chamber1,Control,male,APOE44HN,Day2_Exploration,23,204.933,35.95,45.54,0.52,0,63,201026
+,,,,,,,,,,,,,,,201026
+201026-5,VF111820_100943_102620_5_D2,,Chamber1,Control,female,,Day2_Acclimation,1,180,31.58,100,0.03,0,9,201026
+201026-5,VF111820_100943_102620_5_D2,,Chamber1,Control,female,,Day2_CSTone,1,360,63.16,100,0.01,0,11,201026
+201026-5,VF111820_100943_102620_5_D2,,Chamber1,Control,female,,Day2_Exploration,1,210,36.84,46.67,0,0,3,201026
+,,,,,,,,,,,,,,,201026
+201026-6,VF111820_102621_102620_6_D2,,Chamber1,Control,female,,Day2_Acclimation,6,179.533,31.5,99.74,0.25,0,31,201026
+201026-6,VF111820_102621_102620_6_D2,,Chamber1,Control,female,,Day2_CSTone,6,358.667,62.92,99.63,0.22,0,25,201026
+201026-6,VF111820_102621_102620_6_D2,,Chamber1,Control,female,,Day2_Exploration,8,208.6,36.6,46.36,0.37,0,25,201026
+,,,,,,,,,,,,,,,
+201012-1,VF020321_104436,day2_1,Chamber1,HFD,male,APOE44HN,Day2_Acclimation,31,175.8,30.84,97.67,0.81,0,70,2010212
+201012-1,VF020321_104436,day2_1,Chamber1,HFD,male,APOE44HN,Day2_CSTone,31,355.067,62.29,98.63,0.5,0,50,2010212
+201012-1,VF020321_104436,day2_1,Chamber1,HFD,male,APOE44HN,Day2_Exploration,16,207.533,36.41,46.12,0.52,0,50,2010212
+,,,,,,,,,,,,,,,2010212
+201012-2,VF020321_104436,day2_1,Chamber 2,HFD,male,APOE44HN,Day2_Acclimation,7,179.333,31.46,99.63,0.25,0,29,2010212
+201012-2,VF020321_104436,day2_1,Chamber 2,HFD,male,APOE44HN,Day2_CSTone,12,358.933,62.97,99.7,0.2,0,32,2010212
+201012-2,VF020321_104436,day2_1,Chamber 2,HFD,male,APOE44HN,Day2_Exploration,9,209.033,36.67,46.45,0.29,0,32,2010212
+,,,,,,,,,,,,,,,2010212
+201012-3,VF020321_110229,day2_2,Chamber1,HFD,female,APOE44HN,Day2_Acclimation,1,180,40,100,0.14,0,12,2010212
+201012-3,VF020321_110229,day2_2,Chamber1,HFD,female,APOE44HN,Day2_CSTone,1,270,60,75,0.04,0,11,2010212
+201012-3,VF020321_110229,day2_2,Chamber1,HFD,female,APOE44HN,Day2_Exploration,1,90,20,20,0.08,0,11,2010212
+,,,,,,,,,,,,,,,2010212
+201012-4,VF020321_110229,day2_2,Chamber 2,HFD,female,APOE44HN,Day2_Acclimation,10,178.867,39.75,99.37,0.29,0,22,2010212
+201012-4,VF020321_110229,day2_2,Chamber 2,HFD,female,APOE44HN,Day2_CSTone,3,269.9,59.98,74.97,0.09,0,25,2010212
+201012-4,VF020321_110229,day2_2,Chamber 2,HFD,female,APOE44HN,Day2_Exploration,1,90,20,20,0.08,0,13,2010212
+,,,,,,,,,,,,,,,2010212
+201012-5,VF020321_111240,day2_3,Chamber1,HFD,female,APOE44HN,Day2_Acclimation,14,179.567,39.9,99.76,0.61,0,25,2010212
+201012-5,VF020321_111240,day2_3,Chamber1,HFD,female,APOE44HN,Day2_CSTone,2,269.667,59.93,74.91,0.17,0,18,2010212
+201012-5,VF020321_111240,day2_3,Chamber1,HFD,female,APOE44HN,Day2_Exploration,1,90,20,20,0.21,0,12,2010212
+,,,,,,,,,,,,,,,2010212
+201012-6,VF020321_111240,day2_3,Chamber 2,HFD,female,APOE44HN,Day2_Acclimation,93,138.3,30.73,76.83,5.97,0,111,2010212
+201012-6,VF020321_111240,day2_3,Chamber 2,HFD,female,APOE44HN,Day2_CSTone,52,247.733,55.05,68.81,2.12,0,105,2010212
+201012-6,VF020321_111240,day2_3,Chamber 2,HFD,female,APOE44HN,Day2_Exploration,19,84.1,18.69,18.69,1.99,0,105,2010212
+,,,,,,,,,,,,,,,2010212
+201012-7,VF020321_112636,day2_4,Chamber1,HFD,female,APOE44HN,Day2_Acclimation,11,178.467,39.66,99.15,0.32,0,38,2010212
+201012-7,VF020321_112636,day2_4,Chamber1,HFD,female,APOE44HN,Day2_CSTone,4,268.7,59.71,74.64,0.09,0,49,2010212
+201012-7,VF020321_112636,day2_4,Chamber1,HFD,female,APOE44HN,Day2_Exploration,3,89.3,19.84,19.84,0.12,0,49,2010212
+,,,,,,,,,,,,,,,2010212
+201012-8,VF020321_112636,day2_4,Chamber 2,HFD,female,APOE44HN,Day2_Acclimation,2,179.967,39.99,99.98,0.17,0,18,2010212
+201012-8,VF020321_112636,day2_4,Chamber 2,HFD,female,APOE44HN,Day2_CSTone,2,269.967,59.99,74.99,0.05,0,16,2010212
+201012-8,VF020321_112636,day2_4,Chamber 2,HFD,female,APOE44HN,Day2_Exploration,1,90,20,20,0.03,0,11,2010212
+,,,,,,,,,,,,,,,2010212
+201012-9,VF020321_113658,day2_5,Chamber1,HFD,female,APOE44HN,Day2_Acclimation,60,164.5,36.56,91.39,2.06,0,70,2010212
+201012-9,VF020321_113658,day2_5,Chamber1,HFD,female,APOE44HN,Day2_CSTone,70,255.567,56.79,70.99,1.55,0,75,2010212
+201012-9,VF020321_113658,day2_5,Chamber1,HFD,female,APOE44HN,Day2_Exploration,18,86.333,19.19,19.19,1.36,0,75,2010212
+,,,,,,,,,,,,,,,2010212
+201012-10,VF020321_113658,day2_5,Chamber 2,HFD,female,APOE44HN,Day2_Acclimation,53,169.867,37.75,94.37,1.95,0,82,2010212
+201012-10,VF020321_113658,day2_5,Chamber 2,HFD,female,APOE44HN,Day2_CSTone,43,263.733,58.61,73.26,0.92,0,78,2010212
+201012-10,VF020321_113658,day2_5,Chamber 2,HFD,female,APOE44HN,Day2_Exploration,14,87.967,19.55,19.55,0.81,0,45,2010212
+,,,,,,,,,,,,,,,2010212
+201012-11,VF020321_114921,day2_6,Chamber1,HFD,female,APOE33HN,Day2_Acclimation,11,179.167,39.81,99.54,0.38,0,54,2010212
+201012-11,VF020321_114921,day2_6,Chamber1,HFD,female,APOE33HN,Day2_CSTone,4,269.433,59.87,74.84,0.08,0,56,2010212
+201012-11,VF020321_114921,day2_6,Chamber1,HFD,female,APOE33HN,Day2_Exploration,3,89.933,19.99,19.99,0.1,0,18,2010212
+,,,,,,,,,,,,,,,2010212
+201012-12,VF020321_114921,day2_6,Chamber 2,HFD,female,APOE33HN,Day2_Acclimation,29,175.3,38.96,97.39,0.76,0,53,2010212
+201012-12,VF020321_114921,day2_6,Chamber 2,HFD,female,APOE33HN,Day2_CSTone,21,265.233,58.94,73.68,0.37,0,72,2010212
+201012-12,VF020321_114921,day2_6,Chamber 2,HFD,female,APOE33HN,Day2_Exploration,10,87.733,19.5,19.5,0.51,0,35,2010212
+,,,,,,,,,,,,,,,2010212
+201012-13,VF020321_120045,day2_7,Chamber1,HFD,male,APOE33HN,Day2_Acclimation,10,179.6,39.91,99.78,0.3,0,30,2010212
+201012-13,VF020321_120045,day2_7,Chamber1,HFD,male,APOE33HN,Day2_CSTone,2,269.967,59.99,74.99,0.08,0,16,2010212
+201012-13,VF020321_120045,day2_7,Chamber1,HFD,male,APOE33HN,Day2_Exploration,1,90,20,20,0.07,0,11,2010212
+,,,,,,,,,,,,,,,2010212
+201012-15,VF020321_120045,day2_7,Chamber 2,HFD,female,APOE33,Day2_Acclimation,1,180,40,100,0.06,0,11,2010212
+201012-15,VF020321_120045,day2_7,Chamber 2,HFD,female,APOE33,Day2_CSTone,1,270,60,75,0.03,0,7,2010212
+201012-15,VF020321_120045,day2_7,Chamber 2,HFD,female,APOE33,Day2_Exploration,1,90,20,20,0.04,0,4,2010212
+,,,,,,APOE33,,,,,,,,,2010212
+201012-16,VF020321_121247,day2_8,Chamber1,HFD,female,APOE33,Day2_Acclimation,27,177.167,39.37,98.43,0.8,0,30,2010212
+201012-16,VF020321_121247,day2_8,Chamber1,HFD,female,APOE33,Day2_CSTone,4,269.7,59.93,74.92,0.24,0,17,2010212
+201012-16,VF020321_121247,day2_8,Chamber1,HFD,female,APOE33,Day2_Exploration,2,89.967,19.99,19.99,0.35,0,15,2010212
+,,,,,,APOE33,,,,,,,,,2010212
+201012-17,VF020321_121247,day2_8,Chamber 2,HFD,female,APOE33,Day2_Acclimation,3,179.8,39.96,99.89,0.27,0,19,2010212
+201012-17,VF020321_121247,day2_8,Chamber 2,HFD,female,APOE33,Day2_CSTone,1,270,60,75,0.08,0,14,2010212
+201012-17,VF020321_121247,day2_8,Chamber 2,HFD,female,APOE33,Day2_Exploration,1,90,20,20,0.09,0,14,2010212
+,,,,,,APOE33,,,,,,,,,2010212
+201012-18,VF020321_123229,day2_9,Chamber1,HFD,female,APOE33,Day2_Acclimation,29,176.4,39.2,98,1.14,0,35,2010212
+201012-18,VF020321_123229,day2_9,Chamber1,HFD,female,APOE33,Day2_CSTone,22,267.367,59.41,74.27,0.47,0,51,2010212
+201012-18,VF020321_123229,day2_9,Chamber1,HFD,female,APOE33,Day2_Exploration,16,87.667,19.48,19.48,0.95,0,51,2010212
+,,,,,,APOE33,,,,,,,,,2010212
+201012-19,VF020321_123229,day2_9,Chamber 2,HFD,female,APOE33,Day2_Acclimation,8,179.633,39.92,99.8,0.54,0,21,2010212
+201012-19,VF020321_123229,day2_9,Chamber 2,HFD,female,APOE33,Day2_CSTone,6,269.833,59.96,74.95,0.19,0,24,2010212
+201012-19,VF020321_123229,day2_9,Chamber 2,HFD,female,APOE33,Day2_Exploration,5,89.867,19.97,19.97,0.38,0,24,2010212
+,,,,,,APOE33,,,,,,,,,2010212
+201012-20,VF020321_124706,day2_10,Chamber1,HFD,female,APOE33,Day2_Acclimation,31,177.4,39.42,98.56,0.92,0,30,2010212
+201012-20,VF020321_124706,day2_10,Chamber1,HFD,female,APOE33,Day2_CSTone,7,269.8,59.96,74.94,0.21,0,23,2010212
+201012-20,VF020321_124706,day2_10,Chamber1,HFD,female,APOE33,Day2_Exploration,2,89.967,19.99,19.99,0.28,0,20,2010212
+,,,,,,APOE33,,,,,,,,,2010212
+201012-21,VF020321_124706,day2_10,Chamber 2,HFD,female,APOE33,Day2_Acclimation,2,179.867,39.97,99.93,0.16,0,15,2010212
+201012-21,VF020321_124706,day2_10,Chamber 2,HFD,female,APOE33,Day2_CSTone,1,270,60,75,0.05,0,10,2010212
+201012-21,VF020321_124706,day2_10,Chamber 2,HFD,female,APOE33,Day2_Exploration,1,90,20,20,0.11,0,10,2010212
+,,,,,,APOE33,,,,,,,,,2010212
+201012-22,VF020321_125855,day2_11,Chamber1,HFD,male,APOE33,Day2_Acclimation,38,174.333,38.74,96.85,1.21,0,63,2010212
+201012-22,VF020321_125855,day2_11,Chamber1,HFD,male,APOE33,Day2_CSTone,9,269.567,59.9,74.88,0.24,0,32,2010212
+201012-22,VF020321_125855,day2_11,Chamber1,HFD,male,APOE33,Day2_Exploration,3,89.867,19.97,19.97,0.14,0,25,2010212
+,,,,,male,APOE33,,,,,,,,,2010212
+201012-23,VF020321_125855,day2_11,Chamber 2,HFD,male,APOE33,Day2_Acclimation,3,179.933,39.99,99.96,0.25,0,18,2010212
+201012-23,VF020321_125855,day2_11,Chamber 2,HFD,male,APOE33,Day2_CSTone,1,270,60,75,0.01,0,4,2010212
+201012-23,VF020321_125855,day2_11,Chamber 2,HFD,male,APOE33,Day2_Exploration,1,90,20,20,0.03,0,4,2010212
+,,,,,male,APOE33,,,,,,,,,2010212
+201012-24,VF020321_131123,day2_12,Chamber1,HFD,male,APOE33,Day2_Acclimation,5,179.7,39.93,99.83,0.17,0,21,2010212
+201012-24,VF020321_131123,day2_12,Chamber1,HFD,male,APOE33,Day2_CSTone,3,269.933,59.99,74.98,0.09,0,27,2010212
+201012-24,VF020321_131123,day2_12,Chamber1,HFD,male,APOE33,Day2_Exploration,1,90,20,20,0.03,0,6,2010212
+,,,,,male,APOE33,,,,,,,,,2010212
+201012-25,VF020321_131123,day2_12,Chamber 2,HFD,male,APOE33,Day2_Acclimation,1,180,40,100,0.1,0,14,2010212
+201012-25,VF020321_131123,day2_12,Chamber 2,HFD,male,APOE33,Day2_CSTone,1,270,60,75,0.06,0,11,2010212
+201012-25,VF020321_131123,day2_12,Chamber 2,HFD,male,APOE33,Day2_Exploration,1,90,20,20,0.06,0,11,2010212
+,,,,,male,APOE33,,,,,,,,,2010212
+201012-26,VF020321_132310,day2_13,Chamber1,HFD,male,APOE33,Day2_Acclimation,14,179.433,39.87,99.69,0.48,0,32,2010212
+201012-26,VF020321_132310,day2_13,Chamber1,HFD,male,APOE33,Day2_CSTone,9,269.7,59.93,74.92,0.21,0,23,2010212
+201012-26,VF020321_132310,day2_13,Chamber1,HFD,male,APOE33,Day2_Exploration,7,89.767,19.95,19.95,0.36,0,23,2010212
+,,,,,male,APOE33,,,,,,,,,2010212
+201012-27,VF020321_132310,day2_13,Chamber 2,HFD,male,APOE33,Day2_Acclimation,8,179.567,39.9,99.76,0.34,0,34,2010212
+201012-27,VF020321_132310,day2_13,Chamber 2,HFD,male,APOE33,Day2_CSTone,2,269.833,59.96,74.95,0.08,0,27,2010212
+201012-27,VF020321_132310,day2_13,Chamber 2,HFD,male,APOE33,Day2_Exploration,1,90,20,20,0.09,0,13,2010212
+,,,,,,,,,,,,,,,
+210201-1,VF022421_102942,day2_1,Chamber1,Control,female,APOE33,Day2_Acclimation,15,179.133,39.81,99.52,0.46,0,30,210201
+210201-1,VF022421_102942,day2_1,Chamber1,Control,female,APOE33,Day2_CSTone,2,269.767,59.95,74.94,0.06,0,21,210201
+210201-1,VF022421_102942,day2_1,Chamber1,Control,female,APOE33,Day2_Exploration,2,89.767,19.95,19.95,0.14,0,21,210201
+,,,,Control,female,APOE33,,,,,,,,,210201
+210201-2,VF022421_102942,day2_1,Chamber 2,Control,female,APOE33,Day2_Acclimation,57,156.033,34.67,86.69,3.26,0,106,210201
+210201-2,VF022421_102942,day2_1,Chamber 2,Control,female,APOE33,Day2_CSTone,6,268.567,59.68,74.6,0.16,0,94,210201
+210201-2,VF022421_102942,day2_1,Chamber 2,Control,female,APOE33,Day2_Exploration,6,88.567,19.68,19.68,0.48,0,94,210201
+,,,,Control,female,APOE33,,,,,,,,,210201
+210201-3,VF022421_104050,day2_2,Chamber1,Control,female,APOE33,Day2_Acclimation,15,179.267,39.84,99.59,0.43,0,22,210201
+210201-3,VF022421_104050,day2_2,Chamber1,Control,female,APOE33,Day2_CSTone,6,269.333,59.85,74.81,0.16,0,24,210201
+210201-3,VF022421_104050,day2_2,Chamber1,Control,female,APOE33,Day2_Exploration,3,89.467,19.88,19.88,0.16,0,23,210201
+,,,,Control,female,APOE33,,,,,,,,,210201
+210201-4,VF022421_104050,day2_2,Chamber 2,Control,female,APOE33,Day2_Acclimation,30,171.8,38.18,95.44,1.12,0,76,210201
+210201-4,VF022421_104050,day2_2,Chamber 2,Control,female,APOE33,Day2_CSTone,14,267.567,59.46,74.32,0.22,0,38,210201
+210201-4,VF022421_104050,day2_2,Chamber 2,Control,female,APOE33,Day2_Exploration,14,87.567,19.46,19.46,0.63,0,38,210201
+,,,,Control,female,APOE33,,,,,,,,,210201
+210201-5,VF022421_105045,day2_3,Chamber1,Control,female,APOE33,Day2_Acclimation,52,168.933,37.54,93.85,1.59,0,57,210201
+210201-5,VF022421_105045,day2_3,Chamber1,Control,female,APOE33,Day2_CSTone,31,266.7,59.27,74.08,0.56,0,41,210201
+210201-5,VF022421_105045,day2_3,Chamber1,Control,female,APOE33,Day2_Exploration,25,87.533,19.45,19.45,1.38,0,36,210201
+,,,,Control,female,,,,,,,,,,210201
+210201-6,VF022421_105045,day2_3,Chamber 2,Control,female,APOE44,Day2_Acclimation,2,179.967,39.99,99.98,0.08,0,18,210201
+210201-6,VF022421_105045,day2_3,Chamber 2,Control,female,APOE44,Day2_CSTone,1,270,60,75,0.02,0,8,210201
+210201-6,VF022421_105045,day2_3,Chamber 2,Control,female,APOE44,Day2_Exploration,1,90,20,20,0.07,0,8,210201
+,,,,Control,female,APOE44,,,,,,,,,210201
+210201-7,VF022421_110327,day2_4,Chamber1,Control,female,APOE44,Day2_Acclimation,41,59.733,13.27,33.19,76.15,0,930,210201
+210201-7,VF022421_110327,day2_4,Chamber1,Control,female,APOE44,Day2_CSTone,61,183.867,40.86,51.07,20.89,0,508,210201
+210201-7,VF022421_110327,day2_4,Chamber1,Control,female,APOE44,Day2_Exploration,19,25.2,5.6,5.6,49.19,0,508,210201
+,,,,Control,female,APOE44,,,,,,,,,210201
+210201-8,VF022421_110327,day2_4,Chamber 2,Control,female,APOE44,Day2_Acclimation,20,171.033,38.01,95.02,1.11,0,78,210201
+210201-8,VF022421_110327,day2_4,Chamber 2,Control,female,APOE44,Day2_CSTone,8,266.767,59.28,74.1,0.21,0,57,210201
+210201-8,VF022421_110327,day2_4,Chamber 2,Control,female,APOE44,Day2_Exploration,8,86.767,19.28,19.28,0.56,0,57,210201
+,,,,Control,female,APOE44,,,,,,,,,210201
+210201-9,VF022421_111745,day2_5,Chamber1,Control,female,APOE44,Day2_Acclimation,66,166.033,36.9,92.24,1.61,0,66,210201
+210201-9,VF022421_111745,day2_5,Chamber1,Control,female,APOE44,Day2_CSTone,50,263.067,58.46,73.07,0.8,0,70,210201
+210201-9,VF022421_111745,day2_5,Chamber1,Control,female,APOE44,Day2_Exploration,27,85.633,19.03,19.03,1.31,0,43,210201
+,,,,Control,female,APOE44,,,,,,,,,210201
+210201-10,VF022421_111745,day2_5,Chamber 2,Control,female,APOE44,Day2_Acclimation,36,166.633,37.03,92.57,1.41,0,59,210201
+210201-10,VF022421_111745,day2_5,Chamber 2,Control,female,APOE44,Day2_CSTone,9,265.9,59.09,73.86,0.26,0,50,210201
+210201-10,VF022421_111745,day2_5,Chamber 2,Control,female,APOE44,Day2_Exploration,9,85.9,19.09,19.09,0.75,0,50,210201
+,,,,Control,,APOE44,,,,,,,,,210201
+210201-11,VF022421_112959,day2_6,Chamber1,Control,male,APOE44,Day2_Acclimation,28,175.767,39.06,97.65,0.84,0,55,210201
+210201-11,VF022421_112959,day2_6,Chamber1,Control,male,APOE44,Day2_CSTone,13,269.1,59.8,74.75,0.22,0,30,210201
+210201-11,VF022421_112959,day2_6,Chamber1,Control,male,APOE44,Day2_Exploration,7,89.3,19.84,19.84,0.43,0,30,210201
+,,,,Control,male,APOE44,,,,,,,,,210201
+210201-12,VF022421_112959,day2_6,Chamber 2,Control,male,APOE44,Day2_Acclimation,19,174.667,38.81,97.04,0.65,0,67,210201
+210201-12,VF022421_112959,day2_6,Chamber 2,Control,male,APOE44,Day2_CSTone,13,266.967,59.33,74.16,0.32,0,39,210201
+210201-12,VF022421_112959,day2_6,Chamber 2,Control,male,APOE44,Day2_Exploration,12,87,19.33,19.33,0.88,0,39,210201
+,,,,Control,male,APOE44,,,,,,,,,210201
+210201-13,VF022421_114126,day2_7,Chamber1,Control,male,APOE44,Day2_Acclimation,3,179.933,39.99,99.96,0.11,0,21,210201
+210201-13,VF022421_114126,day2_7,Chamber1,Control,male,APOE44,Day2_CSTone,4,269.6,59.91,74.89,0.06,0,18,210201
+210201-13,VF022421_114126,day2_7,Chamber1,Control,male,APOE44,Day2_Exploration,4,89.6,19.91,19.91,0.12,0,18,210201
+,,,,Control,male,APOE44,,,,,,,,,210201
+210201-14,VF022421_114126,day2_7,Chamber 2,Control,male,APOE44,Day2_Acclimation,28,175.467,38.99,97.48,0.64,0,77,210201
+210201-14,VF022421_114126,day2_7,Chamber 2,Control,male,APOE44,Day2_CSTone,12,268.633,59.7,74.62,0.19,0,48,210201
+210201-14,VF022421_114126,day2_7,Chamber 2,Control,male,APOE44,Day2_Exploration,7,89,19.78,19.78,0.32,0,48,210201
+,,,,Control,male,APOE44,,,,,,,,,210201
+210201-15,VF022421_115239,day2_8,Chamber1,Control,male,APOE44,Day2_Acclimation,9,178.767,39.73,99.31,0.34,0,35,210201
+210201-15,VF022421_115239,day2_8,Chamber1,Control,male,APOE44,Day2_CSTone,2,269.967,59.99,74.99,0.02,0,23,210201
+210201-15,VF022421_115239,day2_8,Chamber1,Control,male,APOE44,Day2_Exploration,1,90,20,20,0.04,0,10,210201
+,,,,Control,male,APOE44,,,,,,,,,210201
+210201-16,VF022421_115239,day2_8,Chamber 2,Control,male,APOE44,Day2_Acclimation,34,171.133,38.03,95.07,1.2,0,56,210201
+210201-16,VF022421_115239,day2_8,Chamber 2,Control,male,APOE44,Day2_CSTone,55,257.5,57.22,71.53,0.97,0,70,210201
+210201-16,VF022421_115239,day2_8,Chamber 2,Control,male,APOE44,Day2_Exploration,17,85.2,18.93,18.93,1.02,0,70,210201
+,,,,Control,male,APOE44,,,,,,,,,210201
+210201-17,VF022421_120537,day2_9,Chamber1,Control,male,APOE44,Day2_Acclimation,27,41,9.11,22.78,69.48,0,855,210201
+210201-17,VF022421_120537,day2_9,Chamber1,Control,male,APOE44,Day2_CSTone,55,185.7,41.27,51.58,32.23,0,1868,210201
+210201-17,VF022421_120537,day2_9,Chamber1,Control,male,APOE44,Day2_Exploration,17,49.7,11.04,11.04,48.18,0,736,210201
+,,,,Control,male,APOE44,,,,,,,,,210201
+210201-18,VF022421_120537,day2_9,Chamber 2,Control,male,APOE44,Day2_Acclimation,40,169.4,37.64,94.11,1.24,0,67,210201
+210201-18,VF022421_120537,day2_9,Chamber 2,Control,male,APOE44,Day2_CSTone,13,266.733,59.27,74.09,0.33,0,69,210201
+210201-18,VF022421_120537,day2_9,Chamber 2,Control,male,APOE44,Day2_Exploration,11,86.8,19.29,19.29,0.88,0,69,210201
+,,,,,,,,,,,,,,,210201
+210201-19,VF022421_122203,day2_10,Chamber1,Control,male,APOE22HN,Day2_Acclimation,17,176.867,39.3,98.26,0.47,0,43,210201
+210201-19,VF022421_122203,day2_10,Chamber1,Control,male,APOE22HN,Day2_CSTone,12,267.967,59.55,74.44,0.24,0,53,210201
+210201-19,VF022421_122203,day2_10,Chamber1,Control,male,APOE22HN,Day2_Exploration,8,88.467,19.66,19.66,0.49,0,39,210201

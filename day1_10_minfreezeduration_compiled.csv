@@ -1,0 +1,74 @@
+﻿Animal_ID,Experiment,Trial,Box,Treatment,Sex,Genotype,,Component Name,Freeze Cnt,Time Freezing,Pct Total Time Freezing,Pct Component Time Freezing,Avg Motion Index,Min Motion Index,Max Motion Index,Month
+210809-1,VF083121_094304,day1_trial1,Chamber1,Control,female,APOE33HN,,White House Light,7,299.1,99.7,99.7,0.14,0,81,October
+210809-2,VF083121_094304,day1_trial1,Chamber 2,Control,female,APOE33HN,,White House Light,82,230.367,76.79,76.79,7.76,0,504,October
+210809-3,VF083121_095112,day1_trial2,Chamber1,Control,female,APOE33HN,,White House Light,4,299.133,99.71,99.71,0.06,0,69,October
+210809-4,VF083121_095112,day1_trial2,Chamber 2,Control,female,APOE33HN,,White House Light,38,291.833,97.28,97.28,1.07,0,156,October
+210809-5,VF083121_100652,day1_trial3,Chamber1,HFD,male,APOE22HN,,White House Light,8,295.9,98.63,98.63,0.33,0,95,October
+210809-6,VF083121_100652,day1_trial3,Chamber 2,HFD,male,APOE22HN,,White House Light,38,292.2,97.4,97.4,1.18,0,166,October
+210809-7,VF083121_101516,day1_trial4,Chamber1,HFD,male,APOE22HN,,White House Light,36,277.533,92.51,92.51,3.75,0,463,October
+210809-8,VF083121_101516,day1_trial4,Chamber 2,HFD,male,APOE22HN,,White House Light,69,254.5,84.83,84.83,4.67,0,235,October
+,,,,,,,,,,,,,,,,
+210906-1,VF092821_110306,day1_trial1,Chamber1,Control,female,APOE22HN,,White House Light,20,294.267,98.09,98.09,0.8,0,101,September
+210906-2,VF092821_110306,day1_trial1,Chamber 2,Control,female,APOE22HN,,White House Light,90,272.267,90.76,90.76,4.23,0,484,September
+210906-3,VF092821_111219,day1_trial2,Chamber1,Control,female,APOE22HN,,White House Light,54,272.667,90.89,90.89,3.23,0,529,September
+210906-4,VF092821_111219,day1_trial2,Chamber 2,Control,female,APOE22HN,,White House Light,96,245.7,81.9,81.9,8.82,0,3120,September
+210906-5,VF092821_111819,day1_trial3,Chamber1,Control,female,APOE22HN,,White House Light,58,273.9,91.3,91.3,2.13,0,238,September
+210906-6,VF092821_111819,day1_trial3,Chamber 2,Control,male,APOE22HN,,White House Light,92,253.333,84.44,84.44,4.9,0,411,September
+210906-7,VF092821_112625,day1_trial4,Chamber1,Control,female,APOE22HN,,White House Light,106,259.667,86.56,86.56,5.15,0,310,September
+210906-8,VF092821_112625,day1_trial4,Chamber 2,Control,female,APOE22HN,,White House Light,68,241.167,80.39,80.39,12.21,0,879,September
+210906-9,VF092821_113453,day1_trial5,Chamber1,HFD,female,APOE44,,White House Light,41,283.133,94.38,94.38,1.83,0,137,September
+210906-10,VF092821_113453,day1_trial5,Chamber 2,HFD,female,APOE44,,White House Light,103,236.833,78.94,78.94,7.79,0,949,September
+210906-11,VF092821_114250,day1_trial6,Chamber1,HFD,female,APOE44,,White House Light,130,162.333,54.11,54.11,26.05,0,657,September
+210906-12,VF092821_114250,day1_trial6,Chamber 2,HFD,female,APOE44,,White House Light,94,227.933,75.98,75.98,17.39,0,5394,September
+210906-13,VF092821_115014,day1_trial7,Chamber1,HFD,female,APOE44,,White House Light,41,280.1,93.37,93.37,2.36,0,195,September
+210906-14,VF092821_115014,day1_trial7,Chamber 2,HFD,female,APOE44,,White House Light,145,156.433,52.14,52.14,23.05,0,3071,September
+210906-15,VF092821_115907,day1_trial8,Chamber1,HFD,female,APOE44,,White House Light,118,227.567,75.86,75.86,12.56,0,437,September
+210906-16,VF092821_115907,day1_trial8,Chamber 2,HFD,female,APOE44,,White House Light,82,268.133,89.38,89.38,2.52,0,182,September
+210906-17,VF092821_120804,day1_trial9,Chamber1,HFD,female,APOE44,,White House Light,58,248.667,82.89,82.89,10.45,0,564,September
+210906-18,VF092821_120804,day1_trial9,Chamber 2,HFD,female,APOE44,,White House Light,108,254.767,84.92,84.92,4.18,0,353,September
+210906-19,VF092821_121612,day1_trial10,Chamber1,HFD,male,APOE44,,White House Light,19,297.933,99.31,99.31,0.3,0,59,September
+210906-20,VF092821_121612,day1_trial10,Chamber 2,HFD,male,APOE44,,White House Light,37,293,97.67,97.67,0.78,0,68,September
+210906-21,VF092821_122426,day1_trial11,Chamber1,HFD,male,APOE44,,White House Light,80,242.167,80.72,80.72,10.29,0,483,September
+210906-22,VF092821_122426,day1_trial11,Chamber 2,HFD,male,APOE44,,White House Light,35,289.533,96.51,96.51,6.05,0,5166,September
+210906-23,VF092821_123209,day1_trial12,Chamber1,Control,female,APOE44,,White House Light,98,250.3,83.43,83.43,8.77,0,618,September
+210906-24,VF092821_123209,day1_trial12,Chamber 2,Control,female,APOE44,,White House Light,75,242.167,80.72,80.72,8.7,0,468,September
+,,,,,,,,,,,,,,,,
+211004-1,VF102621_095917,day1_trial1,Chamber1,Control,male,APOE33,,White House Light,4,299.333,99.78,99.78,0.12,0,42,October
+211004-2,VF102621_095917,day1_trial1,Chamber 2,Control,male,APOE33,,White House Light,44,278.833,92.94,92.94,2.41,0,435,October
+211004-3,VF102621_100742,day1_trial2,Chamber1,Control,male,APOE33,,White House Light,78,276.1,92.03,92.03,1.84,0,237,October
+211004-5,VF102621_100742,day1_trial2,Chamber 2,HFD,female,APOE33,,White House Light,31,290.933,96.98,96.98,0.87,0,208,October
+211004-9,VF102621_101638,day1_trial3,Chamber1,HFD,female,APOE33,,White House Light,8,297.9,99.3,99.3,0.15,0,117,October
+211004-10,VF102621_101638,day1_trial3,Chamber 2,Control,female,APOE44HN,,White House Light,83,285.133,95.04,95.04,1.57,0,141,October
+211004-11,VF102621_102506,day1_trial4,Chamber1,Control,female,APOE44HN,,White House Light,64,269.9,89.97,89.97,3.31,0,228,October
+211004-12,VF102621_102506,day1_trial4,Chamber 2,Control,female,APOE44HN,,White House Light,48,289.233,96.41,96.41,1.11,0,143,October
+211004-13,VF102621_103333,day1_trial5,Chamber1,Control,female,APOE44HN,,White House Light,8,299.333,99.78,99.78,0.09,0,33,October
+211004-14,VF102621_103333,day1_trial5,Chamber 2,HFD,male,APOE44HN,,White House Light,93,263.233,87.74,87.74,5.56,0,508,October
+211004-15,VF102621_104219,day1_trial6,Chamber1,HFD,male,APOE44HN,,White House Light,1,300,100,100,0.01,0,4,October
+211004-16,VF102621_104219,day1_trial6,Chamber 2,HFD,male,APOE44HN,,White House Light,101,255.433,85.14,85.14,7.78,0,593,October
+211004-17,VF102621_105123,day1_trial7,Chamber1,HFD,male,APOE44HN,,White House Light,36,287.733,95.91,95.91,0.99,0,93,October
+211004-19,VF102621_105123,day1_trial7,Chamber 2,Control,male,APOE44,,White House Light,23,297.067,99.02,99.02,0.35,0,59,October
+211004-20,VF102621_105949,day1_trial8,Chamber1,Control,female,APOE44,,White House Light,31,284.233,94.74,94.74,2.17,0,320,October
+211004-21,VF102621_105949,day1_trial8,Chamber 2,Control,male,APOE44HN,,White House Light,14,298.6,99.53,99.53,0.3,0,53,October
+,,,,,,,,,,,,,,,,
+211122-1,VF121421_095945,day1_trial1,Chamber1,HFD,female,APOE22HN,,White House Light,67,272.533,90.84,90.84,3.91,0,487,November
+211122-2,VF121421_095945,day1_trial1,Chamber 2,HFD,female,APOE22HN,,White House Light,103,231,77,77,7.33,0,371,November
+211122-3,VF121421_100556,day1_trial2,Chamber1,HFD,female,APOE22HN,,White House Light,9,298.933,99.64,99.64,0.22,0,231,November
+211122-4,VF121421_100556,day1_trial2,Chamber 2,HFD,female,APOE22HN,,White House Light,95,187.033,62.34,62.34,15.57,0,593,November
+211122-5,VF121421_101350,day1_trial3,Chamber1,HFD,female,APOE22HN,,White House Light,89,257.2,85.73,85.73,5.42,0,419,November
+211122-6,VF121421_101350,day1_trial3,Chamber 2,HFD,female,APOE22HN,,White House Light,128,197.733,65.91,65.91,13.2,0,480,November
+211122-7,VF121421_102150,day1_trial4,Chamber1,HFD,female,APOE22HN,,White House Light,42,281.167,93.72,93.72,21.84,0,22553,November
+211122-8,VF121421_102150,day1_trial4,Chamber 2,HFD,female,APOE22HN,,White House Light,127,168.133,56.04,56.04,15.5,0,443,November
+211122-9,VF121421_102944,day1_trial5,Chamber1,Control,male,APOE22HN,,White House Light,3,299.9,99.97,99.97,0.04,0,38,November
+211122-10,VF121421_102944,day1_trial5,Chamber 2,Control,male,APOE22HN,,White House Light,85,251.767,83.92,83.92,5.84,0,587,November
+211122-11,VF121421_103735,day1_trial6,Chamber1,Control,male,APOE22HN,,White House Light,74,250.967,83.66,83.66,8.51,0,609,November
+211122-12,VF121421_103735,day1_trial6,Chamber 2,Control,male,APOE22HN,,White House Light,116,230.4,76.8,76.8,9.13,0,527,November
+211122-13,VF121421_104531,day1_trial7,Chamber1,Control,male,APOE22HN,,White House Light,27,284.733,94.91,94.91,2.95,0,521,November
+211122-14,VF121421_104531,day1_trial7,Chamber 2,Control,male,APOE22HN,,White House Light,126,166.433,55.48,55.48,22.34,0,618,November
+211122-15,VF121421_105340,day1_trial8,Chamber1,Control,male,APOE22HN,,White House Light,33,285.2,95.07,95.07,2.21,0,326,November
+211122-16,VF121421_105340,day1_trial8,Chamber 2,Control,male,APOE22HN,,White House Light,126,141.8,47.27,47.27,35.87,0,813,November
+211122-23,VF121421_110201,day1_trial9,Chamber1,Control,male,APOE22HN,,White House Light,103,242.967,80.99,80.99,9.47,0,453,November
+211122-24,VF121421_110201,day1_trial9,Chamber 2,Control,male,APOE22HN,,White House Light,87,267.767,89.26,89.26,3.43,0,400,November
+211122-25,VF121421_110958,day1_trial10,Chamber1,Control,male,APOE22HN,,White House Light,12,294.4,98.13,98.13,0.72,0,234,November
+211122-26,VF121421_110958,day1_trial10,Chamber 2,Control,male,APOE22HN,,White House Light,104,232.7,77.57,77.57,7.49,0,607,November
+211122-27,VF121421_111817,day1_trial11,Chamber1,Control,male,APOE22HN,,White House Light,33,290.9,96.97,96.97,1.11,0,157,November
+211122-28,VF121421_111817,day1_trial11,Chamber 2,Control,male,APOE22HN,,White House Light,120,195.167,65.06,65.06,11.54,0,557,November

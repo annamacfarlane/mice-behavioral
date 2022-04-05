@@ -1,0 +1,50 @@
+"Date :",05/27/21 17:15:00
+"Motion Threshold (au):",15
+"Detection Method:","Linear"
+"Min Freeze Duration (f):",10
+
+
+
+Component Details
+"Component Name","Start Time","Duration (s)","Start Frame","Duration Frames"
+"White House Light"," 0:00:00.000",300,0,9000
+
+"Experiment","Trial","Box","Animal","Group","Component Name","Freeze Cnt","Time Freezing","Pct Total Time Freezing","Pct Component Time Freezing","Avg Motion Index","Min Motion Index","Max Motion Index"
+"VF022321_102047","day1_1",Chamber1,"","","White House Light",95,268.267,89.42,89.42,10.95,0,59175
+
+"VF022321_102047","day1_1",Chamber 2,"","","White House Light",3,299.733,99.91,99.91,0.44,0,3726
+
+"VF022321_103809","day1_2",Chamber1,"","","White House Light",24,294.333,98.11,98.11,9.78,0,48200
+
+"VF022321_103809","day1_2",Chamber 2,"","","White House Light",57,167.167,55.72,55.72,60.13,0,76170
+
+"VF022321_104730","day1_3",Chamber1,"","","White House Light",11,295.400,98.47,98.47,7.22,0,55789
+
+"VF022321_104730","day1_3",Chamber 2,"","","White House Light",77,252.800,84.27,84.27,11.13,0,62264
+
+"VF022321_105548","day1_4",Chamber1,"","","White House Light",74,269.067,89.69,89.69,11.78,0,68706
+
+"VF022321_105548","day1_4",Chamber 2,"","","White House Light",53,286.500,95.50,95.50,6.53,0,42852
+
+"VF022321_110403","day1_5",Chamber1,"","","White House Light",104,235.100,78.37,78.37,17.62,0,67569
+
+"VF022321_110403","day1_5",Chamber 2,"","","White House Light",57,83.400,27.80,27.80,101.76,0,76117
+
+"VF022321_111619","day1_6",Chamber1,"","","White House Light",26,295.800,98.60,98.60,7.37,0,58546
+
+"VF022321_111619","day1_6",Chamber 2,"","","White House Light",26,286.400,95.47,95.47,7.74,0,30632
+
+"VF022321_112731","day1_7",Chamber1,"","","White House Light",115,195.967,65.32,65.32,19.51,0,72741
+
+"VF022321_112731","day1_7",Chamber 2,"","","White House Light",78,246.000,82.00,82.00,15.52,0,63667
+
+"VF022321_113635","day1_8",Chamber1,"","","White House Light",73,226.333,75.44,75.44,19.17,0,74510
+
+"VF022321_113635","day1_8",Chamber 2,"","","White House Light",106,234.900,78.30,78.30,12.95,0,60283
+
+"VF022321_114426","day1_9",Chamber1,"","","White House Light",9,299.067,99.69,99.69,8.99,0,42896
+
+"VF022321_114426","day1_9",Chamber 2,"","","White House Light",18,297.333,99.11,99.11,6.84,0,57680
+
+"VF022321_115330","day1_10",Chamber1,"","","White House Light",10,297.033,99.01,99.01,6.97,0,60327
+
