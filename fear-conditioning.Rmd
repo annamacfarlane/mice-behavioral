@@ -79,7 +79,7 @@ add1 <- rbind(batch1_1, batch2_1, batch3_1, batch4_1, batch5_1,
 add2 <- rbind(batch1_2, batch2_2, batch3_2, batch4_2, batch5_2, 
               batch6_2, batch7_2, batch8_2, batch9_2, batch10_2, batch11_2)
 
-animal_info <- read.csv('Data_concat.csv')
+animal_info <- read.csv('updated.csv')
 
 all_day2 <- left_join(add2, animal_info, by='Animal_ID')
 all_day1 <- left_join(add1, animal_info, by='Animal_ID')
@@ -87,6 +87,7 @@ all_day0 <- left_join(add0, animal_info, by='Animal_ID')
 
 all_day0<-all_day0 %>% 
   filter(Animal_ID!='')
+view(all_day0)
   
 all_day1<-all_day1 %>% 
   filter(Animal_ID!='')
@@ -184,12 +185,12 @@ day0_test<-all_day0 %>%
     Age_Months < 16 ~ "12 months",
     Age_Months >= 16 ~ "18 months"
   )) %>% 
-  #mutate(Sex = case_when(
-  #  Sex == 'male' ~ 'Male',
-  #  Sex == 'female' ~ 'Female',
-  #  Sex == 'Male' ~ 'Male',
-  #  Sex == 'Female' ~ 'Female',
-  #)) %>% 
+  mutate(Sex = case_when(
+    Sex == 'male' ~ 'Male',
+    Sex == 'female' ~ 'Female',
+    Sex == 'Male' ~ 'Male',
+    Sex == 'Female' ~ 'Female',
+  )) %>% 
   filter(Age_group == '12 months') %>% 
   select(Genotype, Time, Animal_ID, 
          Treatment, Pct.Total.Time.Freezing) 
@@ -244,6 +245,37 @@ hn_group <- all_day0 %>%
   filter(Age_group == '12 months') %>% 
   filter(Time != 0 ) %>% 
   group_by(Genotype, Treatment, Time) %>% 
+  summarise(n=n(),
+            se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
+            len = mean(Pct.Total.Time.Freezing)) 
+
+hn_sex<- all_day0 %>% 
+  filter(!is.na(Animal_ID)) %>%
+  filter(Genotype == "APOE22HN" |
+           Genotype == "APOE33HN" |
+           Genotype == "APOE44HN") %>% 
+  mutate(Time = case_when(
+    Component.Name == 'Sound 1' ~ 1,
+    Component.Name == 'Shock 1' ~ 0,
+    Component.Name == 'Sound 2' ~ 2,
+    Component.Name == 'Shock 2' ~ 0,
+    Component.Name == 'Sound 3' ~ 3,
+    Component.Name == 'Shock 3' ~ 0,
+  )) %>% 
+  mutate(Age_group = case_when(
+    Age_Months < 16 ~ "12 months",
+    Age_Months >= 16 ~ "18 months"
+  )) %>% 
+  mutate(Sex = case_when(
+    Sex == 'male' ~ 'Male',
+    Sex == 'female' ~ 'Female',
+    Sex == 'Male' ~ 'Male',
+    Sex == 'Female' ~ 'Female',
+  )) %>% 
+  filter(!is.na(Sex)) %>% 
+  filter(Age_group == '12 months') %>% 
+  filter(Time != 0 ) %>% 
+  group_by(Genotype, Treatment, Time, Sex) %>% 
   summarise(n=n(),
             se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
             len = mean(Pct.Total.Time.Freezing)) 
@@ -312,7 +344,13 @@ nonHN1<-all_day0 %>%
 
 # faceted by diet, only HN genotypes
 
-ggplot(data=hn_group, aes(x=Time, y=len, color=Genotype)) +
+poster<-hn_group %>% 
+  mutate(Treatment = case_when(
+      Treatment=='HFD' ~ 'High Fat Diet',
+      Treatment=='Control'~ 'Control'
+  ))
+
+ggplot(data=poster, aes(x=Time, y=len, color=Genotype)) +
   geom_line(stat="identity", width=0.5) +
   facet_grid(.~Treatment) + 
   labs(y="Average Percent Freezing Time", x='Component') +
@@ -570,7 +608,13 @@ print(counts)
 
 print(day1HN_violin)
 
-ggplot(data = day1HN_violin, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
+poster<-day1HN_violin %>% 
+  mutate(Treatment = case_when(
+      Treatment=='HFD' ~ 'High Fat Diet',
+      Treatment=='Control'~ 'Control'
+  ))
+
+ggplot(data = poster, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
   geom_violin() +
   geom_boxplot(width = 0.1) +
   theme_bw()+
@@ -756,7 +800,6 @@ ggplot(data=day2_diet, aes(x=Genotype, y=len, fill=Genotype)) +
 
 
 # HNs
-
 day2_violin<-all_day2 %>% 
   filter(!is.na(Trial)) %>% 
   mutate(comp = case_when(
@@ -776,7 +819,14 @@ day2_violin<-all_day2 %>%
   filter(Age_group == '12 months') %>% 
   select(Genotype, comp, Treatment, Pct.Total.Time.Freezing)
 
-ggplot(data = day2_violin, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
+poster<-day2_violin %>% 
+  mutate(Treatment = case_when(
+      Treatment=='HFD' ~ 'High Fat Diet',
+      Treatment=='Control'~ 'Control'
+  ))
+
+
+ggplot(data = poster, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
   geom_violin() +
   geom_boxplot(width = 0.1) +
   facet_grid(Treatment~comp) +
