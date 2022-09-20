@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
 
@@ -14,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 rm(list=ls())
 
 options(java.parameters = "- Xmx1024m")
-setwd('/chg3/analysts/abadea/Badea_6520_201014A7/analysis')
+setwd('/Users/AnnaMacFarlane/Desktop/badea_mRNA')
 library(DESeq2)
 library(tximport)
 library(readr)
@@ -53,7 +54,7 @@ head(meta)
 dim(meta)
 
 # Make tx2gene df
-txdb <- makeTxDbFromGFF("/chg3/analysts/abadea/Badea_6520_201014A7/salmon/mouse_index/Mus_musculus.GRCm39.105.gtf.gz", organism = "Mus musculus")
+txdb <- makeTxDbFromGFF("/Users/AnnaMacFarlane/Desktop/genome_assemblies_genome_gtf", organism = "Mus musculus")
 k <- keys(txdb, keytype = "TXNAME")
 tx2gene <- select(txdb, k, "GENEID", "TXNAME")
 head(tx2gene)
