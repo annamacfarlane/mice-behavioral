@@ -7,7 +7,6 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 ```
 
 
@@ -28,6 +27,9 @@ library(ggpubr)
 library(GenomicFeatures)
 library(ggsci)
 
+```
+
+``` {r test}
 # Load in metadata
 meta <- as.data.frame(read_excel("MouseMetadata.xlsx", sheet = "PCA", col_names = TRUE))
 head(meta)
@@ -54,13 +56,13 @@ head(meta)
 dim(meta)
 
 # Make tx2gene df
-txdb <- makeTxDbFromGFF("/Users/AnnaMacFarlane/Desktop/genome_assemblies_genome_gtf", organism = "Mus musculus")
+txdb <- makeTxDbFromGFF('/Users/AnnaMacFarlane/Dropbox/mice_seq/Mus_musculus.GRCm39.105.gtf.gz', organism = "Mus musculus")
 k <- keys(txdb, keytype = "TXNAME")
 tx2gene <- select(txdb, k, "GENEID", "TXNAME")
 head(tx2gene)
 
 # Load in estimated counts
-files <- file.path("/chg3/analysts/abadea/Badea_6520_201014A7/salmon/quants",meta$Filename,"quant.sf")
+files <- file.path("/Users/AnnaMacFarlane/Dropbox/mice_seq/quants",meta$Filename,"quant.sf")
 names(files) <- meta$Filename
 all(file.exists(files))
 txi <- tximport(files, type="salmon", tx2gene=tx2gene, ignoreTxVersion = TRUE)
