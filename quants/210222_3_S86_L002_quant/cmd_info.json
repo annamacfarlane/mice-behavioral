@@ -1,0 +1,11 @@
+{
+    "salmon_version": "1.5.2",
+    "index": "mouse_index",
+    "libType": "A",
+    "mates1": "../raw_data/210222_3_S86_L002_R1_001.fastq.gz",
+    "mates2": "../raw_data/210222_3_S86_L002_R2_001.fastq.gz",
+    "threads": "4",
+    "validateMappings": [],
+    "output": "quants/210222_3_S86_L002_quant",
+    "auxDir": "aux_info"
+}

@@ -1,0 +1,50 @@
+[2022-03-11 22:34:47.092] [jointLog] [info] setting maxHashResizeThreads to 4
+[2022-03-11 22:34:47.092] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2022-03-11 22:34:47.092] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2022-03-11 22:34:47.092] [jointLog] [info] Setting consensusSlack to selective-alignment default of 0.35.
+[2022-03-11 22:34:47.092] [jointLog] [info] parsing read library format
+[2022-03-11 22:34:47.092] [jointLog] [info] There is 1 library.
+[2022-03-11 22:34:47.356] [jointLog] [info] Loading pufferfish index
+[2022-03-11 22:34:47.373] [jointLog] [info] Loading dense pufferfish index.
+[2022-03-11 22:34:48.609] [jointLog] [info] done
+[2022-03-11 22:34:48.609] [jointLog] [info] Index contained 116,755 targets
+[2022-03-11 22:34:48.699] [jointLog] [info] Number of decoys : 0
+[2022-03-11 22:34:49.522] [jointLog] [info] Automatically detected most likely library type as ISF
+
+[2022-03-11 22:37:05.666] [jointLog] [info] Thread saw mini-batch with a maximum of 24.90% zero probability fragments
+[2022-03-11 22:37:05.685] [jointLog] [info] Thread saw mini-batch with a maximum of 25.02% zero probability fragments
+[2022-03-11 22:37:05.700] [jointLog] [info] Thread saw mini-batch with a maximum of 24.68% zero probability fragments
+[2022-03-11 22:37:05.715] [jointLog] [info] Thread saw mini-batch with a maximum of 24.46% zero probability fragments
+[2022-03-11 22:37:05.896] [jointLog] [info] Computed 130,353 rich equivalence classes for further processing
+[2022-03-11 22:37:05.896] [jointLog] [info] Counted 12,684,667 total reads in the equivalence classes 
+[2022-03-11 22:37:05.901] [jointLog] [info] Number of mappings discarded because of alignment score : 3,979,314
+[2022-03-11 22:37:05.901] [jointLog] [info] Number of fragments entirely discarded because of alignment score : 955,066
+[2022-03-11 22:37:05.901] [jointLog] [info] Number of fragments discarded because they are best-mapped to decoys : 0
+[2022-03-11 22:37:05.901] [jointLog] [info] Number of fragments discarded because they have only dovetail (discordant) mappings to valid targets : 110,760
+[2022-03-11 22:37:05.901] [jointLog] [info] Mapping rate = 67.7651%
+
+[2022-03-11 22:37:05.901] [jointLog] [info] finished quantifyLibrary()
+[2022-03-11 22:37:05.922] [jointLog] [info] Starting optimizer
+[2022-03-11 22:37:05.897] [fileLog] [info] 
+At end of round 0
+==================
+Observed 18718582 total fragments (18718582 in most recent round)
+
+[2022-03-11 22:37:09.328] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2022-03-11 22:37:09.355] [jointLog] [info] iteration = 0 | max rel diff. = 8013.16
+[2022-03-11 22:37:12.344] [jointLog] [info] iteration = 100 | max rel diff. = 10.5889
+[2022-03-11 22:37:15.155] [jointLog] [info] iteration = 200 | max rel diff. = 0.649757
+[2022-03-11 22:37:18.130] [jointLog] [info] iteration = 300 | max rel diff. = 1.98143
+[2022-03-11 22:37:20.925] [jointLog] [info] iteration = 400 | max rel diff. = 0.187266
+[2022-03-11 22:37:24.007] [jointLog] [info] iteration = 500 | max rel diff. = 1.88375
+[2022-03-11 22:37:27.103] [jointLog] [info] iteration = 600 | max rel diff. = 0.0323992
+[2022-03-11 22:37:29.980] [jointLog] [info] iteration = 700 | max rel diff. = 0.144749
+[2022-03-11 22:37:32.807] [jointLog] [info] iteration = 800 | max rel diff. = 0.0962666
+[2022-03-11 22:37:35.575] [jointLog] [info] iteration = 900 | max rel diff. = 0.231894
+[2022-03-11 22:37:38.480] [jointLog] [info] iteration = 1,000 | max rel diff. = 0.0237225
+[2022-03-11 22:37:41.311] [jointLog] [info] iteration = 1,100 | max rel diff. = 0.0182917
+[2022-03-11 22:37:44.057] [jointLog] [info] iteration = 1,200 | max rel diff. = 0.0469259
+[2022-03-11 22:37:45.163] [jointLog] [info] iteration = 1,242 | max rel diff. = 0.00400292
+[2022-03-11 22:37:45.193] [jointLog] [info] Finished optimizer
+[2022-03-11 22:37:45.193] [jointLog] [info] writing output 
+

@@ -56,13 +56,13 @@ head(meta)
 dim(meta)
 
 # Make tx2gene df
-txdb <- makeTxDbFromGFF('/Users/AnnaMacFarlane/Dropbox/mice_seq/Mus_musculus.GRCm39.105.gtf.gz', organism = "Mus musculus")
+txdb <- makeTxDbFromGFF('Mus_musculus.GRCm39.105.gtf.gz', organism = "Mus musculus")
 k <- keys(txdb, keytype = "TXNAME")
 tx2gene <- select(txdb, k, "GENEID", "TXNAME")
 head(tx2gene)
 
 # Load in estimated counts
-files <- file.path("/Users/AnnaMacFarlane/Dropbox/mice_seq/quants",meta$Filename,"quant.sf")
+files <- file.path("quants/",meta$Filename,"quant.sf")
 names(files) <- meta$Filename
 all(file.exists(files))
 txi <- tximport(files, type="salmon", tx2gene=tx2gene, ignoreTxVersion = TRUE)

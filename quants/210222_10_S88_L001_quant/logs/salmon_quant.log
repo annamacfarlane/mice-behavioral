@@ -1,0 +1,50 @@
+[2022-03-11 22:31:58.560] [jointLog] [info] setting maxHashResizeThreads to 4
+[2022-03-11 22:31:58.560] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2022-03-11 22:31:58.560] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2022-03-11 22:31:58.560] [jointLog] [info] Setting consensusSlack to selective-alignment default of 0.35.
+[2022-03-11 22:31:58.560] [jointLog] [info] parsing read library format
+[2022-03-11 22:31:58.560] [jointLog] [info] There is 1 library.
+[2022-03-11 22:31:59.003] [jointLog] [info] Loading pufferfish index
+[2022-03-11 22:31:59.007] [jointLog] [info] Loading dense pufferfish index.
+[2022-03-11 22:32:00.415] [jointLog] [info] done
+[2022-03-11 22:32:00.415] [jointLog] [info] Index contained 116,755 targets
+[2022-03-11 22:32:00.497] [jointLog] [info] Number of decoys : 0
+[2022-03-11 22:32:01.095] [jointLog] [info] Automatically detected most likely library type as ISF
+
+[2022-03-11 22:34:08.200] [jointLog] [info] Thread saw mini-batch with a maximum of 24.44% zero probability fragments
+[2022-03-11 22:34:08.200] [jointLog] [info] Thread saw mini-batch with a maximum of 24.52% zero probability fragments
+[2022-03-11 22:34:08.212] [jointLog] [info] Thread saw mini-batch with a maximum of 24.58% zero probability fragments
+[2022-03-11 22:34:08.248] [jointLog] [info] Thread saw mini-batch with a maximum of 24.56% zero probability fragments
+[2022-03-11 22:34:08.532] [fileLog] [info] 
+At end of round 0
+==================
+Observed 19724906 total fragments (19724906 in most recent round)
+
+[2022-03-11 22:34:08.531] [jointLog] [info] Computed 131,210 rich equivalence classes for further processing
+[2022-03-11 22:34:08.531] [jointLog] [info] Counted 13,243,878 total reads in the equivalence classes 
+[2022-03-11 22:34:08.535] [jointLog] [info] Number of mappings discarded because of alignment score : 4,187,143
+[2022-03-11 22:34:08.535] [jointLog] [info] Number of fragments entirely discarded because of alignment score : 1,010,153
+[2022-03-11 22:34:08.535] [jointLog] [info] Number of fragments discarded because they are best-mapped to decoys : 0
+[2022-03-11 22:34:08.535] [jointLog] [info] Number of fragments discarded because they have only dovetail (discordant) mappings to valid targets : 118,339
+[2022-03-11 22:34:08.535] [jointLog] [info] Mapping rate = 67.1429%
+
+[2022-03-11 22:34:08.535] [jointLog] [info] finished quantifyLibrary()
+[2022-03-11 22:34:08.560] [jointLog] [info] Starting optimizer
+[2022-03-11 22:34:08.745] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2022-03-11 22:34:08.773] [jointLog] [info] iteration = 0 | max rel diff. = 8331.05
+[2022-03-11 22:34:11.653] [jointLog] [info] iteration = 100 | max rel diff. = 20.7066
+[2022-03-11 22:34:14.520] [jointLog] [info] iteration = 200 | max rel diff. = 11.7597
+[2022-03-11 22:34:17.481] [jointLog] [info] iteration = 300 | max rel diff. = 0.476949
+[2022-03-11 22:34:20.382] [jointLog] [info] iteration = 400 | max rel diff. = 0.582012
+[2022-03-11 22:34:23.333] [jointLog] [info] iteration = 500 | max rel diff. = 0.542153
+[2022-03-11 22:34:26.048] [jointLog] [info] iteration = 600 | max rel diff. = 0.0164932
+[2022-03-11 22:34:28.864] [jointLog] [info] iteration = 700 | max rel diff. = 2.64001
+[2022-03-11 22:34:31.759] [jointLog] [info] iteration = 800 | max rel diff. = 0.131539
+[2022-03-11 22:34:34.492] [jointLog] [info] iteration = 900 | max rel diff. = 0.0512507
+[2022-03-11 22:34:37.227] [jointLog] [info] iteration = 1,000 | max rel diff. = 0.203944
+[2022-03-11 22:34:39.812] [jointLog] [info] iteration = 1,100 | max rel diff. = 0.0151919
+[2022-03-11 22:34:42.790] [jointLog] [info] iteration = 1,200 | max rel diff. = 0.0257144
+[2022-03-11 22:34:43.897] [jointLog] [info] iteration = 1,240 | max rel diff. = 0.00654353
+[2022-03-11 22:34:43.931] [jointLog] [info] Finished optimizer
+[2022-03-11 22:34:43.931] [jointLog] [info] writing output 
+
