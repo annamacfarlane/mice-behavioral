@@ -1,0 +1,476 @@
+---
+title: "MWM"
+author: "Anna MacFarlane"
+date: "2022-11-13"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+# installing packages 
+library(tidyverse)
+library(cowplot)
+library(gplots)
+library(ggplot2)
+library(patternplot)
+library(lme4)
+library(visreg)
+library(tidyr)
+library(magrittr) 
+library(dplyr)
+library(ggpubr)
+library(lme4)
+library(lsmeans)
+library(emmeans)
+
+#df <-
+#  list.files(path = "MWM_Result_files", pattern = "*.csv") %>% 
+#  map_df(~read_csv(.))
+#df
+mice_info<-read.csv('qial_animals_with_age.csv')
+
+  
+```
+
+```{r data-organzing}
+info<-read.csv('EDIT_apoe22_33_44__2HN_3HN_4HN_mwm_combined.csv', header=TRUE)
+data1<-read.csv('MWM_Result_files/ApoE_190610_E44_MWM.csv', header=TRUE)
+data2<-read.csv('MWM_Result_files/ApoE_190715_E22_E33_MWM.csv', header=TRUE)
+data3<-read.csv('MWM_Result_files/APOE_190909_E22-E33_MWM.csv', header=TRUE)
+data4<-read.csv('MWM_Result_files/ApoE_191028_E22_MWM.CSV', header=TRUE)
+data5<-read.csv('MWM_Result_files/APOE_200302_E22_MWM.csv', header=TRUE)
+data6<-read.csv('MWM_Result_files/ApoE_200331_E22_E44_MWM.csv', header=TRUE)
+data7<-read.csv('MWM_Result_files/APOE_201012_HFD_MWM_aka_210118.csv', header=TRUE)
+data8<-read.csv('MWM_Result_files/ApoE_201026_E4HN_MWM.csv', header=TRUE)
+data9<-read.csv('MWM_Result_files/ApoE_210112_JanMixed_MWM.csv', header=TRUE)
+data10<-read.csv('MWM_Result_files/ApoE_210201_12MonthControl_MWM.csv', header=TRUE)
+data11<-read.csv('MWM_Result_files/ApoE_210222_12monthControl_MWM.csv', header=TRUE)
+data12<-read.csv('MWM_Result_files/ApoE_210503_12-18Control_MWM.csv', header=TRUE)
+data13<-read.csv('MWM_Result_files/ApoE_210614_MarchMixed_MWM_AlexBadea.csv', header=TRUE)
+data14<-read.csv('MWM_Result_files/ApoE_210614_MarchMixed_MWM_JTT_05.18.22.csv', header=TRUE)
+data15<-read.csv('MWM_Result_files/ApoE_210809_AugustMixed_MWM_082621_2.csv', header=TRUE)
+data16<-read.csv('MWM_Result_files/APOE_210906_SeptMixed_MWM.csv', header=TRUE)
+data17<-read.csv('MWM_Result_files/ApoE_211004_OctMixed_MWM_results.csv', header=TRUE)
+data18<-read.csv('MWM_Result_files/ApoE_211122_NovMixed_MWM_results.csv', header=TRUE)
+data19<-read.csv('MWM_Result_files/APOE_220110_Jan2022_Mixed_MWM_results.csv', header=TRUE)
+data20<-read.csv('MWM_Result_files/APOE_220207_Feb2022_MWM_results.csv', header=TRUE)
+data21<-read.csv('MWM_Result_files/APOE_220404_April2022_MWM_results.csv', header=TRUE)
+data22<-read.csv('MWM_Result_files/ApoE_220509_May2022Mixed_MWM_results.csv', header=TRUE)
+data23<-read.csv('MWM_Result_files/ApoE_220606_June2022Mixed_MWMresults.csv', header=TRUE)
+data24<-read.csv('MWM_Result_files/APOE_220704_July2022_MWM_results.csv', header=TRUE)
+data25<-read.csv('MWM_Result_files/APOE_220808_August2022_MWM_results.csv', header=TRUE)
+data26<-read.csv('MWM_Result_files/APOE_220905_September2022_MWM_results.csv', header=TRUE)
+data27<-read.csv('MWM_Result_files/APOE_221003_October2022_MWM_results.csv', header=TRUE)
+#data28<-read.csv('MWM_Result_files/APOE_221101_November2022_MWM_results.csv', header=TRUE)
+```
+
+```{r organize-dfs}
+
+# data frames need to be the same size with same column names
+mwm<-rbind(data2, data3, data4, data5, data6, data9, data13, data25, data26, data27, info)
+
+
+mwm31<-rbind(data7, data8, data10, data11, data12)
+mwm31<-mwm31[-c(11, 24)]
+
+             
+testing<-rbind(data14, data16, data17, data19, data20, data21, data23)
+testing<-testing[-c(30:31)]
+
+mwm2<-rbind(mwm, testing)
+mwm<-rbind(mwm2, mwm31)
+
+data1<-data1[-c(23)]
+data22<-data22[-c(30:32)]
+data15<-data15[-c(23,31:32)]
+data24<-data24[-c(30:32)]
+
+mwm3<-rbind(data15, data22, data24, data1)
+
+mwm<-rbind(mwm, mwm3)
+
+mwm<-mwm %>% 
+  mutate(Genotype = case_when(
+    Treatment == 'APOE2/2F' ~ 'APOE22',
+    Treatment == 'APOE2/2M' ~ 'APOE22',
+    Treatment == 'APOE22F' ~ 'APOE22',
+    Treatment == 'APOE22M' ~ 'APOE22',
+    Treatment == 'APOE33_F' ~ 'APOE33',
+    Treatment == 'APOE33_M' ~ 'APOE33',
+    Treatment == 'APOE44F' ~ 'APOE44',
+    Treatment == 'APOE44M' ~ 'APOE44',
+    Treatment == 'E22_F_12month_HFD' ~ 'APOE22',
+    Treatment == 'E22_M_12month_HFD' ~ 'APOE22',
+    Treatment == 'E2f' ~ 'APOE22',
+    Treatment == 'E2HN_F' ~ 'APOE22HN',
+    Treatment == 'E2HN_F_18mth_Ctrl' ~ 'APOE22HN',
+    Treatment == 'E2HN_F_6month_Control' ~ 'APOE22HN',
+    Treatment == 'E2HN_M' ~ 'APOE22HN',
+    Treatment == 'E2HN_M_18month_Control' ~ 'APOE22HN',
+    Treatment == 'E2HN_M_6month_Control' ~ 'APOE22HN',
+    Treatment == 'E2m' ~ 'APOE22',
+    Treatment == 'E33_F_6month_Control' ~ 'APOE33',
+    Treatment == 'E3HN_F' ~ 'APOE33HN',
+    Treatment == 'E3HN_F_6month_Control' ~ 'APOE33HN',
+    Treatment == 'E3HN_M' ~ 'APOE33HN',
+    Treatment == 'E3HN_M_6month_Control' ~ 'APOE33HN',
+    Treatment == 'E3m' ~ 'APOE33',
+    Treatment == 'E44_F' ~ 'APOE44',
+    Treatment == 'E44_F_18month_HFD' ~ 'APOE44',
+    Treatment == 'E44_F_6month_Control' ~ 'APOE44',
+    Treatment == 'E44_M' ~ 'APOE44',
+    Treatment == 'E44_M_18month_HFD' ~ 'APOE44',
+    Treatment == 'E44_M_6month_Control' ~ 'APOE44',
+    Treatment == 'E4HN_F' ~ 'APOE44HN',
+    Treatment == 'E4HN_F_6month_Control' ~ 'APOE44HN',
+    Treatment == 'E4HN_M' ~ 'APOE44HN',
+    Treatment == 'E4HN_M_6month_Control' ~ 'APOE44HN',
+    Treatment == 'E4HN_M_Ctrl' ~ 'APOE44HN',
+    Treatment == 'HN_M' ~ 'HN',
+    Treatment == 'HNf' ~ 'HN',
+    Treatment == 'E4HN_FHet' ~ 'APOE44HN',
+    Treatment == 'E2HN_F_18monthHFD' ~ 'APOE22HN',
+    Treatment == 'E2HN_M_18monthHFD' ~ 'APOE22HN',
+    Treatment == 'E44_F_18monthHFD' ~ 'APOE44',
+    Treatment == 'E3HN_F_18monthHFD' ~ 'APOE33HN',
+    Treatment == 'E22_F_12mnth Control' ~ 'APOE22',
+    Treatment == 'E33_F_18mnth HFD' ~ 'APOE33',
+    Treatment == 'E33_M_18mnth HFD' ~ 'APOE33',
+    Treatment == 'E22_M_18mnth HFD' ~ 'APOE22',
+    Treatment == 'E22_F_18mnth HFD' ~ 'APOE22',
+    Treatment == 'E22_F' ~ 'APOE22',
+    Treatment == 'E22_M' ~ 'APOE22',
+    Treatment == 'E33_F' ~ 'APOE33',
+    Treatment == 'E33_M' ~ 'APOE33',
+    Treatment == 'E4HN_F' ~ 'APOE44HN',
+    Treatment == 'E4HN_M' ~ 'APOE44HN',
+    Treatment == 'E44_F' ~ 'APOE44',
+    Treatment == 'E44_M' ~ 'APOE44',
+    Treatment == 'APOE44_females' ~ 'APOE44',
+    Treatment == 'APOE44_males' ~ 'APOE44'
+  )) %>% 
+  mutate(Sex = case_when(
+    Treatment == 'APOE2/2F' ~ 'F',
+    Treatment == 'APOE2/2M' ~ 'M',
+    Treatment == 'APOE22F' ~ 'F',
+    Treatment == 'APOE22M' ~ 'M',
+    Treatment == 'APOE33_F' ~ 'F',
+    Treatment == 'APOE33_M' ~ 'M',
+    Treatment == 'APOE44F' ~ 'F',
+    Treatment == 'APOE44M' ~ 'M',
+    Treatment == 'E22_F_12month_HFD' ~ 'F',
+    Treatment == 'E22_M_12month_HFD' ~ 'M',
+    Treatment == 'E2f' ~ 'F',
+    Treatment == 'E2HN_F' ~ 'F',
+    Treatment == 'E2HN_F_18mth_Ctrl' ~ 'F',
+    Treatment == 'E2HN_F_6month_Control' ~ 'F',
+    Treatment == 'E2HN_M' ~ 'M',
+    Treatment == 'E2HN_M_18month_Control' ~ 'M',
+    Treatment == 'E2HN_M_6month_Control' ~ 'M',
+    Treatment == 'E2m' ~ 'M',
+    Treatment == 'E33_F_6month_Control' ~ 'F',
+    Treatment == 'E3HN_F' ~ 'F',
+    Treatment == 'E3HN_F_6month_Control' ~ 'F',
+    Treatment == 'E3HN_M' ~ 'M',
+    Treatment == 'E3HN_M_6month_Control' ~ 'M',
+    Treatment == 'E3m' ~ 'M',
+    Treatment == 'E44_F' ~ 'F',
+    Treatment == 'E44_F_18month_HFD' ~ 'F',
+    Treatment == 'E44_F_6month_Control' ~ 'F',
+    Treatment == 'E44_M' ~ 'M',
+    Treatment == 'E44_M_18month_HFD' ~ 'M',
+    Treatment == 'E44_M_6month_Control' ~ 'M',
+    Treatment == 'E4HN_F' ~ 'F',
+    Treatment == 'E4HN_F_6month_Control' ~ 'F',
+    Treatment == 'E4HN_M' ~ 'M',
+    Treatment == 'E4HN_M_6month_Control' ~ 'M',
+    Treatment == 'E4HN_M_Ctrl' ~ 'M',
+    Treatment == 'HN_M' ~ 'M',
+    Treatment == 'HNf' ~ 'F',
+    Treatment == 'E4HN_FHet' ~ 'F',
+    Treatment == 'E2HN_F_18monthHFD' ~ 'F',
+    Treatment == 'E2HN_M_18monthHFD' ~ 'M',
+    Treatment == 'E44_F_18monthHFD' ~ 'F',
+    Treatment == 'E3HN_F_18monthHFD' ~ 'F',
+    Treatment == 'E22_F_12mnth Control' ~ 'F',
+    Treatment == 'E33_F_18mnth HFD' ~ 'F',
+    Treatment == 'E33_M_18mnth HFD' ~ 'M',
+    Treatment == 'E22_M_18mnth HFD' ~ 'M',
+    Treatment == 'E22_F_18mnth HFD' ~ 'F',
+    Treatment == 'E22_F' ~ 'F',
+    Treatment == 'E22_M' ~ 'M',
+    Treatment == 'E33_F' ~ 'F',
+    Treatment == 'E33_M' ~ 'M',
+    Treatment == 'E4HN_F' ~ 'F',
+    Treatment == 'E4HN_M' ~ 'M',
+    Treatment == 'E44_F' ~ 'F',
+    Treatment == 'E44_M' ~ 'M',
+    Treatment == 'APOE44_females' ~ 'F',
+    Treatment == 'APOE44_males' ~ 'M'
+  ))
+
+
+mwm <- left_join(mwm, mice_info, by = c("Animal" = "BadeaID"))
+
+#mwm<-mwm %>% 
+ # filter(!is.na(Age_Months))
+
+
+# data1 - 30
+# data15 - 32
+# data22- 32
+# data24 -32
+
+#mwm[duplicated(mwm$Animal), ]
+
+mwm<-mwm %>% 
+  mutate(Age_inMonths = case_when(
+    Age_Substracted <= 16 ~ '12 months',
+    Age_Substracted > 16 ~ '18 months'
+  )) 
+
+
+
+```
+  
+```{r organize}
+# organizing data
+
+test<-mwm %>% 
+  filter(Stage != "Probe_D5" | Stage != "Probe_D8") %>% 
+  # aesthetic purposes:
+  mutate(Stage = case_when( 
+    Stage == "Day1" ~ "Day 1",
+    Stage == "Day2" ~ "Day 2",
+    Stage == "Day3" ~ "Day 3",
+    Stage == "Day4" ~ "Day 4",
+    Stage == "Day5" ~ "Day 5"
+  )) %>% 
+  filter(! is.na(Stage)) %>% 
+  group_by(Animal, Stage, add = TRUE) %>% 
+  #group_by(Stage) %>% 
+  summarize(
+    Duration = mean(Duration),
+    Distance = mean(Distance) 
+  ) 
+
+reg_trials<-mwm %>% 
+  filter(Age_inMonths == '12 months') %>% 
+  filter(Stage != "Probe_D5" | Stage != "Probe_D8") %>% 
+  # aesthetic purposes:
+  mutate(Day = case_when( 
+    Stage == "Day1" ~ 1,
+    Stage == "Day2" ~ 2,
+    Stage == "Day3" ~ 3,
+    Stage == "Day4" ~ 4,
+    Stage == "Day5" ~ 5
+  )) %>% 
+  filter(! is.na(Day)) 
+
+
+probe_trials<-mwm %>% 
+  filter(Age_inMonths == '12 months') %>% 
+  filter(Stage == "Probe_D5" | Stage == "Probe_D8") %>% 
+  # aesthetic purposes:
+  mutate(Day = case_when( 
+    Stage == "Probe_D5" ~ 1,
+    Stage == "Probe_D8" ~ 2,
+  )) %>% 
+  filter(! is.na(Day))
+
+
+# correcting for errors from Any Maze (taken from Andrei's script)
+reg_trials$Distance=reg_trials$Distance/10
+reg_trials$NE...distance=reg_trials$NE...distance/10
+reg_trials$NW...distance=reg_trials$NW...distance/10
+reg_trials$SE...distance=reg_trials$SE...distance/10
+reg_trials$SW...distance=reg_trials$SW...distance/10
+
+#Normalize time and distance in target region
+reg_trials$NormSWTime<-reg_trials$SW...time/reg_trials$Duration
+reg_trials$NormSWDist<-reg_trials$SW...distance/reg_trials$Distance
+reg_trials<-subset(reg_trials, (NormSWTime <= 1))
+
+#Normalize Probe Distances
+probe_trials$DistTot<-probe_trials$NE...distance+probe_trials$NW...distance+probe_trials$SE...distance+probe_trials$SW...distance
+probe_trials$NE.Dist.Norm<-probe_trials$NE...distance/probe_trials$DistTot
+probe_trials$NW.Dist.Norm<-probe_trials$NW...distance/probe_trials$DistTot
+probe_trials$SE.Dist.Norm<-probe_trials$SE...distance/probe_trials$DistTot
+probe_trials$SW.Dist.Norm<-probe_trials$SW...distance/probe_trials$DistTot
+
+#Normalize Probe Times
+probe_trials$TimeTot<-probe_trials$NE...time+probe_trials$NW...time+probe_trials$SE...time+probe_trials$SW...time
+probe_trials$NE.Time.Norm<-probe_trials$NE...time/probe_trials$TimeTot
+probe_trials$NW.Time.Norm<-probe_trials$NW...time/probe_trials$TimeTot
+probe_trials$SE.Time.Norm<-probe_trials$SE...time/probe_trials$TimeTot
+probe_trials$SW.Time.Norm<-probe_trials$SW...time/probe_trials$TimeTot
+
+#Normalize time and distance in target region probe
+probe_trials$NormSWTime<-probe_trials$SW...time/probe_trials$Duration
+probe_trials$NormSWDist<-probe_trials$SW...distance/probe_trials$Distance
+probe_trials<-subset(probe_trials, (NormSWTime <= 1))
+
+# Converting NormSWDiet values to numeric
+reg_trials$NormSWDist <- as.numeric(reg_trials$NormSWDist)
+probe_trials$NormSWDist <- as.numeric(probe_trials$NormSWDist)
+
+# Individual datasets for regular trials 
+hn_trials <- reg_trials %>% 
+  filter(Genotype == "APOE22HN" | Genotype == "APOE33HN" | Genotype == "APOE44HN") 
+e_trials <- reg_trials %>% 
+  filter(Genotype == "APOE22" | Genotype == "APOE33" | Genotype == "APOE44")
+e2 <- reg_trials %>% 
+  filter(Genotype == "APOE22HN" | Genotype == "APOE22")
+e3 <- reg_trials %>% 
+  filter(Genotype == "APOE33HN" | Genotype == "APOE33")
+e4 <- reg_trials %>% 
+  filter(Genotype == "APOE44HN" | Genotype == "APOE44")
+
+
+# Individual datasets for probe trials
+hn_probe <- probe_trials %>% 
+  filter(Genotype == "APOE22HN" | Genotype == "APO33HN" | Genotype == "APOE44HN") 
+e_probe <- probe_trials %>% 
+  filter(Genotype == "APOE22" | Genotype == "APOE33" | Genotype == "APOE44")
+e2_probe <- probe_trials %>% 
+  filter(Genotype == "APOE22HN" | Genotype == "APOE22")
+e3_probe <- probe_trials %>% 
+  filter(Genotype == "APOE33HN" | Genotype == "APOE33")
+e4_probe <- probe_trials %>% 
+  filter(Genotype == "APOE44HN" | Genotype == "APOE44")
+
+# counts
+table(reg_trials$Genotype)
+table(probe_trials$Genotype)
+
+missing<-mwm %>% 
+  filter(is.na(PumpGroup))
+  
+missing[!duplicated(missing$Animal), ]
+
+
+
+
+```
+
+```{r plots}
+#ggline(reg_trials, x='Stage', y='NormSWDist',
+#       color='Genotype', fill='Genotype', facet.by=c('Diet.x','Sex'), 
+#       error.plot='errorbar', add='mean_se',
+#       palette = c('blueviolet', 'chartreuse1', 'red','pink','gray','blue', #'orange'), size=1,
+#       point.size=1.5, legend='top')
+
+ggline(hn_trials, x='Stage', y='NormSWDist',
+       color='Genotype', fill='Genotype', facet.by=c('Diet.x','Sex'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("#6a0dad", "#008000", "#FF0000"), size=1,
+       point.size=1.5, legend='top')
+
+ggline(e_trials, x='Stage', y='NormSWDist', 
+       color='Genotype', fill='Genotype', facet.by=c('Diet.x','Sex'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("#1BCC97", "#1B50CC", "#CC1BA8"), size=1,
+       point.size=1.5,  legend='top')
+
+ggline(e2, x='Stage', y='NormSWDist', 
+       color='Genotype', fill='Genotype', facet.by=c('Diet.x','Sex'),
+       error.plot='errorbar', add='mean_se', 
+      palette = c("#1BCC97", "#6a0dad"), size=1,
+       point.size=1.5,  legend='top')
+
+ggline(e3, x='Stage', y='NormSWDist', 
+       color='Genotype', fill='Genotype', facet.by=c('Diet.x','Sex'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("#1B50CC", "#008000"), size=1,
+       point.size=1.5,  legend='top')
+
+ggline(e4, x='Stage', y='NormSWDist', 
+       color='Genotype', fill='Genotype', facet.by=c('Diet.x','Sex'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("#CC1BA8", "#FF0000"), size=1,
+       point.size=1.5,  legend='top')
+```
+
+{r pot-hoc-probe}
+
+fm1<-lmer(NormSWDist ~ Stage*Genotype*Sex*Diet+(1 | Animal), probe_trials)
+a1<-anova(fm1)
+
+a1
+
+lm1<-lm(NormSWDist ~ Sex + factor(Genotype), probe_trials)
+model<-emmeans(lm1, "Sex", adjust = "Tukey")
+pairs(model)
+
+summary(fm1)
+confint(fm1)
+
+a1<-anova(fm1)
+
+model<-emmeans(fm1, "Sex", adjust = "Tukey")
+pairs(model)
+
+model<-emmeans(fm1, "Genotype", adjust = "Tukey")
+pairs(model)
+
+mod1<-lmer(Pct.Total.Time.Freezing~factor(Genotype)*Time+(1|Animal_ID), day0_HFD)
+mod2<-lmer(Pct.Total.Time.Freezing~factor(Genotype)*Time+(1|Animal_ID), day0_control)
+
+mix1<-emmeans(mod1, "Genotype", adjust = "Tukey")
+mix2<-emmeans(mod2, "Genotype", adjust = "Tukey")
+
+pairs(mix1)
+pairs(mix2)
+
+a1<-anova(mod1)
+a2<-anova(mod2)
+
+```{r post-hoc-reg}
+library(lmerTest)
+
+#r_trials<_reg_trials %>% 
+#  filter(!is.na())
+
+mod_reg<-lmer(NormSWDist~factor(Genotype)*Treatment.y+Stage+(1|Animal), reg_trials)
+mod_probe<-lmer(NormSWDist~factor(Genotype)*Treatment.y+Stage+(1|Animal), probe_trials)
+
+mix_reg<-emmeans(mod_reg, "Genotype", adjust = "Tukey")
+mix_probe<-emmeans(mod_probe, "Genotype", adjust = "Tukey")
+
+pairs(mix_reg)
+pairs(mix_probe)
+
+a1<-anova(mod_reg)
+a2<-anova(mod_probe)
+
+a1
+a2
+```
+
+
+
+
+
+
+#fm1<-lmer(NormSWDist ~ Stage*Genotype*Sex*Diet+(1 | Animal), reg_trials)
+fm1<-lmer(NormSWDist ~ Stage*Genotype*Sex+(1 | Animal), reg_trials)
+a1<-anova(fm1)
+
+a1
+
+lm1<-lmer(NormSWDist ~ Sex + factor(Genotype), reg_trials)
+model<-emmeans(lm1, "Sex", adjust = "Tukey")
+pairs(model)
+
+summary(fm1)
+confint(fm1)
+
+a1<-anova(fm1)
+
+model<-emmeans(fm1, "Sex", adjust = "Tukey")
+pairs(model)
+
+model<-emmeans(fm1, "Genotype", adjust = "Tukey")
+pairs(model)
+```
