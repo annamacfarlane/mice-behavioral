@@ -67,27 +67,66 @@ batch10_2<-read.csv('FC_data/Batch10/Batch_day2_211004OctMixed_15Motionthreshold
 batch11_0<-read.csv('FC_data/Batch11/Batch_day0_211122NovMixed_15Motionthreshold_10minfreezeduration.csv', skip=16)
 batch11_1<-read.csv('FC_data/Batch11/Batch_day1_211122NovMixed_15Motionthreshold_10minfreezeduration.csv', skip=11)
 batch11_2<-read.csv('FC_data/Batch11/Batch_day2_211122NovMixed_15Motionthreshold_10minfreezeduration.csv',skip=13)
+
+batch12_0<-read.csv('FC_data/Batch12/Batch_day0_220110JanMix_15MotionThreshold_10MinFreezeDuration.csv', skip=16)
+batch12_1<-read.csv('FC_data/Batch12/Batch_day1_220110JanMix_15MotionThreshold_10MinFreezeDuration.csv', skip=11)
+batch12_2<-read.csv('FC_data/Batch12/Batch_day2_220110JanMix_15MotionThreshold_10MinFreezeDuration.csv',skip=13)
+
+batch13_0<-read.csv('FC_data/Batch13/Batch_Day0_220207Feb2022_15MotionThreshold_10Minfreezeduration.csv', skip=16)
+batch13_1<-read.csv('FC_data/Batch13/Batch_Day1_220207Feb2022_15MotionThreshold_10Minfreezeduration.csv', skip=11)
+batch13_2<-read.csv('FC_data/Batch13/Batch_Day2_220207Feb2022_15MotionThreshold_10Minfreezeduration.csv',skip=13)
+
+batch14_0<-read.csv('FC_data/Batch14/Batch_Day0_220307March2022_15MotionThreshold_10minfreezeduration.csv', skip=16)
+batch14_1<-read.csv('FC_data/Batch14/Batch_Day1_220307March2022_15MotionThreshold_10minfreezeduration.csv', skip=11)
+batch14_2<-read.csv('FC_data/Batch14/Batch_Day2_220307March2022_15MotionThreshold_10minfreezeduration.csv',skip=13)
+
+batch15_0<-read.csv('FC_data/Batch15/Batch_day0_220404_April2022_15motionthreshold_10minfreezeduration.csv', skip=16)
+batch15_1<-read.csv('FC_data/Batch15/Batch_day1_220404_April2022_15motionthreshold_10minfreezeduration.csv', skip=11)
+batch15_2<-read.csv('FC_data/Batch15/Batch_day2_220404_April2022_15motionthreshold_10minfreezeduration.csv',skip=13)
+
+batch16_0<-read.csv('FC_data/Batch16/Batch_day0_220509_May2022_15motionthreshold_10minfreezeduration.csv', skip=16)
+batch16_1<-read.csv('FC_data/Batch16/Batch_day1_220509_May2022_15motionthreshold_10minfreezeduration.csv', skip=11)
+batch16_2<-read.csv('FC_data/Batch16/Batch_day2_220509_May2022_15motionthreshold_10minfreezeduration.csv',skip=13)
+
+batch17_0<-read.csv('FC_data/Batch17/Batch_Day0_220606_June2022_15MotionThreshold_10MinFreezeDuration.csv', skip=16)
+batch17_1<-read.csv('FC_data/Batch17/Batch_Day1_220606_June2022_15MotionThreshold_10MinFreezeDuration.csv', skip=11)
+batch17_2<-read.csv('FC_data/Batch17/Batch_Day2_220606_June2022_15MotionThreshold_10MinFreezeDuration.csv',skip=13)
+
+batch18_0<-read.csv('FC_data/Batch18/220704_Day0_July18monthHFD_15Motionthreshold_10_minfreezeduration.csv', skip=16)
+batch18_1<-read.csv('FC_data/Batch18/220704_Day1_July18monthHFD_15Motionthreshold_10_minfreezeduration.csv', skip=11)
+batch18_2<-read.csv('FC_data/Batch18/220704_Day2_July18monthHFD_15Motionthreshold_10_minfreezeduration.csv',skip=13)
+
+batch19_0<-read.csv('FC_data/Batch19/Batch_Day0_220808August2022_15Motionthreshold_10_minifreezeduration.csv', skip=16)
+batch19_1<-read.csv('FC_data/Batch19/Batch_Day1_220808August2022_15Motionthreshold_10_minfreezeduration.csv', skip=11)
+batch19_2<-read.csv('FC_data/Batch19/Batch_Day2_220808August2022_15Motionthreshold_10_minfreezeduration.csv',skip=13)
  
 #day0_comp <- read.csv('day0_10_minfreezeduration_compiled.csv')
 #day1_comp <- read.csv('day1_10_minfreezeduration_compiled.csv')
 #day2_comp <- read.csv('day2_10_minfreezeduration_compiled.csv')
 
 add0 <- rbind(batch1_0, batch2_0, batch3_0, batch4_0, batch5_0, 
-              batch6_0, batch7_0, batch8_0, batch9_0, batch10_0, batch11_0)
+              batch6_0, batch7_0, batch8_0, batch9_0, batch10_0, batch11_0, 
+              batch12_0, batch13_0, batch14_0, batch15_0, batch16_0, batch17_0, 
+              batch18_0, batch19_0)
 add1 <- rbind(batch1_1, batch2_1, batch3_1, batch4_1, batch5_1, 
-              batch6_1, batch7_1, batch8_1, batch9_1, batch10_1, batch11_1)
+              batch6_1, batch7_1, batch8_1, batch9_1, batch10_1, batch11_1,
+              batch12_1, batch13_1, batch14_1, batch15_1, batch16_1,
+              batch17_1, batch18_1, batch19_1)
 add2 <- rbind(batch1_2, batch2_2, batch3_2, batch4_2, batch5_2, 
-              batch6_2, batch7_2, batch8_2, batch9_2, batch10_2, batch11_2)
+              batch6_2, batch7_2, batch8_2, batch9_2, batch10_2, batch11_2,
+              batch12_2, batch13_2, batch14_2, batch15_2, batch16_2,
+              batch17_2, batch18_2, batch19_2)
 
-animal_info <- read.csv('updated.csv')
+#animal_info <- read.csv('updated.csv')
+animal_info <- read.csv('qial_animals_with_age2.csv')
 
-all_day2 <- left_join(add2, animal_info, by='Animal_ID')
-all_day1 <- left_join(add1, animal_info, by='Animal_ID')
-all_day0 <- left_join(add0, animal_info, by='Animal_ID')
+
+all_day2 <- left_join(add2, animal_info, by = c("Animal_ID" = "BadeaID"))
+all_day1 <- left_join(add1, animal_info, by = c("Animal_ID" = "BadeaID"))
+all_day0 <- left_join(add0, animal_info, by = c("Animal_ID" = "BadeaID"))
 
 all_day0<-all_day0 %>% 
   filter(Animal_ID!='')
-view(all_day0)
   
 all_day1<-all_day1 %>% 
   filter(Animal_ID!='')
@@ -416,7 +455,7 @@ ggline(day0_test, x='Time', y='Pct.Total.Time.Freezing',
 
 
 # plots with all data 
-ggplot(data=day0, aes(x=Time, y=len, color=Genotype)) +
+ggplot(data=day0, aes(x='Time', y=len, color=Genotype)) +
   geom_line(stat="identity", width=0.5) +
   facet_grid(Genotype~Treatment) + 
   labs(y="Average Percent Freezing Time", x='Component') +
@@ -735,7 +774,7 @@ ggplot(data = poster, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
   geom_boxplot(width = 0.1) +
   theme_bw()+
   facet_grid(Sex~Treatment) + 
-  geom_jitter(height = 0, width = 0.3, aes(color = Genotype)) +
+  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Genotype)) +
   labs(y = "Mean Percent Freezing Time", x='') +
   scale_color_manual(values = c("#6a0dad", "#008000", "#FF0000")) +
   labs(title='Contextual Test')
@@ -1018,7 +1057,17 @@ ggplot(data = post, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.5))+
   labs(title="Tone Test: post-tone")
 
-
+# This one used in poster
+ggplot(data = poster, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1) +
+  facet_grid(Treatment~comp) +
+  theme_bw()+
+  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Genotype)) +
+  labs(y = "Mean Percent Freezing Time", x='') +
+  scale_color_manual(values = c("#6a0dad", "#008000", "#FF0000")) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.5))+
+  labs(title="Tone Test")
 
 ggplot(data=hn_age, aes(x=Genotype, y=len, fill=Genotype)) +
   geom_bar(stat="identity", width=0.5) +
@@ -1029,7 +1078,6 @@ ggplot(data=hn_age, aes(x=Genotype, y=len, fill=Genotype)) +
   theme_bw() +
   labs(title="Tone Test", y='Mean percent time freezing') + 
   theme(axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.5))
-
 
 ggplot(data=non_hn, aes(x=Genotype, y=len, fill=Genotype)) +
   geom_bar(stat="identity", width=0.5) +
