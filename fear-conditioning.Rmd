@@ -154,9 +154,9 @@ day0_lmer<-all_day0 %>%
   )) %>% 
   filter(Time!=0) %>% 
   mutate(Age_group = case_when(
-    Age_Months < 15 ~ "12 months",
-    Age_Months >= 15 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   filter(Treatment =='Control') %>% 
@@ -176,14 +176,15 @@ test_counts<-all_day0 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   filter(Age_group == '12 months') %>% 
   filter(Component.Name == 'Sound 1') %>% 
   count(Treatment)
 
-print(test_counts)
+animal_counts_fc<-distinct(all_day0, Animal_ID, .keep_all = TRUE)
+table(animal_counts_fc$Genotype)
 
 day0_lmer<-all_day0 %>% 
   filter(!is.na(Animal_ID)) %>% 
@@ -200,8 +201,8 @@ day0_lmer<-all_day0 %>%
   )) %>% 
   filter(Time!=0) %>% 
   mutate(Age_group = case_when(
-    Age_Months < 15 ~ "12 months",
-    Age_Months >= 15 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
@@ -228,9 +229,9 @@ day0<-all_day0 %>%
     Component.Name == 'Shock 3' ~ 0,
   )) %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   group_by(Genotype, Treatment, Time) %>% 
@@ -254,9 +255,9 @@ day0_test<-all_day0 %>%
   )) %>% 
   filter(Time!=0) %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   mutate(Sex = case_when(
     Sex == 'male' ~ 'Male',
     Sex == 'female' ~ 'Female',
@@ -311,9 +312,9 @@ hn_group <- all_day0 %>%
     Component.Name == 'Shock 3' ~ 0,
   )) %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   filter(Age_group == '12 months') %>% 
   filter(Time != 0 ) %>% 
   group_by(Genotype, Treatment, Time) %>% 
@@ -335,9 +336,9 @@ hn_sex<- all_day0 %>%
     Component.Name == 'Shock 3' ~ 0,
   )) %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   mutate(Sex = case_when(
     Sex == 'male' ~ 'Male',
     Sex == 'female' ~ 'Female',
@@ -374,9 +375,9 @@ nonHN<-all_day0 %>%
            Time == 2 |
            Time == 3) %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   group_by(Genotype, Age_group, Time) %>% 
@@ -400,9 +401,9 @@ nonHN1<-all_day0 %>%
            Time == 2 |
            Time == 3) %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Treatment)) %>% 
   group_by(Genotype, Treatment, Time) %>% 
@@ -516,9 +517,9 @@ day0_lmer<-all_day0 %>%
   )) %>% 
   filter(Time!=0) %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   #mutate(Sex = case_when(
   #  Sex == 'male' ~ 'Male',
   #  Sex == 'female' ~ 'Female',
@@ -567,9 +568,9 @@ day1_lm<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   filter(Treatment=="Control") %>% 
@@ -588,9 +589,9 @@ counts<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   select(Genotype, Sex, Treatment) 
@@ -603,8 +604,8 @@ day1_lm<-all_day1 %>%
            Genotype == "APOE33" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
@@ -618,8 +619,8 @@ day1<-all_day1 %>%
            Genotype == "APOE33" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
@@ -637,8 +638,8 @@ day1HN<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
    mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
   group_by(Genotype, Treatment) %>% 
@@ -653,8 +654,8 @@ day1HN_sex<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
    mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
    mutate(Sex = case_when(
     Sex == 'male' ~ 'Male',
@@ -677,8 +678,8 @@ day1_nonHN<-all_day1 %>%
   filter(Genotype == "APOE44" |
            Genotype == "APOE33") %>% 
    mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
   group_by(Genotype, Treatment) %>% 
@@ -692,8 +693,8 @@ nonHN2<-all_day1 %>%
   filter(Genotype == "APOE44" |
            Genotype == "APOE33") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
@@ -724,8 +725,8 @@ day1HN_violin<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
    mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
   mutate(Sex = case_when(
@@ -775,8 +776,8 @@ day1_lm<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
@@ -811,8 +812,8 @@ day2_lm<-all_day2 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
@@ -842,8 +843,8 @@ day2_lm<-all_day2 %>%
            Genotype == "APOE33" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
@@ -872,9 +873,9 @@ day2_age<-all_day2 %>%
            Genotype == "APOE33" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
-  )) %>% 
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>%  
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   group_by(Genotype, comp, Age_group) %>% 
@@ -896,8 +897,8 @@ day2_diet<-all_day2 %>%
            Genotype == "APOE33" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(!is.na(Age_group)) %>% 
   filter(Age_group == '12 months') %>% 
@@ -936,8 +937,8 @@ day2_violin<-all_day2 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(!is.na(Age_group)) %>% 
   filter(Age_group == '12 months') %>% 
@@ -1038,8 +1039,8 @@ day2_lm<-all_day2 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Months < 16 ~ "12 months",
-    Age_Months >= 16 ~ "18 months"
+    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
