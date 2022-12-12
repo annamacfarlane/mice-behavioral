@@ -154,8 +154,9 @@ day0_lmer<-all_day0 %>%
   )) %>% 
   filter(Time!=0) %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
-    Age_Substracted >= 16 ~ "18 months"
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
+    Age_Substracted > 16 ~ "18 months"
   )) %>%  
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
@@ -167,6 +168,44 @@ day0_lmer<-all_day0 %>%
 
 print(day0_lmer)
 
+all_animals <-all_day0 %>% 
+  filter(!is.na(Animal_ID)) %>% 
+  filter(Genotype == "APOE22HN" |
+           Genotype == "APOE33HN" |
+           Genotype == "APOE44HN" |
+           Genotype == "APOE22" |
+           Genotype == "APOE33" |
+           Genotype == "APOE44") %>% 
+  mutate(Time = case_when(
+    Component.Name == 'Sound 1' ~ 1,
+    Component.Name == 'Shock 1' ~ 0,
+    Component.Name == 'Sound 2' ~ 2,
+    Component.Name == 'Shock 2' ~ 0,
+    Component.Name == 'Sound 3' ~ 3,
+    Component.Name == 'Shock 3' ~ 0,
+  )) %>% 
+  filter(Time!=0) %>% 
+  mutate(Age_group = case_when(
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
+    Age_Substracted > 16 ~ "18 months"
+  )) %>%  
+  mutate(Sex = case_when(
+    Sex == 'male' ~ 'Male',
+    Sex == 'female' ~ 'Female',
+    Sex == 'female ' ~ 'Female',
+  )) %>% 
+  filter(Age_group == '12 months') %>% 
+  filter(!is.na(Age_group))
+
+animal_counts<-distinct(all_animals, Animal_ID, .keep_all = TRUE)
+animal_counts<-animal_counts[!is.na(animal_counts$Sex), ]
+table(animal_counts$Genotype)
+
+table(animal_counts[animal_counts$Genotype == 'APOE22', ]$Sex)
+
+table(animal_counts$Genotype)
+
 ```
 
 ```{r day-0-data}
@@ -176,7 +215,8 @@ test_counts<-all_day0 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>%  
   filter(Age_group == '12 months') %>% 
@@ -201,7 +241,8 @@ day0_lmer<-all_day0 %>%
   )) %>% 
   filter(Time!=0) %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
@@ -229,7 +270,8 @@ day0<-all_day0 %>%
     Component.Name == 'Shock 3' ~ 0,
   )) %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>%  
   filter(Age_group == '12 months') %>% 
@@ -255,7 +297,8 @@ day0_test<-all_day0 %>%
   )) %>% 
   filter(Time!=0) %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>%  
   mutate(Sex = case_when(
@@ -268,23 +311,7 @@ day0_test<-all_day0 %>%
   select(Genotype, Time, Animal_ID, 
          Treatment, Pct.Total.Time.Freezing) 
 
-#%>% 
-#  summarize(len = mean(Pct.Total.Time.Freezing),
-#            n=,
-#            se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n))
-
-
 print(day0_test)
-
-ggplot(data=day0_test, aes(x=Time, y=Pct.Total.Time.Freezing, color=Genotype)) +
-  geom_line(stat="identity", width=0.5) +
-  facet_grid(.~Treatment) + 
-  labs(y="Average Percent Freezing Time", x='Component') +
-  theme_bw() + 
-  scale_x_continuous(breaks=c(1, 2, 3))+
-  scale_color_manual(values = c("#6a0dad", "#008000", "#FF0000"))
-
-
 
  # geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5)+
  # theme_bw() + 
@@ -312,7 +339,8 @@ hn_group <- all_day0 %>%
     Component.Name == 'Shock 3' ~ 0,
   )) %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>%  
   filter(Age_group == '12 months') %>% 
@@ -336,7 +364,8 @@ hn_sex<- all_day0 %>%
     Component.Name == 'Shock 3' ~ 0,
   )) %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>%  
   mutate(Sex = case_when(
@@ -362,7 +391,8 @@ print(counts)
 nonHN<-all_day0 %>% 
   filter(!is.na(Animal_ID)) %>% 
   filter(Genotype == "APOE44" |
-           Genotype == "APOE33") %>% 
+           Genotype == "APOE33" |
+           Genotype == "APOE22") %>% 
   mutate(Time = case_when(
     Component.Name == 'Sound 1' ~ 1,
     Component.Name == 'Shock 1' ~ 0,
@@ -375,12 +405,13 @@ nonHN<-all_day0 %>%
            Time == 2 |
            Time == 3) %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>%  
   filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
-  group_by(Genotype, Age_group, Time) %>% 
+  group_by(Genotype, Age_group, Treatment, Time) %>% 
   summarise(n=n(),
             se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
             len = mean(Pct.Total.Time.Freezing))  
@@ -388,7 +419,8 @@ nonHN<-all_day0 %>%
 nonHN1<-all_day0 %>% 
   filter(!is.na(Animal_ID)) %>% 
   filter(Genotype == "APOE44" |
-           Genotype == "APOE33") %>% 
+           Genotype == "APOE33" |
+           Genotype == "APOE22") %>% 
   mutate(Time = case_when(
     Component.Name == 'Sound 1' ~ 1,
     Component.Name == 'Shock 1' ~ 0,
@@ -401,7 +433,8 @@ nonHN1<-all_day0 %>%
            Time == 2 |
            Time == 3) %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>%  
   filter(Age_group == '12 months') %>% 
@@ -423,6 +456,12 @@ poster<-hn_group %>%
       Treatment=='Control'~ 'Control'
   ))
 
+nonHN<-nonHN %>% 
+  mutate(Treatment = case_when(
+      Treatment=='HFD' ~ 'High Fat Diet',
+      Treatment=='Control'~ 'Control'
+  ))
+
 ggplot(data=hn_sex, aes(x=Time, y=len, color=Genotype)) +
   geom_line(stat="identity", width=0.5) +
   facet_grid(Sex~Treatment) + 
@@ -435,6 +474,7 @@ ggplot(data=hn_sex, aes(x=Time, y=len, color=Genotype)) +
   scale_x_continuous(breaks=c(1, 2, 3)) +
   scale_color_manual(values = c("#6a0dad", "#008000", "#FF0000"))
 
+# figure for paper HN
 ggplot(data=poster, aes(x=Time, y=len, color=Genotype)) +
   geom_line(stat="identity", width=0.5) +
   facet_grid(.~Treatment) + 
@@ -447,6 +487,19 @@ ggplot(data=poster, aes(x=Time, y=len, color=Genotype)) +
   scale_x_continuous(breaks=c(1, 2, 3)) +
   scale_color_manual(values = c("#6a0dad", "#008000", "#FF0000"))
 
+# figure for paper non HN
+ggplot(data=nonHN, aes(x=Time, y=len, color=Genotype)) +
+  geom_line(stat="identity", width=0.5) +
+  facet_grid(.~Treatment) + 
+  labs(y="Average Percent Freezing Time", x='Component') +
+  geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5)+
+  theme_bw() + 
+  labs(title="Learning Curve", x="Time", 
+       y='Mean Percent Time Freezing', 
+       legend='Genotype') +
+  scale_x_continuous(breaks=c(1, 2, 3)) +
+  scale_color_manual(values = c("#1BCC97", "#1B50CC", "#CC1BA8"))
+
 
 ggline(day0_test, x='Time', y='Pct.Total.Time.Freezing',
        color='Genotype', fill='Genotype', facet.by=c('Treatment'), 
@@ -455,46 +508,12 @@ ggline(day0_test, x='Time', y='Pct.Total.Time.Freezing',
        point.size=1.5, legend='top')
 
 
-# plots with all data 
-ggplot(data=day0, aes(x='Time', y=len, color=Genotype)) +
-  geom_line(stat="identity", width=0.5) +
-  facet_grid(Genotype~Treatment) + 
-  labs(y="Average Percent Freezing Time", x='Component') +
-  geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5)+
-  theme_bw()
+ggline(nonHN, x='Time', y='Pct.Total.Time.Freezing',
+       color='Genotype', fill='Genotype', facet.by=c('Treatment'), 
+       error.plot='errorbar', add='mean_se',
+       palette = c("#1BCC97", "#1B50CC", "#CC1BA8"), size=1,
+       point.size=1.5, legend='top')
 
-ggplot(data=day0, aes(x=Time, y=len, color=Age_group)) +
-  geom_line(stat="identity", width=0.5) +
-  facet_grid(Genotype~Treatment) + 
-  labs(y="Average Percent Freezing Time", x='Component') +
-  geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5)+
-  theme_bw() + 
-  labs(title="Day 0", x="Time", y='Mean Percent Time Freezing', 
-       legend='Age Group', subtitle="Odd times are tones, even times are shocks") +
-  scale_x_continuous(breaks=c(1, 2, 3)) 
-
-# 33 and 44 comparisons 
-
-ggplot(data=nonHN, aes(x=Time, y=len, color=Genotype)) +
-  geom_line(stat="identity", width=0.5) +
-  facet_grid(.~Age_group) + 
-  labs(y="Average Percent Freezing Time", x='Component') +
-  geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5)+
-  theme_bw() + 
-  labs(title="Day 0: APOE33 vs. APOE44 by age group", 
-       x="Time", y='Mean Percent Time Freezing', 
-       legend='Age Group', subtitle="At time intervals between shocks") +
-  scale_x_continuous(breaks=c(1, 2, 3)) 
-
-ggplot(data=nonHN1, aes(x=Time, y=len, color=Genotype)) +
-  geom_line(stat="identity", width=0.5) +
-  facet_grid(.~Treatment) + 
-  labs(y="Average Percent Freezing Time", x='Component') +
-  geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5)+
-  theme_bw() + 
-  labs(title="Day 0: APOE33 vs. APOE44 by treatment", x="Time", y='Mean Percent Time Freezing', 
-       legend='Age Group', subtitle="At time intervals between shocks") +
-  scale_x_continuous(breaks=c(1, 2, 3)) 
 
 ```
 
@@ -517,7 +536,8 @@ day0_lmer<-all_day0 %>%
   )) %>% 
   filter(Time!=0) %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>%  
   #mutate(Sex = case_when(
@@ -568,7 +588,8 @@ day1_lm<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>%  
   filter(Age_group == '12 months') %>% 
@@ -589,7 +610,8 @@ counts<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>%  
   filter(Age_group == '12 months') %>% 
@@ -602,9 +624,11 @@ day1_lm<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44" |
            Genotype == "APOE33" |
+           Genotype == "APOE22" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
@@ -617,9 +641,11 @@ day1<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44" |
            Genotype == "APOE33" |
-           Genotype == "APOE44HN") %>% 
+           Genotype == "APOE44HN" |
+           Genotype == "APOE22") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
@@ -638,7 +664,8 @@ day1HN<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
    mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
@@ -654,7 +681,8 @@ day1HN_sex<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
    mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
    mutate(Sex = case_when(
@@ -676,13 +704,26 @@ print(day1HN_sex)
 day1_nonHN<-all_day1 %>% 
   filter(!is.na(Animal_ID)) %>% 
   filter(Genotype == "APOE44" |
-           Genotype == "APOE33") %>% 
+           Genotype == "APOE33" |
+           Genotype == "APOE22") %>% 
    mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
-  group_by(Genotype, Treatment) %>% 
+  mutate(Treatment = case_when(
+      Treatment=='HFD' ~ 'High Fat Diet',
+      Treatment=='Control'~ 'Control'
+  )) %>% 
+  mutate(Sex = case_when(
+    Sex == 'male' ~ 'Male',
+    Sex == 'female' ~ 'Female',
+    Sex == 'Male' ~ 'Male',
+    Sex == 'Female' ~ 'Female',
+  )) %>% 
+  filter(!is.na(Sex)) %>% 
+  group_by(Genotype, Treatment, Sex) %>% 
   summarise(n=n(),
             se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
             len = mean(Pct.Total.Time.Freezing))  
@@ -691,9 +732,11 @@ day1_nonHN<-all_day1 %>%
 nonHN2<-all_day1 %>% 
   filter(!is.na(Animal_ID)) %>% 
   filter(Genotype == "APOE44" |
-           Genotype == "APOE33") %>% 
+           Genotype == "APOE33" |
+           Genotype == 'APOE22') %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
@@ -717,6 +760,15 @@ ggplot(data=day1HN_sex, aes(x=Genotype, y=len, fill = Genotype)) +
   labs(title="Contextual Test", y="Mean Percent Freezing Time") +
   scale_fill_manual(values = c("#6a0dad", "#008000", "#FF0000"))
 
+# non HN
+ggplot(data=day1_nonHN, aes(x=Genotype, y=len, fill = Genotype)) +
+  geom_bar(stat="identity", width=0.5) +
+  facet_grid(Sex~Treatment) + 
+  labs(y="Average Percent Freezing Time", x='') +
+  geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5) +
+  theme_bw() +
+  labs(title="Contextual Test", y="Mean Percent Freezing Time") +
+  scale_fill_manual(values =c("#1BCC97", "#1B50CC", "#CC1BA8"))
 
 # violin plot
 
@@ -725,7 +777,8 @@ day1HN_violin<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
    mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
@@ -753,6 +806,7 @@ poster<-day1HN_violin %>%
       Treatment=='Control'~ 'Control'
   ))
 
+# HN figure for paper
 ggplot(data = poster, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
   geom_violin() +
   geom_boxplot(width = 0.1) +
@@ -761,6 +815,17 @@ ggplot(data = poster, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
   geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Genotype)) +
   labs(y = "Mean Percent Freezing Time", x='') +
   scale_color_manual(values = c("#6a0dad", "#008000", "#FF0000")) +
+  labs(title='Contextual Test')
+
+# non HN figure for paper
+ggplot(data = day1_nonHN, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1) +
+  theme_bw()+
+  facet_grid(Sex~Treatment) + 
+  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Genotype)) +
+  labs(y = "Mean Percent Freezing Time", x='') +
+  scale_color_manual(values = c("#1BCC97", "#1B50CC", "#CC1BA8")) +
   labs(title='Contextual Test')
 
 
@@ -776,7 +841,8 @@ day1_lm<-all_day1 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
@@ -812,7 +878,8 @@ day2_lm<-all_day2 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
@@ -841,9 +908,11 @@ day2_lm<-all_day2 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44" |
            Genotype == "APOE33" |
+           Genotype == "APOE22" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
@@ -871,9 +940,11 @@ day2_age<-all_day2 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44" |
            Genotype == "APOE33" |
+           Genotype == "APOE22" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>%  
   filter(Age_group == '12 months') %>% 
@@ -895,9 +966,11 @@ day2_diet<-all_day2 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44" |
            Genotype == "APOE33" |
+           Genotype == "APOE22" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(!is.na(Age_group)) %>% 
@@ -907,6 +980,59 @@ day2_diet<-all_day2 %>%
             se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
             len = mean(Pct.Total.Time.Freezing)) 
 
+day2_nonhn<-all_day2 %>% 
+  filter(!is.na(Trial)) %>% 
+  mutate(comp = case_when(
+    Component.Name == 'Day2_Acclimation' ~ '1: Pre-Tone',
+    Component.Name == 'Day2_CSTone' ~ '2: Tone',
+    Component.Name == 'Day2_Exploration' ~ '3: Post-Tone'
+  )) %>% 
+  filter(!is.na(comp)) %>% 
+  filter(Genotype == "APOE22" |
+           Genotype == "APOE33" |
+           Genotype == "APOE44") %>% 
+  mutate(Age_group = case_when(
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>% 
+  filter(!is.na(Age_group)) %>% 
+  filter(Age_group == '12 months') %>% 
+  mutate(Sex = case_when(
+    Sex == 'male' ~ 'Male',
+    Sex == 'female' ~ 'Female',
+    Sex == 'Male' ~ 'Male',
+    Sex == 'Female' ~ 'Female',
+  )) %>% 
+  filter(!is.na(Sex)) %>% 
+  mutate(Treatment = case_when(
+      Treatment=='HFD' ~ 'High Fat Diet',
+      Treatment=='Control'~ 'Control'
+  )) %>% 
+  select(Genotype, comp, Treatment, Sex, Pct.Total.Time.Freezing)
+
+day2_nonHN_bar<-all_day2 %>% 
+  filter(!is.na(Trial)) %>% 
+  mutate(comp = case_when(
+    Component.Name == 'Day2_Acclimation' ~ '1: Pre-Tone',
+    Component.Name == 'Day2_CSTone' ~ '2: Tone',
+    Component.Name == 'Day2_Exploration' ~ '3: Post-Tone'
+  )) %>% 
+  filter(!is.na(comp)) %>% 
+  filter(Genotype == "APOE44" |
+          Genotype == "APOE33" |
+          Genotype == "APOE22") %>% 
+  mutate(Age_group = case_when(
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
+    Age_Substracted >= 16 ~ "18 months"
+  )) %>% 
+  filter(!is.na(Age_group)) %>% 
+  filter(Age_group == '12 months') %>% 
+  group_by(Genotype, comp, Treatment) %>% 
+  summarise(n=n(),
+            se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
+            len = mean(Pct.Total.Time.Freezing)) 
 
 
 # HN 
@@ -919,7 +1045,8 @@ hn_age <- day2_diet %>%
 
 non_hn <- day2_diet %>% 
   filter(Genotype == "APOE44" |
-           Genotype == "APOE33" ) 
+           Genotype == "APOE33" |
+           Genotype == "APOE22") 
 ```
 
 ```{r day-2-graphs}
@@ -937,7 +1064,8 @@ day2_violin<-all_day2 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(!is.na(Age_group)) %>% 
@@ -999,7 +1127,7 @@ ggplot(data = post, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.5))+
   labs(title="Tone Test: post-tone")
 
-# This one used in poster
+# Violin for poster
 ggplot(data = poster, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
   geom_violin() +
   geom_boxplot(width = 0.1) +
@@ -1011,6 +1139,19 @@ ggplot(data = poster, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.5))+
   labs(title="Tone Test")
 
+# Violin non HN for poster
+ggplot(data = day2_nonhn, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1) +
+  facet_grid(Treatment~comp) +
+  theme_bw()+
+  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Genotype)) +
+  labs(y = "Mean Percent Freezing Time", x='') +
+  scale_color_manual(values = c("#1BCC97", "#1B50CC", "#CC1BA8")) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.5))+
+  labs(title="Tone Test")
+
+# bar plot HN for poster
 ggplot(data=hn_age, aes(x=Genotype, y=len, fill=Genotype)) +
   geom_bar(stat="identity", width=0.5) +
   scale_fill_manual(values = c("#6a0dad", "#008000", "#FF0000"))+
@@ -1021,6 +1162,16 @@ ggplot(data=hn_age, aes(x=Genotype, y=len, fill=Genotype)) +
   labs(title="Tone Test", y='Mean percent time freezing') + 
   theme(axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.5))
 
+# bar plot non HN for poster 
+ggplot(data=day2_nonHN_bar, aes(x=Genotype, y=len, fill=Genotype)) +
+  geom_bar(stat="identity", width=0.5) +
+  scale_fill_manual(values = c("#1BCC97", "#1B50CC", "#CC1BA8"))+
+  facet_grid(Treatment~comp) + 
+  labs(y="Average Percent Freezing Time", x='') +
+  geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5) +
+  theme_bw() +
+  labs(title="Tone Test", y='Mean percent time freezing') + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.5))
 
 ```
 
@@ -1039,7 +1190,8 @@ day2_lm<-all_day2 %>%
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
   mutate(Age_group = case_when(
-    Age_Substracted < 16 ~ "12 months",
+    Age_Substracted < 9 ~ '6 months',
+    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
   )) %>% 
   filter(Age_group == '12 months') %>% 
