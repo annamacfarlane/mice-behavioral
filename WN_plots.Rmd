@@ -1,0 +1,113 @@
+---
+title: "WN"
+output: html_notebook
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(cowplot)
+library(gplots)
+library(ggplot2)
+library(patternplot)
+library(lme4)
+library(visreg)
+library(tidyr)
+library(magrittr) 
+library(dplyr)
+library(ggpubr)
+library(lme4)
+library(lsmeans)
+library(emmeans)
+
+```
+
+```{r data}
+mice_info<-read.csv('qial_animals_with_age.csv')
+
+data1<-read.csv('Winding/210614MWM_positions.csv', header=TRUE)
+data2<-read.csv('Winding/220207MWM_positions.csv', header=TRUE)
+data3<-read.csv('Winding/220606MWM_positions.csv', header=TRUE)
+data4<-read.csv('Winding/190715MWM_positions.csv', header=TRUE)
+data5<-read.csv('Winding/210503MWM_positions.csv', header=TRUE)
+data6<-read.csv('Winding/200302MWM_positions.csv', header=TRUE)
+data7<-read.csv('Winding/211004MWM_positions.csv', header=TRUE)
+data8<-read.csv('Winding/210811MWM_positions.csv', header=TRUE)
+data9<-read.csv('Winding/190919MWM_positions.csv', header=TRUE)
+data10<-read.csv('Winding/220509MWM_positions.csv', header=TRUE)
+data11<-read.csv('Winding/220110MWM_positions.csv', header=TRUE)
+data12<-read.csv('Winding/220307MWM_positions.csv', header=TRUE)
+data13<-read.csv('Winding/220404MWM_positions.csv', header=TRUE)
+data14<-read.csv('Winding/190617MWM_positions.csv', header=TRUE)
+data15<-read.csv('Winding/210118MWM_positions.csv', header=TRUE)
+data16<-read.csv('Winding/201016MWM_positions.csv', header=TRUE)
+data17<-read.csv('Winding/200331MWM_positions.csv', header=TRUE)
+data18<-read.csv('Winding/211122MWM_positions.csv', header=TRUE)
+data19<-read.csv('Winding/210906MWM_positions.csv', header=TRUE)
+data20<-read.csv('Winding/JoanMWM_positions.csv', header=TRUE)
+```
+
+```{r merge-data}
+# combining imported WN data 
+wn<-rbind(data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,
+          data12,data13,data14,data15,data16,data17,data18,data19,data20)
+
+# creating column with cohort ID and stage and time
+wn['CohortID']=as.integer(substr(wn$Row, 1, 6))
+wn['Stage']=as.integer(substr(wn$Row, 14, 14))
+wn['Time']=as.integer(substr(wn$Row, 17, 17))
+
+# merging with additional animal information
+mwm_wn <- left_join(wn, mice_info, by = c("CohortID" = "IDStripped"))
+
+# filter by age
+#mwm_wn<-mwm_wn %>% 
+#  filter(Age_Substracted == '12 months')
+
+```
+
+```{r organize}
+hn_trials <- mwm_wn %>% 
+  filter(Geno == "APOE22HN" | Geno == "APOE33HN" | Geno == "APOE44HN") 
+e_trials <- mwm_wn %>% 
+  filter(Geno == "APOE22" | Geno == "APOE33" | Geno == "APOE44")
+e2 <- mwm_wn %>% 
+  filter(Geno == "APOE22HN" | Geno == "APOE22")
+e3 <- mwm_wn %>% 
+  filter(Geno == "APOE33HN" | Geno == "APOE33")
+e4 <- mwm_wn %>% 
+  filter(Geno == "APOE44HN" | Geno == "APOE44")
+```
+
+```{r plots}
+ggline(hn_trials, x='Stage', y='Winding_numbers',
+       color='Geno', fill='Geno', facet.by=c('Diet','Sex_other'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("#6a0dad", "#008000", "#FF0000"), size=1,
+       point.size=1.5, legend='top')
+
+ggline(e_trials, x='Stage', y='Winding_numbers', 
+       color='Geno', fill='Geno', facet.by=c('Diet','Sex_other'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("#1BCC97", "#1B50CC", "#CC1BA8"), size=1,
+       point.size=1.5,  legend='top')
+
+ggline(e2, x='Stage', y='Winding_numbers', 
+       color='Geno', fill='Geno', facet.by=c('Diet','Sex_other'),
+       error.plot='errorbar', add='mean_se', 
+      palette = c("#1BCC97", "#6a0dad"), size=1,
+       point.size=1.5,  legend='top')
+
+ggline(e3, x='Stage', y='Winding_numbers', 
+       color='Geno', fill='Geno', facet.by=c('Diet','Sex_other'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("#1B50CC", "#008000"), size=1,
+       point.size=1.5,  legend='top')
+
+ggline(e4, x='Stage', y='Winding_numbers', 
+       color='Geno', fill='Geno', facet.by=c('Diet','Sex_other'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("#CC1BA8", "#FF0000"), size=1,
+       point.size=1.5,  legend='top')
+```
