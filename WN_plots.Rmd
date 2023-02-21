@@ -49,22 +49,72 @@ data20<-read.csv('Winding/JoanMWM_positions.csv', header=TRUE)
 ```
 
 ```{r merge-data}
-# combining imported WN data 
+
 wn<-rbind(data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,
           data12,data13,data14,data15,data16,data17,data18,data19,data20)
 
 # creating column with cohort ID and stage and time
 wn['CohortID']=as.integer(substr(wn$Row, 1, 6))
-wn['Stage']=as.integer(substr(wn$Row, 14, 14))
-wn['Time']=as.integer(substr(wn$Row, 17, 17))
+wn$AnimalID=substr(wn$Row, 1, 9)
+
+index_temp = substr(wn$AnimalID,9,9) == "_"
+wn$AnimalID[index_temp] = substr(wn$AnimalID[index_temp],1,8)
+wn$AnimalID = gsub("-" , "_", wn$AnimalID)
+
+n_last_time <- 15                                # Specify number of characters to extract
+substr(x, nchar(x) - n_last + 1, nchar(x))
+
+wn$Time=as.integer(substr(wn$Row, nchar(wn$Row)-n_last_time+1, nchar(wn$Row)-n_last_time+1))
+
+n_last_stage <- 21
+wn$Stage<-substr(wn$Row, nchar(wn$Row) - n_last_stage + 1, nchar(wn$Row)-n_last_stage+4)
+
+
+mwm_data<-read.csv('mwm_data.csv', header=TRUE)
+allMWM <- left_join(wn, mwm_data, by = c("AnimalID" = "Animal", "Time"="Trial", 'Stage'='Stage'))
+write.csv(allMWM, '/Users/AnnaMacFarlane/Desktop/MWM_Combined_AWN.csv')
+
+#if (wn$Row)
+#wn['Stage']=as.integer(substr(wn$Row, 14, 14))
+#wn['Time']=as.integer(substr(wn$Row, 17, 17))
 
 # merging with additional animal information
-mwm_wn <- left_join(wn, mice_info, by = c("CohortID" = "IDStripped"))
-
+mwm_wn <- left_join(wn, mice_info, by = c("AnimalID" = "BadeaID"))
+#all_mwm<-read.csv('mwm_data', header=TRUE)
 # filter by age
 #mwm_wn<-mwm_wn %>% 
 #  filter(Age_Substracted == '12 months')
 
+```
+```
+
+```{r joan}
+joan<-read.csv('joan_wn.csv', header=TRUE)
+joan_ref<-read.csv('JOAN_MWM_combined.csv', header=TRUE)
+
+joan_wn_all<-left_join(joan, joan_ref, by = c("CohortID" = "Animal_ID"))
+
+joan_wn<-joan_wn_all %>% 
+  filter(!is.na(X)) %>% 
+  filter(Stage != "Probe_D5" | Stage != "Probe_D8") %>%
+  mutate(Stage = case_when( 
+    Stage == "Day1" ~ "Day 1",
+    Stage == "Day2" ~ "Day 2",
+    Stage == "Day3" ~ "Day 3",
+    Stage == "Day4" ~ "Day 4",
+    Stage == "Day5" ~ "Day 5"
+  )) %>% 
+  filter(!is.na(Stage)) %>% 
+  group_by(Stage)
+  
+
+ggline(joan_wn, x='Stage', y='Winding_numbers',
+       #facet.by=c('Sex'),
+       error.plot='errorbar', add='mean_se', size=1,
+       point.size=1.5, legend='top')
+
+ggline(joan_wn, x='Stage', y='Winding_numbers',
+       error.plot='errorbar', add='mean_se')
 ```
 
 ```{r organize}
@@ -110,4 +160,28 @@ ggline(e4, x='Stage', y='Winding_numbers',
        error.plot='errorbar', add='mean_se', 
        palette = c("#CC1BA8", "#FF0000"), size=1,
        point.size=1.5,  legend='top')
+```
+
+```{r post-hoc-reg}
+library(lmerTest)
+
+#r_trials<_reg_trials %>% 
+#  filter(!is.na())
+
+mod_reg<-lmer(Winding~factor(Genotype)*Treatment.y+Stage+(1|Animal), reg_trials)
+
+# within day 5 and within day 8
+mod_probe<-lme(NormSWDist~factor(Genotype)*Treatment.y+Stage, probe_trials)
+
+mix_reg<-emmeans(mod_reg, "Genotype", adjust = "Tukey")
+mix_probe<-emmeans(mod_probe, "Genotype", adjust = "Tukey")
+
+pairs(mix_reg)
+pairs(mix_probe)
+
+a1<-anova(mod_reg)
+a2<-anova(mod_probe)
+
+a1
+a2
 ```
