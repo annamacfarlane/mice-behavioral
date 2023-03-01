@@ -76,26 +76,70 @@ wn$Time=as.integer(substr(wn$Row, nchar(wn$Row)-n_last_time+1, nchar(wn$Row)-n_l
 n_last_stage <- 21
 wn$Stage<-substr(wn$Row, nchar(wn$Row) - n_last_stage + 1, nchar(wn$Row)-n_last_stage+4)
 
+# reading in other MWM data 
 
 mwm_data<-read.csv('mwm_data.csv', header=TRUE)
-mwm_data<-subset(mwm_data, select=-c(X))
+mwm_data<-subset(mwm_data, select=-c(X, age))
+
+# calculating normalized distances in each quadrant
+
+mwm_data$Distance=mwm_data$Distance/10
+mwm_data$NE...distance=mwm_data$NE...distance/10
+mwm_data$NW...distance=mwm_data$NW...distance/10
+mwm_data$SE...distance=mwm_data$SE...distance/10
+mwm_data$SW...distance=mwm_data$SW...distance/10
+
+#Normalize time and distance in target region
+mwm_data$NormSWTime<-mwm_data$SW...time/mwm_data$Duration
+mwm_data$NormSWDist<-mwm_data$SW...distance/mwm_data$Distance
+mwm_data<-subset(mwm_data, (NormSWTime <= 1))
+
+#Normalize Probe Distances
+mwm_data$DistTot<-mwm_data$NE...distance+mwm_data$NW...distance+mwm_data$SE...distance+mwm_data$SW...distance
+mwm_data$NE.Dist.Norm<-mwm_data$NE...distance/mwm_data$DistTot
+mwm_data$NW.Dist.Norm<-mwm_data$NW...distance/mwm_data$DistTot
+mwm_data$SE.Dist.Norm<-mwm_data$SE...distance/mwm_data$DistTot
+mwm_data$SW.Dist.Norm<-mwm_data$SW...distance/mwm_data$DistTot
+
+#Normalize Probe Times
+mwm_data$TimeTot<-mwm_data$NE...time+mwm_data$NW...time+mwm_data$SE...time+mwm_data$SW...time
+mwm_data$NE.Time.Norm<-mwm_data$NE...time/mwm_data$TimeTot
+mwm_data$NW.Time.Norm<-mwm_data$NW...time/mwm_data$TimeTot
+mwm_data$SE.Time.Norm<-mwm_data$SE...time/mwm_data$TimeTot
+mwm_data$SW.Time.Norm<-mwm_data$SW...time/mwm_data$TimeTot
+
+#Normalize time and distance in target region probe
+mwm_data$NormSWTime<-mwm_data$SW...time/mwm_data$Duration
+mwm_data$NormSWDist<-mwm_data$SW...distance/mwm_data$Distance
+mwm_data<-subset(mwm_data, (NormSWTime <= 1))
+
+# Converting NormSWDiet values to numeric
+mwm_data$NormSWDist <- as.numeric(mwm_data$NormSWDist)
+mwm_data$NormSWDist <- as.numeric(mwm_data$NormSWDist)
+
+
+
+# merging data 
 allMWM <- left_join(wn, mwm_data, by = c("AnimalID" = "Animal", "Time"="Trial", 'Stage'='Stage')) %>%
   distinct(Row, .keep_all =TRUE)
-#write.csv(allMWM, '/Users/AnnaMacFarlane/Desktop/MWM_AWN_Combined.csv')
 
-#if (wn$Row)
-#wn['Stage']=as.integer(substr(wn$Row, 14, 14))
-#wn['Time']=as.integer(substr(wn$Row, 17, 17))
+allMWM$NormDist<-allMWM$Distance/(allMWM$Winding_numbers+1)
+
+#write.csv(allMWM, '/Users/AnnaMacFarlane/Desktop/AllMWM_Combined.csv')
+
 
 # merging with additional animal information
-mwm_wn <- left_join(wn, mice_info, by = c("AnimalID" = "BadeaID"))
+#mwm_wn <- left_join(wn, mice_info, by = c("AnimalID" = "BadeaID"))
+mwm_wn <- left_join(allMWM, mice_info, by = c("AnimalID" = "BadeaID"))
 
+# setting age groups
 mwm_wn<-mwm_wn %>% 
   mutate(Age_group = case_when(
-    Age_Substracted <= 16 ~ 'young',
-    Age_Substracted > 16 ~ 'old'
+    Age_Substracted.x <= 16 ~ 'Young',
+    Age_Substracted > 16 ~ 'Old'
   ))
 
+#write.csv(mwm_wn, '/Users/AnnaMacFarlane/Desktop/MWM_AWN_Combined.csv')
 
 #all_mwm<-read.csv('mwm_data', header=TRUE)
 # filter by age
@@ -103,6 +147,7 @@ mwm_wn<-mwm_wn %>%
 #  filter(Age_Substracted == '12 months')
 
 ```
+
 
 ```
 
@@ -201,15 +246,37 @@ ggline(e_trials, x='Stage', y='Winding_numbers',
        error.plot='errorbar', add='mean_se', 
        palette = c("green", "purple"), size=1,
        point.size=1.5,  legend='top', legend.title='Sex')
+
+```
+
+```{r norm-dist-plots}
+ggline(e_trials, x='Stage', y='NormDist', 
+       color='Geno', fill='Geno', facet.by=c('Diet','Sex_other'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("#1BCC97", "#1B50CC", "#CC1BA8"), size=1,
+       point.size=1.5,  legend='top', legend.title='Sex')
        
-ggline(e_trials, x='Stage', y='Winding_numbers', 
-       color='Age_group', fill='Age_group', facet.by=c('Geno'),
+ggline(e_trials, x='Stage', y='NormDist', 
+       color='Sex_other', fill='Sex_other', facet.by=c('Geno'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("red", "blue"), size=1,
+       point.size=1.5,  legend='top',
+       legend.title='Sex') 
+       
+ggline(e_trials, x='Stage', y='NormDist', 
+       color='Sex_other', fill='Sex_other', facet.by=c('Age_group','Geno'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("red", "blue"), size=1,
+       point.size=1.5,  legend='top',
+       legend.title='Sex')
+       
+ggline(e_trials, x='Stage', y='NormDist', 
+       color='Age_group', fill='Age_group', facet.by=c('Sex_other','Geno'),
        error.plot='errorbar', add='mean_se', 
        palette = c("green", "purple"), size=1,
        point.size=1.5,  legend='top', legend.title='Sex')
 
 ```
-
 
 ```{r post-hoc-reg}
 library(lmerTest)
