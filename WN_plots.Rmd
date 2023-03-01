@@ -45,13 +45,21 @@ data16<-read.csv('Winding/201016MWM_positions.csv', header=TRUE)
 data17<-read.csv('Winding/200331MWM_positions.csv', header=TRUE)
 data18<-read.csv('Winding/211122MWM_positions.csv', header=TRUE)
 data19<-read.csv('Winding/210906MWM_positions.csv', header=TRUE)
-data20<-read.csv('Winding/JoanMWM_positions.csv', header=TRUE)
+data20<-read.csv('Winding/221128MWM_positions.csv', header=TRUE)
+data21<-read.csv('Winding/220808MWM_positions.csv', header=TRUE)
+data22<-read.csv('Winding/220422MWM_positions.csv', header=TRUE)
+data23<-read.csv('Winding/210222MWM_positions.csv', header=TRUE)
+#data24<-read.csv('Winding/210906MWM_positions.csv', header=TRUE)
+
+
+data_joan<-read.csv('Winding/JoanMWM_positions.csv', header=TRUE)
 ```
 
 ```{r merge-data}
 
 wn<-rbind(data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,
-          data12,data13,data14,data15,data16,data17,data18,data19,data20)
+          data12,data13,data14,data15,data16,data17,data18,data19, data20, data21,
+          data22, data23)
 
 # creating column with cohort ID and stage and time
 wn['CohortID']=as.integer(substr(wn$Row, 1, 6))
@@ -62,7 +70,6 @@ wn$AnimalID[index_temp] = substr(wn$AnimalID[index_temp],1,8)
 wn$AnimalID = gsub("-" , "_", wn$AnimalID)
 
 n_last_time <- 15                                # Specify number of characters to extract
-substr(x, nchar(x) - n_last + 1, nchar(x))
 
 wn$Time=as.integer(substr(wn$Row, nchar(wn$Row)-n_last_time+1, nchar(wn$Row)-n_last_time+1))
 
@@ -71,8 +78,10 @@ wn$Stage<-substr(wn$Row, nchar(wn$Row) - n_last_stage + 1, nchar(wn$Row)-n_last_
 
 
 mwm_data<-read.csv('mwm_data.csv', header=TRUE)
-allMWM <- left_join(wn, mwm_data, by = c("AnimalID" = "Animal", "Time"="Trial", 'Stage'='Stage'))
-write.csv(allMWM, '/Users/AnnaMacFarlane/Desktop/MWM_Combined_AWN.csv')
+mwm_data<-subset(mwm_data, select=-c(X))
+allMWM <- left_join(wn, mwm_data, by = c("AnimalID" = "Animal", "Time"="Trial", 'Stage'='Stage')) %>%
+  distinct(Row, .keep_all =TRUE)
+#write.csv(allMWM, '/Users/AnnaMacFarlane/Desktop/MWM_AWN_Combined.csv')
 
 #if (wn$Row)
 #wn['Stage']=as.integer(substr(wn$Row, 14, 14))
@@ -80,12 +89,21 @@ write.csv(allMWM, '/Users/AnnaMacFarlane/Desktop/MWM_Combined_AWN.csv')
 
 # merging with additional animal information
 mwm_wn <- left_join(wn, mice_info, by = c("AnimalID" = "BadeaID"))
+
+mwm_wn<-mwm_wn %>% 
+  mutate(Age_group = case_when(
+    Age_Substracted <= 16 ~ 'young',
+    Age_Substracted > 16 ~ 'old'
+  ))
+
+
 #all_mwm<-read.csv('mwm_data', header=TRUE)
 # filter by age
 #mwm_wn<-mwm_wn %>% 
 #  filter(Age_Substracted == '12 months')
 
 ```
+
 ```
 
 ```{r joan}
@@ -121,7 +139,8 @@ ggline(joan_wn, x='Stage', y='Winding_numbers',
 hn_trials <- mwm_wn %>% 
   filter(Geno == "APOE22HN" | Geno == "APOE33HN" | Geno == "APOE44HN") 
 e_trials <- mwm_wn %>% 
-  filter(Geno == "APOE22" | Geno == "APOE33" | Geno == "APOE44")
+  filter(Geno == "APOE22" | Geno == "APOE33" | Geno == "APOE44") %>% 
+  filter(Stage != 'e_D5' & Stage != 'e_D8')
 e2 <- mwm_wn %>% 
   filter(Geno == "APOE22HN" | Geno == "APOE22")
 e3 <- mwm_wn %>% 
@@ -161,6 +180,36 @@ ggline(e4, x='Stage', y='Winding_numbers',
        palette = c("#CC1BA8", "#FF0000"), size=1,
        point.size=1.5,  legend='top')
 ```
+
+```{r facet-by-sex}
+ggline(e_trials, x='Stage', y='Winding_numbers', 
+       color='Sex_other', fill='Sex_other', facet.by=c('Geno'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("red", "blue"), size=1,
+       point.size=1.5,  legend='top',
+       legend.title='Sex') 
+       
+ggline(e_trials, x='Stage', y='Winding_numbers', 
+       color='Sex_other', fill='Sex_other', facet.by=c('Age_group','Geno'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("red", "blue"), size=1,
+       point.size=1.5,  legend='top',
+       legend.title='Sex')
+       
+ggline(e_trials, x='Stage', y='Winding_numbers', 
+       color='Age_group', fill='Age_group', facet.by=c('Sex_other','Geno'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("green", "purple"), size=1,
+       point.size=1.5,  legend='top', legend.title='Sex')
+       
+ggline(e_trials, x='Stage', y='Winding_numbers', 
+       color='Age_group', fill='Age_group', facet.by=c('Geno'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("green", "purple"), size=1,
+       point.size=1.5,  legend='top', legend.title='Sex')
+
+```
+
 
 ```{r post-hoc-reg}
 library(lmerTest)
