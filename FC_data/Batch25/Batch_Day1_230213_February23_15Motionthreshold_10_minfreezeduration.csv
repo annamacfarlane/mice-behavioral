@@ -1,0 +1,51 @@
+,Date :,3/7/2023 11:19,,,,,,,,,,,
+,Motion Threshold (au):,15,,,,,,,,,,,
+,Detection Method:,Linear,,,,,,,,,,,
+,Min Freeze Duration (f):,10,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,Component Details,,,,,,,,,,,,
+,Component Name,Start Time,Duration (s),Start Frame,Duration Frames,,,,,,,,
+,White House Light, 0:00:00.000,300,0,9000,,,,,,,,
+,,,,,,,,,,,,,
+Animal_ID,Experiment,Trial,Box,Animal,Group,Component Name,Freeze Cnt,Time Freezing,Pct Total Time Freezing,Pct Component Time Freezing,Avg Motion Index,Min Motion Index,Max Motion Index
+230213-1,VF030723_094553,Day1_Trial1,Chamber1,,,White House Light,50,284.233,94.74,94.74,1.95,0,102
+,,,,,,,,,,,,,
+230213-2,VF030723_094553,Day1_Trial1,Chamber2,,,White House Light,124,231.333,77.11,77.11,5.7,0,229
+,,,,,,,,,,,,,
+230213-3,VF030723_095559,Day1_Trial2,Chamber1,,,White House Light,35,278.1,92.7,92.7,2.48,0,214
+,,,,,,,,,,,,,
+230213-4,VF030723_095559,Day1_Trial2,Chamber2,,,White House Light,89,260.367,86.79,86.79,3.64,0,175
+,,,,,,,,,,,,,
+230213-5,VF030723_100423,Day1_Trial3,Chamber1,,,White House Light,58,259.6,86.53,86.53,8.05,0,418
+,,,,,,,,,,,,,
+230213-6,VF030723_100423,Day1_Trial3,Chamber2,,,White House Light,74,270.6,90.2,90.2,7.24,0,4523
+,,,,,,,,,,,,,
+230213-7,VF030723_101304,Day1_Trial4,Chamber1,,,White House Light,73,255.133,85.04,85.04,6.44,0,308
+,,,,,,,,,,,,,
+230213-8,VF030723_101304,Day1_Trial4,Chamber2,,,White House Light,78,280,93.33,93.33,3.65,0,7545
+,,,,,,,,,,,,,
+230213-9,VF030723_102113,Day1_Trial5,Chamber1,,,White House Light,71,243,81,81,6.44,0,306
+,,,,,,,,,,,,,
+230213-10,VF030723_102113,Day1_Trial5,Chamber2,,,White House Light,82,279.067,93.02,93.02,1.83,0,95
+,,,,,,,,,,,,,
+230213-11,VF030723_102913,Day1_Trial6,Chamber1,,,White House Light,82,245.967,81.99,81.99,7.09,0,311
+,,,,,,,,,,,,,
+230213-12,VF030723_102913,Day1_Trial6,Chamber2,,,White House Light,136,222.333,74.11,74.11,9.23,0,305
+,,,,,,,,,,,,,
+230213-13,VF030723_103720,Day1_Trial7,Chamber1,,,White House Light,20,280.433,93.48,93.48,3.98,0,497
+,,,,,,,,,,,,,
+230213-14,VF030723_103720,Day1_Trial7,Chamber2,,,White House Light,61,266.4,88.8,88.8,5.36,0,629
+,,,,,,,,,,,,,
+230213-15,VF030723_104534,Day1_Trial8,Chamber1,,,White House Light,7,297.5,99.17,99.17,0.56,0,438
+,,,,,,,,,,,,,
+230213-16,VF030723_104534,Day1_Trial8,Chamber2,,,White House Light,24,288.9,96.3,96.3,1.11,0,177
+,,,,,,,,,,,,,
+230213-17,VF030723_105418,Day1_Trial9,Chamber1,,,White House Light,11,298.667,99.56,99.56,0.22,0,43
+,,,,,,,,,,,,,
+230213-18,VF030723_105418,Day1_Trial9,Chamber2,,,White House Light,18,296.567,98.86,98.86,0.48,0,114
+,,,,,,,,,,,,,
+230213-19,VF030723_110244,Day1_Trial10,Chamber1,,,White House Light,12,295.733,98.58,98.58,0.52,0,160
+,,,,,,,,,,,,,
+230213-20,VF030723_110244,Day1_Trial10,Chamber2,,,White House Light,33,287.167,95.72,95.72,1.52,0,1032

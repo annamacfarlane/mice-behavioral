@@ -1,0 +1,93 @@
+,Date :,12/21/2022 11:43,,,,,,,,,,,
+,Motion Threshold (au):,15,,,,,,,,,,,
+,Detection Method:,Linear,,,,,,,,,,,
+,Min Freeze Duration (f):,10,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,Component Details,,,,,,,,,,,,
+,Component Name,Start Time,Duration (s),Start Frame,Duration Frames,,,,,,,,
+,Day2_Acclimation, 0:00:00.000,180,0,5400,,,,,,,,
+,Day2_CSTone, 0:03:00.000,360,5400,10800,,,,,,,,
+,Day2_Exploration, 0:06:00.000,450,10800,13500,,,,,,,,
+,,,,,,,,,,,,,
+AnimalID,Experiment,Trial,Box,Animal,Group,Component Name,Freeze Cnt,Time Freezing,Pct Total Time Freezing,Pct Component Time Freezing,Avg Motion Index,Min Motion Index,Max Motion Index
+221128-1,VF122122_095041,Day2_Trial1,Chamber1,,,Day2_Acclimation,41,37.033,8.23,20.57,155.16,0,1818
+221128-1,VF122122_095041,Day2_Trial1,Chamber1,,,Day2_CSTone,55,62.833,13.96,17.45,207.18,0,1760
+221128-1,VF122122_095041,Day2_Trial1,Chamber1,,,Day2_Exploration,14,18.467,4.1,4.1,251.17,0,1760
+,,,,,,,,,,,,,
+221128-2,VF122122_095041,Day2_Trial1,Chamber2,,,Day2_Acclimation,19,10.3,2.29,5.72,221.5,0,1667
+221128-2,VF122122_095041,Day2_Trial1,Chamber2,,,Day2_CSTone,72,73.3,16.29,20.36,135.88,0,2123
+221128-2,VF122122_095041,Day2_Trial1,Chamber2,,,Day2_Exploration,20,16.2,3.6,3.6,147.57,0,1068
+,,,,,,,,,,,,,
+221128-3,VF122122_100215,Day2_Trial2,Chamber1,,,Day2_Acclimation,26,20.967,4.66,11.65,231.56,0,2050
+221128-3,VF122122_100215,Day2_Trial2,Chamber1,,,Day2_CSTone,87,127.933,28.43,35.54,57.98,0,1543
+221128-3,VF122122_100215,Day2_Trial2,Chamber1,,,Day2_Exploration,19,25.1,5.58,5.58,115.32,0,1543
+,,,,,,,,,,,,,
+221128-4,VF122122_100215,Day2_Trial2,Chamber2,,,Day2_Acclimation,15,12.467,2.77,6.93,266.19,0,2050
+221128-4,VF122122_100215,Day2_Trial2,Chamber2,,,Day2_CSTone,73,88.667,19.7,24.63,129.4,0,1612
+221128-4,VF122122_100215,Day2_Trial2,Chamber2,,,Day2_Exploration,17,22.833,5.07,5.07,147.67,0,1502
+,,,,,,,,,,,,,
+221128-5,VF122122_101401,Day2_Trial3,Chamber1,,,Day2_Acclimation,17,17.9,3.98,9.94,255.94,0,2299
+221128-5,VF122122_101401,Day2_Trial3,Chamber1,,,Day2_CSTone,65,96.7,21.49,26.86,136.67,0,1688
+221128-5,VF122122_101401,Day2_Trial3,Chamber1,,,Day2_Exploration,13,13.333,2.96,2.96,206.85,0,1688
+,,,,,,,,,,,,,
+221128-6,VF122122_101401,Day2_Trial3,Chamber2,,,Day2_Acclimation,4,2.833,0.63,1.57,270.97,0,2487
+221128-6,VF122122_101401,Day2_Trial3,Chamber2,,,Day2_CSTone,49,97.567,21.68,27.1,103.91,0,1352
+221128-6,VF122122_101401,Day2_Trial3,Chamber2,,,Day2_Exploration,15,23.667,5.26,5.26,86.72,0,814
+,,,,,,,,,,,,,
+221128-7,VF122122_102530,Day2_Trial4,Chamber1,,,Day2_Acclimation,12,10.867,2.41,6.04,244.4,0,2234
+221128-7,VF122122_102530,Day2_Trial4,Chamber1,,,Day2_CSTone,40,111.767,24.84,31.05,114.1,0,1983
+221128-7,VF122122_102530,Day2_Trial4,Chamber1,,,Day2_Exploration,8,12.633,2.81,2.81,132.11,0,785
+,,,,,,,,,,,,,
+221128-8,VF122122_102530,Day2_Trial4,Chamber2,,,Day2_Acclimation,8,5.8,1.29,3.22,299.68,0,1994
+221128-8,VF122122_102530,Day2_Trial4,Chamber2,,,Day2_CSTone,46,82.633,18.36,22.95,134.4,0,1984
+221128-8,VF122122_102530,Day2_Trial4,Chamber2,,,Day2_Exploration,15,24.333,5.41,5.41,122.17,0,1984
+,,,,,,,,,,,,,
+221128-9,VF122122_103633,Day2_Trial5,Chamber1,,,Day2_Acclimation,10,9.967,2.21,5.54,233.49,0,1402
+221128-9,VF122122_103633,Day2_Trial5,Chamber1,,,Day2_CSTone,55,93.067,20.68,25.85,114.33,0,1143
+221128-9,VF122122_103633,Day2_Trial5,Chamber1,,,Day2_Exploration,10,12.967,2.88,2.88,170.16,0,1143
+,,,,,,,,,,,,,
+221128-10,VF122122_103633,Day2_Trial5,Chamber2,,,Day2_Acclimation,14,13.367,2.97,7.43,208.52,0,1681
+221128-10,VF122122_103633,Day2_Trial5,Chamber2,,,Day2_CSTone,65,142.3,31.62,39.53,75.02,0,1751
+221128-10,VF122122_103633,Day2_Trial5,Chamber2,,,Day2_Exploration,15,20.7,4.6,4.6,169.34,0,1751
+,,,,,,,,,,,,,
+221128-11,VF122122_104807,Day2_Trial6,Chamber1,,,Day2_Acclimation,24,40.2,8.93,22.33,182.98,0,1447
+221128-11,VF122122_104807,Day2_Trial6,Chamber1,,,Day2_CSTone,36,207.067,46.01,57.52,50.05,0,1456
+221128-11,VF122122_104807,Day2_Trial6,Chamber1,,,Day2_Exploration,14,37.433,8.32,8.32,145.57,0,1456
+,,,,,,,,,,,,,
+221128-12,VF122122_104807,Day2_Trial6,Chamber2,,,Day2_Acclimation,33,73.233,16.27,40.69,90.44,0,1177
+221128-12,VF122122_104807,Day2_Trial6,Chamber2,,,Day2_CSTone,50,151.267,33.61,42.02,47.52,0,895
+221128-12,VF122122_104807,Day2_Trial6,Chamber2,,,Day2_Exploration,15,46.6,10.36,10.36,45.55,0,500
+,,,,,,,,,,,,,
+221128-13,VF122122_105837,Day2_Trial7,Chamber1,,,Day2_Acclimation,18,15.133,3.36,8.41,236.06,0,2134
+221128-13,VF122122_105837,Day2_Trial7,Chamber1,,,Day2_CSTone,77,124.6,27.69,34.61,88.76,0,1427
+221128-13,VF122122_105837,Day2_Trial7,Chamber1,,,Day2_Exploration,11,12.4,2.76,2.76,193.79,0,1427
+,,,,,,,,,,,,,
+221128-14,VF122122_105837,Day2_Trial7,Chamber2,,,Day2_Acclimation,44,28.7,6.38,15.94,122.5,0,1595
+221128-14,VF122122_105837,Day2_Trial7,Chamber2,,,Day2_CSTone,54,65.6,14.58,18.22,196.26,0,2643
+221128-14,VF122122_105837,Day2_Trial7,Chamber2,,,Day2_Exploration,5,3.067,0.68,0.68,292.85,0,1773
+,,,,,,,,,,,,,
+221128-15,VF122122_110935,Day2_Trial8,Chamber1,,,Day2_Acclimation,19,12.3,2.73,6.83,277.61,0,2240
+221128-15,VF122122_110935,Day2_Trial8,Chamber1,,,Day2_CSTone,48,107.467,23.88,29.85,126.71,0,1537
+221128-15,VF122122_110935,Day2_Trial8,Chamber1,,,Day2_Exploration,3,2.567,0.57,0.57,235.69,0,1537
+,,,,,,,,,,,,,
+221128-16,VF122122_110935,Day2_Trial8,Chamber2,,,Day2_Acclimation,3,1.733,0.39,0.96,547.94,0,2715
+221128-16,VF122122_110935,Day2_Trial8,Chamber2,,,Day2_CSTone,50,90.3,20.07,25.08,146.56,0,1824
+221128-16,VF122122_110935,Day2_Trial8,Chamber2,,,Day2_Exploration,16,22.9,5.09,5.09,134.21,0,1151
+,,,,,,,,,,,,,
+221128-17,VF122122_112053,Day2_Trial9,Chamber1,,,Day2_Acclimation,46,50.5,11.22,28.06,124.56,0,1611
+221128-17,VF122122_112053,Day2_Trial9,Chamber1,,,Day2_CSTone,72,115.867,25.75,32.19,115.14,0,5309
+221128-17,VF122122_112053,Day2_Trial9,Chamber1,,,Day2_Exploration,23,26.4,5.87,5.87,94.04,0,1306
+,,,,,,,,,,,,,
+221128-18,VF122122_112053,Day2_Trial9,Chamber2,,,Day2_Acclimation,61,49.867,11.08,27.7,151.59,0,1587
+221128-18,VF122122_112053,Day2_Trial9,Chamber2,,,Day2_CSTone,62,99.167,22.04,27.55,109.46,0,1179
+221128-18,VF122122_112053,Day2_Trial9,Chamber2,,,Day2_Exploration,11,12,2.67,2.67,183.95,0,1074
+,,,,,,,,,,,,,
+221128-19,VF122122_113118,Day2_Trial10,Chamber1,,,Day2_Acclimation,45,37.933,8.43,21.07,86.15,0,953
+221128-19,VF122122_113118,Day2_Trial10,Chamber1,,,Day2_CSTone,65,86.3,19.18,23.97,89.36,0,2077
+221128-19,VF122122_113118,Day2_Trial10,Chamber1,,,Day2_Exploration,18,26.067,5.79,5.79,66.4,0,793
+,,,,,,,,,,,,,
+221128-20,VF122122_113118,Day2_Trial10,Chamber2,,,Day2_Acclimation,10,6.333,1.41,3.52,188.53,0,1771
+221128-20,VF122122_113118,Day2_Trial10,Chamber2,,,Day2_CSTone,44,37.4,8.31,10.39,158.91,0,2708
+221128-20,VF122122_113118,Day2_Trial10,Chamber2,,,Day2_Exploration,19,12.567,2.79,2.79,183.76,0,2708
