@@ -141,17 +141,38 @@ mwm_data$NewM<-mwm_data$NormSWDist/(mwm_data$Winding_numbers+1)
 
 
 # merging with additional animal information
-#mwm_wn <- left_join(wn, mice_info, by = c("AnimalID" = "BadeaID"))
+#index = match(  mice_info$BadeaID, mwm_data$AnimalID )
+#sum(mice_info$BadeaID [index] != mwm_data$AnimalID)
+#index = na.omit(index)
+#temp= cbind(mwm_data[ index,],  mice_info)
+
+
+index = match(  mwm_data$AnimalID , mice_info$BadeaID)
+sum(mice_info$BadeaID [index] != mwm_data$AnimalID)
+#index = na.omit(index)
+mwm_data= cbind(mice_info[ index,],  mwm_data)
+
+
+
+mwm_wn <- left_join(mwm_data, mice_info, by = c("AnimalID" = "BadeaID"))
 #mwm_wn <- left_join(allMWM, mice_info, by = c("AnimalID" = "BadeaID"))
 
+
+# exported this file to add the Age_Handling in Excel, then reuploaded it
+#write.csv(mwm_data, '/Users/AnnaMacFarlane/Desktop/MWM_AWN_Combined.csv')
+
+# overwriting the merged data because this has updated ages at handling
+#mwm_data<-read.csv('MWM_AWN_Combined 3.csv', header=TRUE)
+
+mwm_data$Age_Handling = as.numeric(mwm_data$Age_Handling)
 # setting age groups
 mwm_data<-mwm_data %>% 
   mutate(Age_group = case_when(
-    Age_Months <= 16 ~ 'Young',
-    Age_Months > 16 ~ 'Old'
+    Age_Handling < 7 ~ '6 Months',
+    #Age_Handling >= 7 & Age_Handling <= 14 ~ 'Young',
+    Age_Handling > 14 ~ 'Old',
+    TRUE ~ 'Young'
   ))
-
-#write.csv(mwm_data, '/Users/AnnaMacFarlane/Desktop/MWM_AWN_Combined.csv')
 
 ```
 
@@ -262,13 +283,16 @@ ggline(hn_trials, x='Stage', y='Winding_numbers',
        point.size=1.5, legend='top')
        
 # facet by age and sex
+par(mfrow=c(1,1))
+jpeg("basic_ctrl_facetAgeSex_AWN.jpeg", units="in", width=7, height=5, res=300)  
+
 ggline(e_trials_ctrl, x='Stage', y='Winding_numbers', 
        color='Genotype', fill='Genotype', facet.by=c('Age_group','Sex'),
        error.plot='errorbar', add='mean_se', 
        palette = c("#1BCC97", "#1B50CC", "#CC1BA8"), size=1,
        point.size=1.5,  legend='top', title = 'Winding Number')
-       
-jpeg(file = '/Users/AnnaMacFarlane/Desktop/AWN_ctrl_facetAgeSex.jpeg')
+      
+dev.off()
        
 ggline(e_trials, x='Stage', y='Distance', 
        color='Genotype', fill='Genotype', facet.by=c('Age_group','Sex'),
@@ -362,8 +386,8 @@ ggline(e_trials_ctrl, x='Stage', y='Winding_numbers',
        stat_compare_means(aes(group = Sex), label = "p.signif", hide.ns=TRUE,
        label.y.npc = "bottom", label.x.npc = "left")
        
-animal_counts<-distinct(e_trials_ctrl, AnimalID, .keep_all = TRUE)
-table(animal_counts[animal_counts$Genotype == 'APOE44', ]$Age_group)
+animal_counts<-distinct(mwm_data, Age_Substracted, .keep_all = TRUE)
+table(mwm_data[mwm_data$Age_Substracted])
        
 ggline(e_trials_ctrl, x='Stage', y='Distance', 
        color='Sex', fill='Sex', facet.by=c('Age_group','Genotype'),
