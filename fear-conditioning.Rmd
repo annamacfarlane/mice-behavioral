@@ -99,6 +99,46 @@ batch18_2<-read.csv('FC_data/Batch18/220704_Day2_July18monthHFD_15Motionthreshol
 batch19_0<-read.csv('FC_data/Batch19/Batch_Day0_220808August2022_15Motionthreshold_10_minifreezeduration.csv', skip=16)
 batch19_1<-read.csv('FC_data/Batch19/Batch_Day1_220808August2022_15Motionthreshold_10_minfreezeduration.csv', skip=11)
 batch19_2<-read.csv('FC_data/Batch19/Batch_Day2_220808August2022_15Motionthreshold_10_minfreezeduration.csv',skip=13)
+
+batch20_0<-read.csv('FC_data/Batch20/Batch_day0_220905September2022_15Motionthreshold_10_minfreezeduration.csv', skip=16)
+batch20_1<-read.csv('FC_data/Batch20/Batch_day1_220905September2022_15Motionthreshold_10_minfreezeduration.csv', skip=11)
+batch20_2<-read.csv('FC_data/Batch20/Batch_day2_220905September2022_15Motionthreshold_10_minfreezeduration.csv',skip=13)
+
+colnames(batch20_0)[1] ='Animal_ID'
+
+batch21_0<-read.csv('FC_data/Batch21/Batch_day0_221003October2022_15Motionthreshold_10_minfreezeduration.csv', skip=16)
+batch21_1<-read.csv('FC_data/Batch21/Batch_day1_221003October2022_15Motionthreshold_10_minfreezeduration.csv', skip=11)
+batch21_2<-read.csv('FC_data/Batch21/Batch_day2_221003October2022_15Motionthreshold_10_minfreezeduration.csv',skip=13)
+
+colnames(batch21_0)[1] ='Animal_ID'
+colnames(batch21_1)[1] ='Animal_ID'
+colnames(batch21_2)[1] ='Animal_ID'
+
+batch21_0 = subset(batch21_0, select = -c(15, 16, 17) )
+
+batch22_0<-read.csv('FC_data/Batch22/Batch_Day0_221101November22_15Motionthreshold_10_minfreezeduration.csv', skip=16)
+batch22_1<-read.csv('FC_data/Batch22/Batch_Day1_221101November22_15Motionthreshold_10_minfreezeduration.csv', skip=11)
+batch22_2<-read.csv('FC_data/Batch22/Batch_Day2_221101November22_15Motionthreshold_10_minfreezeduration.csv',skip=13)
+
+batch23_0<-read.csv('FC_data/Batch23/Batch_Day0_221128_December22_15Motionthreshold_10_minfreezeduration.csv', skip=16)
+batch23_1<-read.csv('FC_data/Batch23/Batch_Day1_221128December22_15Motionthreshold_10_minfreezeduration.csv', skip=11)
+batch23_2<-read.csv('FC_data/Batch23/Batch_Day2_221128December22_15Motionthreshold_10_minfreezeduration.csv',skip=13)
+
+colnames(batch23_0)[1] ='Animal_ID'
+colnames(batch23_1)[1] ='Animal_ID'
+colnames(batch23_2)[1] ='Animal_ID'
+
+batch24_0<-read.csv('FC_data/Batch24/Batch_Day0_230117_January23_15Motionthreshold_10_minfreezeduration.csv', skip=16)
+batch24_1<-read.csv('FC_data/Batch24/Batch_Day1_230117_January23_15Motionthreshold_10_minfreezeduration.csv', skip=11)
+batch24_2<-read.csv('FC_data/Batch24/Batch_Day2_230117_January23_15Motionthreshold_10_minfreezeduration.csv',skip=13)
+
+colnames(batch24_0)[1] ='Animal_ID'
+colnames(batch24_1)[1] ='Animal_ID'
+colnames(batch24_2)[1] ='Animal_ID'
+
+batch25_0<-read.csv('FC_data/Batch25/Batch_Day0_230213_February23_15Motionthreshold_10_minfreezeduration.csv', skip=16)
+batch25_1<-read.csv('FC_data/Batch25/Batch_Day1_230213_February23_15Motionthreshold_10_minfreezeduration.csv', skip=11)
+batch25_2<-read.csv('FC_data/Batch25/Batch_Day2_230213_February23_15Motionthreshold_10_minfreezeduration.csv',skip=13)
  
 #day0_comp <- read.csv('day0_10_minfreezeduration_compiled.csv')
 #day1_comp <- read.csv('day1_10_minfreezeduration_compiled.csv')
@@ -107,15 +147,18 @@ batch19_2<-read.csv('FC_data/Batch19/Batch_Day2_220808August2022_15Motionthresho
 add0 <- rbind(batch1_0, batch2_0, batch3_0, batch4_0, batch5_0, 
               batch6_0, batch7_0, batch8_0, batch9_0, batch10_0, batch11_0, 
               batch12_0, batch13_0, batch14_0, batch15_0, batch16_0, batch17_0, 
-              batch18_0, batch19_0)
+              batch18_0, batch19_0, batch20_0, batch21_0, batch22_0,
+              batch23_0, batch24_0, batch25_0)
 add1 <- rbind(batch1_1, batch2_1, batch3_1, batch4_1, batch5_1, 
               batch6_1, batch7_1, batch8_1, batch9_1, batch10_1, batch11_1,
               batch12_1, batch13_1, batch14_1, batch15_1, batch16_1,
-              batch17_1, batch18_1, batch19_1)
+              batch17_1, batch18_1, batch19_1, batch20_1, batch21_1, batch22_1,
+              batch23_1, batch24_1, batch25_1)
 add2 <- rbind(batch1_2, batch2_2, batch3_2, batch4_2, batch5_2, 
               batch6_2, batch7_2, batch8_2, batch9_2, batch10_2, batch11_2,
               batch12_2, batch13_2, batch14_2, batch15_2, batch16_2,
-              batch17_2, batch18_2, batch19_2)
+              batch17_2, batch18_2, batch19_2, batch20_2, batch21_2, batch22_2,
+              batch23_2, batch24_2, batch25_2)
 
 #animal_info <- read.csv('updated.csv')
 animal_info <- read.csv('qial_animals_with_age2.csv')
@@ -126,13 +169,26 @@ all_day1 <- left_join(add1, animal_info, by = c("Animal_ID" = "BadeaID"))
 all_day0 <- left_join(add0, animal_info, by = c("Animal_ID" = "BadeaID"))
 
 all_day0<-all_day0 %>% 
-  filter(Animal_ID!='')
+  filter(Animal_ID!='') %>% 
+  mutate(Age_group = case_when(
+    Age_Months <= 16 ~ 'Young',
+    Age_Months > 16 ~ 'Old'
+  ))
   
 all_day1<-all_day1 %>% 
-  filter(Animal_ID!='')
+  filter(Animal_ID!='') %>% 
+  mutate(Age_group = case_when(
+    Age_Months <= 16 ~ 'Young',
+    Age_Months > 16 ~ 'Old'
+  ))
 
 all_day2<-all_day2 %>% 
-  filter(Animal_ID!='')
+  filter(Animal_ID!='') %>% 
+  mutate(Age_group = case_when(
+    Age_Months <= 16 ~ 'Young',
+    Age_Months > 16 ~ 'Old'
+  ))
+
 
 
 ```
@@ -152,13 +208,8 @@ day0_lmer<-all_day0 %>%
     Component.Name == 'Sound 3' ~ 3,
     Component.Name == 'Shock 3' ~ 0,
   )) %>% 
-  filter(Time!=0) %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted > 16 ~ "18 months"
-  )) %>%  
-  filter(Age_group == '12 months') %>% 
+  filter(Time!=0) 
+  #filter(Age_group == '6 months') %>% 
   filter(!is.na(Age_group)) %>% 
   filter(Treatment =='Control') %>% 
   group_by(Genotype, Time) %>% 
@@ -184,12 +235,7 @@ all_animals <-all_day0 %>%
     Component.Name == 'Sound 3' ~ 3,
     Component.Name == 'Shock 3' ~ 0,
   )) %>% 
-  filter(Time!=0) %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted > 16 ~ "18 months"
-  )) %>%  
+  filter(Time!=0) %>%  
   mutate(Sex = case_when(
     Sex == 'male' ~ 'Male',
     Sex == 'female' ~ 'Female',
@@ -213,12 +259,7 @@ table(animal_counts$Genotype)
 test_counts<-all_day0 %>% 
   filter(Genotype == "APOE22HN" |
            Genotype == "APOE33HN" |
-           Genotype == "APOE44HN") %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>%  
+           Genotype == "APOE44HN") %>%  
   filter(Age_group == '12 months') %>% 
   filter(Component.Name == 'Sound 1') %>% 
   count(Treatment)
@@ -268,13 +309,8 @@ day0<-all_day0 %>%
     Component.Name == 'Shock 2' ~ 0,
     Component.Name == 'Sound 3' ~ 3,
     Component.Name == 'Shock 3' ~ 0,
-  )) %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>%  
-  filter(Age_group == '12 months') %>% 
+  ))  %>%  
+  #filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   group_by(Genotype, Treatment, Time) %>% 
   summarise(n=n(),
@@ -295,19 +331,14 @@ day0_test<-all_day0 %>%
     Component.Name == 'Sound 3' ~ 3,
     Component.Name == 'Shock 3' ~ 0,
   )) %>% 
-  filter(Time!=0) %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>%  
+  filter(Time!=0) %>%  
   mutate(Sex = case_when(
     Sex == 'male' ~ 'Male',
     Sex == 'female' ~ 'Female',
     Sex == 'Male' ~ 'Male',
     Sex == 'Female' ~ 'Female',
   )) %>% 
-  filter(Age_group == '12 months') %>% 
+  #filter(Age_group == '12 months') %>% 
   select(Genotype, Time, Animal_ID, 
          Treatment, Pct.Total.Time.Freezing) 
 
@@ -337,13 +368,8 @@ hn_group <- all_day0 %>%
     Component.Name == 'Shock 2' ~ 0,
     Component.Name == 'Sound 3' ~ 3,
     Component.Name == 'Shock 3' ~ 0,
-  )) %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
   )) %>%  
-  filter(Age_group == '12 months') %>% 
+  #filter(Age_group == '12 months') %>% 
   filter(Time != 0 ) %>% 
   group_by(Genotype, Treatment, Time) %>% 
   summarise(n=n(),
@@ -375,7 +401,7 @@ hn_sex<- all_day0 %>%
     Sex == 'Female' ~ 'Female',
   )) %>% 
   filter(!is.na(Sex)) %>% 
-  filter(Age_group == '12 months') %>% 
+  #filter(Age_group == '12 months') %>% 
   filter(Time != 0 ) %>% 
   group_by(Genotype, Treatment, Time, Sex) %>% 
   summarise(n=n(),
@@ -388,6 +414,8 @@ print(counts)
 
 # 33 and 44 comparisons 
 
+# RUN THIS FOR BASIC LINES
+# took out treatment, and added age group 
 nonHN<-all_day0 %>% 
   filter(!is.na(Animal_ID)) %>% 
   filter(Genotype == "APOE44" |
@@ -403,15 +431,10 @@ nonHN<-all_day0 %>%
   )) %>% 
   filter(Time == 1 |
            Time == 2 |
-           Time == 3) %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>%  
-  filter(Age_group == '12 months') %>% 
+           Time == 3)  %>%  
+  #filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
-  group_by(Genotype, Age_group, Treatment, Time) %>% 
+  group_by(Genotype, Age_group, Time) %>% 
   summarise(n=n(),
             se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
             len = mean(Pct.Total.Time.Freezing))  
@@ -432,18 +455,73 @@ nonHN1<-all_day0 %>%
   filter(Time == 1 |
            Time == 2 |
            Time == 3) %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>%  
-  filter(Age_group == '12 months') %>% 
+  #filter(Age_group == '12 months') %>% 
   filter(!is.na(Treatment)) %>% 
   group_by(Genotype, Treatment, Time) %>% 
   summarise(n=n(),
             se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
             len = mean(Pct.Total.Time.Freezing)) 
 
+```
+
+```{r cross-model-comparisons}
+day0_22<-all_day0 %>% 
+  filter(!is.na(Animal_ID)) %>% 
+  filter(Genotype == "APOE22HN" |
+           Genotype == "APOE22") %>% 
+  mutate(Time = case_when(
+    Component.Name == 'Sound 1' ~ 1,
+    Component.Name == 'Shock 1' ~ 0,
+    Component.Name == 'Sound 2' ~ 2,
+    Component.Name == 'Shock 2' ~ 0,
+    Component.Name == 'Sound 3' ~ 3,
+    Component.Name == 'Shock 3' ~ 0,
+  )) %>% 
+  filter(Time!=0) %>% 
+  mutate(Sex = case_when(
+    Sex == 'male' ~ 'Male',
+    Sex == 'female' ~ 'Female',
+    Sex == 'Male' ~ 'Male',
+    Sex == 'Female' ~ 'Female',
+  )) %>% 
+  #filter(Age_group == '12 months') %>% 
+  select(Genotype, Time, Animal_ID, Age_group,
+         Treatment, Pct.Total.Time.Freezing) %>% 
+  mutate(Treatment = case_when(
+      Treatment=='HFD' ~ 'High Fat Diet',
+      Treatment=='Control'~ 'Control'
+  ))  %>% 
+  filter(Time != 0 ) %>% 
+  group_by(Genotype, Treatment, Time, Age_group) %>% 
+  summarise(n=n(),
+            se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
+            len = mean(Pct.Total.Time.Freezing)) 
+
+
+ggplot(data=day0_22, aes(x=Time, y=len, color=Age_group)) +
+  geom_line(stat="identity", width=0.5) +
+  facet_grid(.~Genotype) + 
+  labs(y="Average Percent Freezing Time", x='Component') +
+  geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5)+
+  theme_bw() + 
+  labs(title="Learning Curve", x="Time", 
+       y='Mean Percent Time Freezing', 
+       legend='Genotype') +
+  scale_x_continuous(breaks=c(1, 2, 3)) +
+  scale_color_manual(values = c("#6a0dad", "#1BCC97"))
+
+ggplot(data=day0_22, aes(x=Time, y=len, color=Genotype)) +
+  geom_line(stat="identity", width=0.5) +
+  facet_grid(.~Age_group) + 
+  labs(y="Average Percent Freezing Time", x='Component') +
+  geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5)+
+  theme_bw() + 
+  labs(title="Learning Curve", x="Time", 
+       y='Mean Percent Time Freezing', 
+       legend='Genotype') +
+  scale_x_continuous(breaks=c(1, 2, 3)) +
+  scale_color_manual(values = c("#6a0dad", "#1BCC97"))
+```
 ```
 
 ```{r day-0-graphs}
@@ -488,8 +566,21 @@ ggplot(data=poster, aes(x=Time, y=len, color=Genotype)) +
   scale_color_manual(values = c("#6a0dad", "#008000", "#FF0000"))
 
 # figure for paper non HN
-ggplot(data=nonHN, aes(x=Time, y=len, color=Genotype)) +
+ggplot(data=nonHN, aes(x=Time, y=len, color=Age_group)) +
   geom_line(stat="identity", width=0.5) +
+  facet_grid(.~Genotype) + 
+  labs(y="Average Percent Freezing Time", x='Component') +
+  geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5)+
+  theme_bw() + 
+  labs(title="Learning Curve", x="Time", 
+       y='Mean Percent Time Freezing', 
+       legend='Age_group') +
+  scale_x_continuous(breaks=c(1, 2, 3)) +
+  scale_color_manual(values = c("#1BCC97", "#1B50CC", "#CC1BA8"))
+
+# non HN faceted by age group
+  ggplot(data=nonHN, aes(x=Time, y=len, color=Genotype)) +
+  geom_line(stat="identity") +
   facet_grid(.~Treatment) + 
   labs(y="Average Percent Freezing Time", x='Component') +
   geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5)+
@@ -539,14 +630,8 @@ day0_lmer<-all_day0 %>%
     Age_Substracted < 9 ~ '6 months',
     Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
     Age_Substracted >= 16 ~ "18 months"
-  )) %>%  
-  #mutate(Sex = case_when(
-  #  Sex == 'male' ~ 'Male',
-  #  Sex == 'female' ~ 'Female',
-  #  Sex == 'Male' ~ 'Male',
-  #  Sex == 'Female' ~ 'Female',
-  #)) %>% 
-  filter(Age_group == '12 months') %>% 
+  )) %>% 
+  #filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   select( Animal_ID, Genotype, Treatment, 
           Time, Pct.Total.Time.Freezing) 
@@ -587,12 +672,7 @@ day1_lm<-all_day1 %>%
   filter(Genotype == "APOE22HN" |
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>%  
-  filter(Age_group == '12 months') %>% 
+  #filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   filter(Treatment=="Control") %>% 
   group_by(Genotype, Treatment) %>% 
@@ -608,13 +688,8 @@ counts<-all_day1 %>%
   filter(!is.na(Animal_ID)) %>% 
   filter(Genotype == "APOE22HN" |
            Genotype == "APOE33HN" |
-           Genotype == "APOE44HN") %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>%  
-  filter(Age_group == '12 months') %>% 
+           Genotype == "APOE44HN") %>%  
+  #filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   select(Genotype, Sex, Treatment) 
 
@@ -625,13 +700,8 @@ day1_lm<-all_day1 %>%
            Genotype == "APOE44" |
            Genotype == "APOE33" |
            Genotype == "APOE22" |
-           Genotype == "APOE44HN") %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>% 
-  filter(Age_group == '12 months') %>% 
+           Genotype == "APOE44HN")  %>% 
+  #filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   select(Genotype, Sex, Treatment) 
 
@@ -643,12 +713,7 @@ day1<-all_day1 %>%
            Genotype == "APOE33" |
            Genotype == "APOE44HN" |
            Genotype == "APOE22") %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>% 
-  filter(Age_group == '12 months') %>% 
+  #filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   group_by(Genotype, Age_group, Treatment) %>% 
   summarise(n=n(),
@@ -663,12 +728,7 @@ day1HN<-all_day1 %>%
   filter(Genotype == "APOE22HN" |
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
-   mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>% 
-  filter(Age_group == '12 months') %>% 
+  #filter(Age_group == '12 months') %>% 
   group_by(Genotype, Treatment) %>% 
   summarise(n=n(),
             se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
@@ -680,12 +740,7 @@ day1HN_sex<-all_day1 %>%
   filter(Genotype == "APOE22HN" |
            Genotype == "APOE33HN" |
            Genotype == "APOE44HN") %>% 
-   mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>% 
-   mutate(Sex = case_when(
+    #mutate(Sex = case_when(
     Sex == 'male' ~ 'Male',
     Sex == 'female' ~ 'Female',
     Sex == 'Male' ~ 'Male',
@@ -700,18 +755,13 @@ day1HN_sex<-all_day1 %>%
 
 print(day1HN_sex)
 
-# non HN
+# non HN (added age group, took out treatment)
 day1_nonHN<-all_day1 %>% 
   filter(!is.na(Animal_ID)) %>% 
   filter(Genotype == "APOE44" |
            Genotype == "APOE33" |
            Genotype == "APOE22") %>% 
-   mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>% 
-  filter(Age_group == '12 months') %>% 
+  #filter(Age_group == '12 months') %>% 
   mutate(Treatment = case_when(
       Treatment=='HFD' ~ 'High Fat Diet',
       Treatment=='Control'~ 'Control'
@@ -723,7 +773,8 @@ day1_nonHN<-all_day1 %>%
     Sex == 'Female' ~ 'Female',
   )) %>% 
   filter(!is.na(Sex)) %>% 
-  group_by(Genotype, Treatment, Sex) %>% 
+  filter(!is.na(Age_group)) %>% 
+  group_by(Genotype, Age_group, Sex) %>% 
   summarise(n=n(),
             se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
             len = mean(Pct.Total.Time.Freezing))  
@@ -734,12 +785,7 @@ nonHN2<-all_day1 %>%
   filter(Genotype == "APOE44" |
            Genotype == "APOE33" |
            Genotype == 'APOE22') %>% 
-  mutate(Age_group = case_when(
-    Age_Substracted < 9 ~ '6 months',
-    Age_Substracted >= 9 | Age_Substracted <= 16 ~ '12 months',
-    Age_Substracted >= 16 ~ "18 months"
-  )) %>% 
-  filter(Age_group == '12 months') %>% 
+  #filter(Age_group == '12 months') %>% 
   filter(!is.na(Age_group)) %>% 
   group_by(Genotype, Age_group) %>% 
   summarise(n=n(),
@@ -761,14 +807,23 @@ ggplot(data=day1HN_sex, aes(x=Genotype, y=len, fill = Genotype)) +
   scale_fill_manual(values = c("#6a0dad", "#008000", "#FF0000"))
 
 # non HN
-ggplot(data=day1_nonHN, aes(x=Genotype, y=len, fill = Genotype)) +
+ggplot(data=day1_nonHN, aes(x=Age_group, y=len, fill = Age_group)) +
   geom_bar(stat="identity", width=0.5) +
-  facet_grid(Sex~Treatment) + 
+  facet_grid(Sex~Genotype) + 
   labs(y="Average Percent Freezing Time", x='') +
   geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5) +
   theme_bw() +
   labs(title="Contextual Test", y="Mean Percent Freezing Time") +
-  scale_fill_manual(values =c("#1BCC97", "#1B50CC", "#CC1BA8"))
+  scale_fill_manual(values =c("purple", "green"))
+  
+# non HN faceted by age group
+ggplot(data=day1_nonHN, aes(x=Age_group, y=len, fill = Age_group)) +
+  geom_bar(stat="identity", width=0.5) +
+  facet_grid(Sex~Genotype) + 
+  labs(y="Average Percent Freezing Time", x='') +
+  geom_errorbar(aes(ymin=len-se, ymax=len+se), width=0.2, size=0.5) +
+  theme_bw() +
+  labs(title="Contextual Test", y="Mean Percent Freezing Time")
 
 # violin plot
 
