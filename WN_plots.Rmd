@@ -25,7 +25,35 @@ library(rstatix)
 ```
 
 ```{r data}
+# uploading all of the MWM data, including AWN and other trial data
+mwm_data<-read.csv('MWM_combined_data.csv', header=TRUE)
+
+# uploading mice age information
 mice_info<-read.csv('qial_animals_with_age.csv')
+
+# merging with qial information 
+index = match(  mwm_data$AnimalID , mice_info$BadeaID)
+sum(mice_info$BadeaID [index] != mwm_data$AnimalID)
+#index = na.omit(index)
+mwm_data= cbind(mice_info[ index,],  mwm_data)
+
+
+# exported this file to add the Age_Handling in Excel, then reuploaded it
+#write.csv(mwm_data, '/Users/AnnaMacFarlane/Desktop/MWM_AWN_Combined.csv')
+
+mwm_data$Age_Handling = as.numeric(mwm_data$Age_Handling)
+# setting age groups
+mwm_data<-mwm_data %>% 
+  mutate(Age_group = case_when(
+    Age_Handling < 7 ~ '6 Months',
+    #Age_Handling >= 7 & Age_Handling <= 14 ~ 'Young',
+    Age_Handling > 14 ~ 'Old',
+    TRUE ~ 'Young'
+  ))
+
+
+
+# NO NEED TO RUN THIS
 mwm_data<-read.csv('mwm_data_refined.csv')
 
 data1<-read.csv('Winding/210614MWM_positions.csv', header=TRUE)
@@ -65,6 +93,7 @@ data_joan<-read.csv('Winding/JoanMWM_positions.csv', header=TRUE)
 
 ```{r merge-data}
 
+# NO NEED TO RUN ANY OF THIS
 wn<-rbind(data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,
           data12,data13,data14,data15,data16,data17,data18,data19, data20, data21,
           data22, data23, data24, data25, data26, data27, data28, data29)
@@ -146,33 +175,9 @@ mwm_data$NewM<-mwm_data$NormSWDist/(mwm_data$Winding_numbers+1)
 #index = na.omit(index)
 #temp= cbind(mwm_data[ index,],  mice_info)
 
-
-index = match(  mwm_data$AnimalID , mice_info$BadeaID)
-sum(mice_info$BadeaID [index] != mwm_data$AnimalID)
-#index = na.omit(index)
-mwm_data= cbind(mice_info[ index,],  mwm_data)
-
-
-
-mwm_wn <- left_join(mwm_data, mice_info, by = c("AnimalID" = "BadeaID"))
-#mwm_wn <- left_join(allMWM, mice_info, by = c("AnimalID" = "BadeaID"))
-
-
-# exported this file to add the Age_Handling in Excel, then reuploaded it
-#write.csv(mwm_data, '/Users/AnnaMacFarlane/Desktop/MWM_AWN_Combined.csv')
-
 # overwriting the merged data because this has updated ages at handling
 #mwm_data<-read.csv('MWM_AWN_Combined 3.csv', header=TRUE)
 
-mwm_data$Age_Handling = as.numeric(mwm_data$Age_Handling)
-# setting age groups
-mwm_data<-mwm_data %>% 
-  mutate(Age_group = case_when(
-    Age_Handling < 7 ~ '6 Months',
-    #Age_Handling >= 7 & Age_Handling <= 14 ~ 'Young',
-    Age_Handling > 14 ~ 'Old',
-    TRUE ~ 'Young'
-  ))
 
 ```
 
