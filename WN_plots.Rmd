@@ -181,9 +181,6 @@ mwm_data$NewM<-mwm_data$NormSWDist/(mwm_data$Winding_numbers+1)
 
 ```
 
-
-```
-
 ```{r joan}
 joan<-read.csv('joan_wn.csv', header=TRUE)
 joan_ref<-read.csv('JOAN_MWM_combined.csv', header=TRUE)
@@ -214,6 +211,15 @@ ggline(joan_wn, x='Stage', y='Winding_numbers',
 ```
 
 ```{r organize}
+
+
+# setting age groups
+mwm_data<-mwm_data %>% 
+  mutate(Age_group = case_when(
+    Age_Months <= 16 ~ 'Young',
+    Age_Months > 16 ~ 'Old'
+  ))
+
 hn_trials <- mwm_data %>% 
   filter(Genotype == "APOE22HN" | Genotype == "APOE33HN" | Genotype == "APOE44HN") %>% 
   filter(Stage != 'Probe_D5' & Stage != 'Probe_D8') %>% 
@@ -254,6 +260,18 @@ probe_e<-mwm_data %>%
   filter(Genotype == "APOE22" | Genotype == "APOE33" | Genotype == "APOE44") %>% 
   filter(Stage == 'Probe_D5' | Stage == 'Probe_D8')  %>% 
   filter(!is.na(Age_group))
+
+probe_all<-mwm_data %>% 
+  filter(Stage == 'Probe_D5' | Stage == 'Probe_D8')  %>% 
+  filter(!is.na(Age_group)) %>% 
+  mutate(Coll_Geno = case_when(
+    Genotype == 'APOE22' ~ '22 + 22HN',
+    Genotype == 'APOE22HN' ~ '22 + 22HN',
+    Genotype == 'APOE33' ~ '33 + 33HN',
+    Genotype == 'APOE33HN' ~ '33 + 33HN',
+    Genotype == 'APOE44' ~ '44 + 44HN',
+    Genotype == 'APOE44HN' ~ '44 + 44HN'
+  ))
   
 #e2 <- mwm_wn %>% 
 #  filter(Geno == "APOE22HN" | Geno == "APOE22")
@@ -326,29 +344,107 @@ all<-all %>%
 # single factor plots: updated color, fill, and stat_compare_means group to change
 # what factor is being expressed
 
-ggline(all, x='Stage', y='NormSWDist', 
+# Diet basic lines
+par(mfrow=c(1,1))
+jpeg("basic_NSW_diet_full.jpeg", units="in", width=7, height=5, res=300) 
+ggline(e_trials, x='Stage', y='NormSWDist', 
        color='Diet_x', fill='Diet_x',
-       error.plot='errorbar', add='mean_se', 
+       error.plot='errorbar', add='mean_se', facet.by=c('Genotype'),
        palette = c('blue', 'orange'), size=1,
        point.size=1.5,  legend='top', title='Normalized SW Dist') +
        stat_compare_means(aes(group = Diet_x), label = "p.signif", hide.ns=TRUE,
        label.y.npc = "bottom", label.x.npc = "left")
-       
-ggline(all, x='Stage', y='Winding_numbers', 
+dev.off()
+ 
+par(mfrow=c(1,1))
+jpeg("basic_AWN_diet_full.jpeg", units="in", width=7, height=5, res=300)       
+ggline(e_trials, x='Stage', y='Winding_numbers', 
        color='Diet_x', fill='Diet_x',
-       error.plot='errorbar', add='mean_se', 
+       error.plot='errorbar', add='mean_se',  facet.by=c('Genotype'),
        palette = c('blue', 'orange'),size=1,
        point.size=1.5,  legend='top', title='Winding Number') +
        stat_compare_means(aes(group = Diet_x), label = "p.signif", hide.ns=TRUE,
-       label.y.npc = "bottom", label.x.npc = "left")    
-       
-ggline(all, x='Stage', y='Distance', 
+       label.y.npc = "bottom", label.x.npc = "left") 
+dev.off()
+
+par(mfrow=c(1,1))
+jpeg("basic_Dist_diet_full.jpeg", units="in", width=7, height=5, res=300)        
+ggline(e_trials, x='Stage', y='Distance', 
        color='Diet_x', fill='Diet_x',
+       error.plot='errorbar', add='mean_se', size=1,  facet.by=c('Genotype'),
+       palette = c('blue', 'orange'),
+       point.size=1.5,  legend='top', title='Total Distance')  +
+       stat_compare_means(aes(group = Diet_x), label = "p.signif", hide.ns=TRUE,
+       label.y.npc = "bottom", label.x.npc = "left")     
+dev.off()
+
+# Diet HN lines
+par(mfrow=c(1,1))
+jpeg("hn_NSW_diet_full.jpeg", units="in", width=7, height=5, res=300) 
+ggline(hn_trials, x='Stage', y='NormSWDist', 
+       color='Diet_x', fill='Diet_x',
+       error.plot='errorbar', add='mean_se',  facet.by=c('Genotype'),
+       palette = c('blue', 'orange'), size=1,
+       point.size=1.5,  legend='top', title='Normalized SW Dist') +
+       stat_compare_means(aes(group = Diet_x), label = "p.signif", hide.ns=TRUE,
+       label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
+ 
+par(mfrow=c(1,1))
+jpeg("hn_AWN_diet_full.jpeg", units="in", width=7, height=5, res=300)       
+ggline(hn_trials, x='Stage', y='Winding_numbers', 
+       color='Diet_x', fill='Diet_x',
+       error.plot='errorbar', add='mean_se',  facet.by=c('Genotype'),
+       palette = c('blue', 'orange'),size=1,
+       point.size=1.5,  legend='top', title='Winding Number') +
+       stat_compare_means(aes(group = Diet_x), label = "p.signif", hide.ns=TRUE,
+       label.y.npc = "bottom", label.x.npc = "left") 
+dev.off()
+
+par(mfrow=c(1,1))
+jpeg("hn_Dist_diet_full.jpeg", units="in", width=7, height=5, res=300)        
+ggline(hn_trials, x='Stage', y='Distance', 
+       color='Diet_x', fill='Diet_x',  facet.by=c('Genotype'),
        error.plot='errorbar', add='mean_se', size=1,
        palette = c('blue', 'orange'),
        point.size=1.5,  legend='top', title='Total Distance')  +
        stat_compare_means(aes(group = Diet_x), label = "p.signif", hide.ns=TRUE,
        label.y.npc = "bottom", label.x.npc = "left")     
+dev.off()
+
+# Diet collapsed genotypes
+par(mfrow=c(1,1))
+jpeg("all_NSW_diet_full.jpeg", units="in", width=7, height=5, res=300) 
+ggline(all, x='Stage', y='NormSWDist', 
+       color='Diet_x', fill='Diet_x',
+       error.plot='errorbar', add='mean_se',  facet.by=c('Coll_Geno'),
+       palette = c('blue', 'orange'), size=1,
+       point.size=1.5,  legend='top', title='Normalized SW Dist') +
+       stat_compare_means(aes(group = Diet_x), label = "p.signif", hide.ns=TRUE,
+       label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
+ 
+par(mfrow=c(1,1))
+jpeg("all_AWN_diet_full.jpeg", units="in", width=7, height=5, res=300)       
+ggline(all, x='Stage', y='Winding_numbers', 
+       color='Diet_x', fill='Diet_x',  facet.by=c('Coll_Geno'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c('blue', 'orange'),size=1,
+       point.size=1.5,  legend='top', title='Winding Number') +
+       stat_compare_means(aes(group = Diet_x), label = "p.signif", hide.ns=TRUE,
+       label.y.npc = "bottom", label.x.npc = "left") 
+dev.off()
+
+par(mfrow=c(1,1))
+jpeg("all_Dist_diet_full.jpeg", units="in", width=7, height=5, res=300)        
+ggline(all, x='Stage', y='Distance', 
+       color='Diet_x', fill='Diet_x',  facet.by=c('Coll_Geno'),
+       error.plot='errorbar', add='mean_se', size=1,
+       palette = c('blue', 'orange'),
+       point.size=1.5,  legend='top', title='Total Distance')  +
+       stat_compare_means(aes(group = Diet_x), label = "p.signif", hide.ns=TRUE,
+       label.y.npc = "bottom", label.x.npc = "left")     
+dev.off()
        
        
        
@@ -420,22 +516,21 @@ ggline(e_trials, x='Stage', y='NewM',
        legend.title='Sex')       
        
 # facet by sex and genotype 
-       
-ggline(e_trials_ctrl, x='Stage', y='Winding_numbers', 
+
+par(mfrow=c(1,1))
+jpeg("basic_AWN_age_full.jpeg", units="in", width=7, height=5, res=300) 
+ggline(e_trials, x='Stage', y='Winding_numbers', 
        color='Age_group', fill='Age_group', facet.by=c('Sex','Genotype'),
        error.plot='errorbar', add='mean_se', 
        palette = c("purple", "green"), size=1,
        point.size=1.5,  legend='top', legend.title='Age Group', title='Winding Number') +
        stat_compare_means(aes(group = Age_group), label = "p.signif", hide.ns=TRUE,
        label.y.npc = "bottom", label.x.npc = "left")
-       
-       
-       #+ 
-      #stat_compare_means(aes(group = Age_group), label = "p.signif", hide.ns=TRUE,
-      # label.y = 20)
-
-       
-ggline(e_trials_ctrl, x='Stage', y='NormSWDist', 
+dev.off()
+      
+par(mfrow=c(1,1))
+jpeg("basic_NSW_age_full.jpeg", units="in", width=7, height=5, res=300)        
+ggline(e_trials, x='Stage', y='NormSWDist', 
        color='Age_group', fill='Age_group', facet.by=c('Sex','Genotype'),
        error.plot='errorbar', add='mean_se', 
        palette = c("purple", "green"), size=1,
@@ -443,8 +538,11 @@ ggline(e_trials_ctrl, x='Stage', y='NormSWDist',
        title='Normalized SW Distance') +
        stat_compare_means(aes(group = Age_group), label = "p.signif", hide.ns=TRUE,
        label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
 
-ggline(e_trials_ctrl, x='Stage', y='Distance', 
+par(mfrow=c(1,1))
+jpeg("basic_Dist_age_full.jpeg", units="in", width=7, height=5, res=300) 
+ggline(e_trials, x='Stage', y='Distance', 
        color='Age_group', fill='Age_group', facet.by=c('Sex','Genotype'),
        error.plot='errorbar', add='mean_se', 
        palette = c("purple", "green"), size=1,
@@ -452,16 +550,14 @@ ggline(e_trials_ctrl, x='Stage', y='Distance',
        title='Total Distance') +
        stat_compare_means(aes(group = Age_group), label = "p.signif", hide.ns=TRUE,
        label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
        
-ggline(e_trials_ctrl, x='Stage', y='NewM', 
-       color='Age_group', fill='Age_group', facet.by=c('Sex','Genotype'),
-       error.plot='errorbar', add='mean_se', 
-       palette = c("purple", "green"), size=1,
-       point.size=1.5,  legend='top', legend.title='Sex')
 
 # basic lines collapse age 
 
-ggline(hn_trials_ctrl, x='Stage', y='Winding_numbers', 
+par(mfrow=c(1,1))
+jpeg("basic_AWN_sex_full.jpeg", units="in", width=7, height=5, res=300)
+ggline(e_trials, x='Stage', y='Winding_numbers', 
        color='Sex', fill='Sex', facet.by=c('Genotype'),
        error.plot='errorbar', add='mean_se', 
        palette = c("red", "blue"), size=1,
@@ -469,8 +565,11 @@ ggline(hn_trials_ctrl, x='Stage', y='Winding_numbers',
        legend.title='Sex', title='Winding Number') +
        stat_compare_means(aes(group = Sex), label = "p.signif", hide.ns=TRUE,
        label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
 
-ggline(hn_trials_ctrl, x='Stage', y='Distance', 
+par(mfrow=c(1,1))
+jpeg("basic_dist_sex_full.jpeg", units="in", width=7, height=5, res=300)
+ggline(e_trials, x='Stage', y='Distance', 
        color='Sex', fill='Sex', facet.by=c('Genotype'),
        error.plot='errorbar', add='mean_se', 
        palette = c("red", "blue"), size=1,
@@ -478,15 +577,19 @@ ggline(hn_trials_ctrl, x='Stage', y='Distance',
        legend.title='Sex', title='Total Distance') +
        stat_compare_means(aes(group = Sex), label = "p.signif", hide.ns=TRUE,
        label.y.npc = "bottom", label.x.npc = "left")
-       
-ggline(hn_trials_ctrl, x='Stage', y='NormSWDist', 
+dev.off()
+  
+par(mfrow=c(1,1))
+jpeg("basic_NSW_sex_full.jpeg", units="in", width=7, height=5, res=300)     
+ggline(e_trials, x='Stage', y='NormSWDist', 
        color='Sex', fill='Sex', facet.by=c('Genotype'),
        error.plot='errorbar', add='mean_se', 
        palette = c("red", "blue"), size=1,
        point.size=1.5,  legend='top',
        legend.title='Sex', title='Normalized SW Dist') +
        stat_compare_means(aes(group = Sex), label = "p.signif", hide.ns=TRUE,
-       label.y.npc = "bottom", label.x.npc = "left")   
+       label.y.npc = "bottom", label.x.npc = "left")  
+dev.off()
        
 # geno and age with diet lines within basic lines
 
@@ -518,32 +621,79 @@ ggline(e_trials, x='Stage', y='NormSWDist',
        label.y.npc = "bottom", label.x.npc = "left")  
  
 # basic lines collapse sex
-ggline(hn_trials_ctrl, x='Stage', y='Winding_numbers', 
+
+par(mfrow=c(1,1))
+jpeg("hn_AWN_age_full.jpeg", units="in", width=7, height=5, res=300)
+ggline(hn_trials, x='Stage', y='Winding_numbers', 
        color='Age_group', fill='Age_group', facet.by=c('Genotype'),
        error.plot='errorbar', add='mean_se', 
        palette = c("purple", "green"), size=1,
        point.size=1.5,  legend='top',
        legend.title='Age Group', title='Winding Number') +
        stat_compare_means(aes(group = Age_group), label = "p.signif", hide.ns=TRUE,
-       label.y.npc = "bottom", label.x.npc = "left")   
+       label.y.npc = "bottom", label.x.npc = "left")  
+dev.off()
 
-ggline(e_trials_ctrl, x='Stage', y='Distance', 
+par(mfrow=c(1,1))
+jpeg("hn_dist_age_full.jpeg", units="in", width=7, height=5, res=300)
+ggline(hn_trials, x='Stage', y='Distance', 
        color='Age_group', fill='Age_group', facet.by=c('Genotype'),
        error.plot='errorbar', add='mean_se', 
        palette = c("purple", "green"), size=1,
        point.size=1.5,  legend='top',
        legend.title='Age Group', title='Total Distance') +
        stat_compare_means(aes(group = Age_group), label = "p.signif", hide.ns=TRUE,
-       label.y.npc = "bottom", label.x.npc = "left")   
+       label.y.npc = "bottom", label.x.npc = "left") 
+dev.off()
 
-ggline(e_trials_ctrl, x='Stage', y='NormSWDist', 
+par(mfrow=c(1,1))
+jpeg("hn_NSW_age_full.jpeg", units="in", width=7, height=5, res=300)
+ggline(hn_trials, x='Stage', y='NormSWDist', 
        color='Age_group', fill='Age_group', facet.by=c('Genotype'),
        error.plot='errorbar', add='mean_se', 
        palette = c("purple", "green"), size=1,
        point.size=1.5,  legend='top',
        legend.title='Age Group', title='Normalized SW Dist') +
        stat_compare_means(aes(group = Age_group), label = "p.signif", hide.ns=TRUE,
-       label.y.npc = "bottom", label.x.npc = "left")   
+       label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
+
+
+par(mfrow=c(1,1))
+jpeg("all_NSW_age_full.jpeg", units="in", width=7, height=5, res=300)
+ggline(all, x='Stage', y='NormSWDist', 
+       color='Age_group', fill='Age_group', facet.by=c('Coll_Geno'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("purple", "green"), size=1,
+       point.size=1.5,  legend='top',
+       legend.title='Age Group', title='Normalized SW Dist') +
+       stat_compare_means(aes(group = Age_group), label = "p.signif", hide.ns=TRUE,
+       label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
+
+par(mfrow=c(1,1))
+jpeg("all_AWN_age_full.jpeg", units="in", width=7, height=5, res=300)
+ggline(all, x='Stage', y='Winding_numbers', 
+       color='Age_group', fill='Age_group', facet.by=c('Coll_Geno'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("purple", "green"), size=1,
+       point.size=1.5,  legend='top',
+       legend.title='Age Group') +
+       stat_compare_means(aes(group = Age_group), label = "p.signif", hide.ns=TRUE,
+       label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
+
+par(mfrow=c(1,1))
+jpeg("all_dist_age_full.jpeg", units="in", width=7, height=5, res=300)
+ggline(all, x='Stage', y='Distance', 
+       color='Age_group', fill='Age_group', facet.by=c('Coll_Geno'),
+       error.plot='errorbar', add='mean_se', 
+       palette = c("purple", "green"), size=1,
+       point.size=1.5,  legend='top',
+       legend.title='Age Group') +
+       stat_compare_means(aes(group = Age_group), label = "p.signif", hide.ns=TRUE,
+       label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
 
        
  
@@ -865,28 +1015,118 @@ ggline(hn_trials, x='Stage', y='Distance',
        
 ```
 
+par(mfrow=c(1,1))
+jpeg("day0_basic_facetGeno_sex.jpeg", units="in", width=7, height=5, res=300)  
+
+ggline(day0_basic_sex, x='Time', y='Pct.Total.Time.Freezing',
+       color='Sex', fill='Sex', facet.by=c('Genotype'), 
+       error.plot='errorbar', add='mean_se',
+       palette = c("red", "blue"), size=1,
+       point.size=1.5, legend='top', title='Learning Curve') +
+       stat_compare_means(aes(group = Sex), label = "p.signif", hide.ns=TRUE,
+       label.y.npc = "bottom", label.x.npc = "left")
+
+dev.off()
+
 ```{r probe-plots}
+
+par(mfrow=c(1,1))
+jpeg("basic_probe_NSW_geno_stat.jpeg", units="in", width=7, height=5, res=300) 
+
 ggplot(data = probe_e, aes(factor(Stage), NormSWDist)) +
   geom_violin() + geom_boxplot(width = 0.1) +
   theme_bw()+ facet_grid(.~Genotype) + 
   geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Genotype)) +
   #labs(y = "Mean Percent Freezing Time", x='') +
-  scale_color_manual(values = c("#1BCC97", "#1B50CC", "#CC1BA8")) #+
-  #labs(title='Contextual Test')
+  scale_color_manual(values = c("#1BCC97", "#1B50CC", "#CC1BA8")) +
+  labs(title='Normalized SW Dist') +
+  stat_compare_means(aes(group = Genotype), label = "p.signif", hide.ns=TRUE,
+  label.y.npc = "bottom", label.x.npc = "left")
+
+dev.off()
   
+
+par(mfrow=c(1,1))
+jpeg("basic_probe_AWN_geno_stat.jpeg", units="in", width=7, height=5, res=300) 
+
 ggplot(data = probe_e, aes(factor(Stage), Winding_numbers)) +
   geom_violin() + geom_boxplot(width = 0.1) +
   theme_bw()+ facet_grid(.~Genotype) + 
   geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Genotype)) +
-  #labs(y = "Mean Percent Freezing Time", x='') +
-  scale_color_manual(values = c("#1BCC97", "#1B50CC", "#CC1BA8"))  
-  
+  labs(title='Winding Number') +
+  scale_color_manual(values = c("#1BCC97", "#1B50CC", "#CC1BA8"))  +
+  stat_compare_means(aes(group = Genotype), label = "p.signif", hide.ns=TRUE,
+  label.y.npc = "bottom", label.x.npc = "left")
+dev.off()  
+
+par(mfrow=c(1,1))
+jpeg("basic_probe_dist_geno_stat.jpeg", units="in", width=7, height=5, res=300)
 ggplot(data = probe_e, aes(factor(Stage), Distance)) +
   geom_violin() + geom_boxplot(width = 0.1) +
-  theme_bw()+ facet_grid(Sex~Genotype) + 
+  theme_bw()+ facet_grid(.~Genotype) + 
   geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Genotype)) +
-  #labs(y = "Mean Percent Freezing Time", x='') +
-  scale_color_manual(values = c("#1BCC97", "#1B50CC", "#CC1BA8"))    
+  labs(title ='Total Distance') +
+  scale_color_manual(values = c("#1BCC97", "#1B50CC", "#CC1BA8")) +
+  stat_compare_means(aes(group = Genotype), label = "p.signif", hide.ns=TRUE,
+  label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
+
+
+# probe HN lines 
+par(mfrow=c(1,1))
+jpeg("hn_probe_AWN_geno_stat.jpeg", units="in", width=7, height=5, res=300) 
+ggplot(data = probe_hn, aes(factor(Stage), Winding_numbers)) +
+  geom_violin() + geom_boxplot(width = 0.1) +
+  theme_bw()+ facet_grid(.~Genotype) + 
+  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Genotype)) +
+  labs(title='Winding Number') +
+  scale_color_manual(values = c("#6a0dad", "#008000", "#FF0000"))  +
+  stat_compare_means(aes(group = Genotype), label = "p.signif", hide.ns=TRUE,
+  label.y.npc = "bottom", label.x.npc = "left")
+dev.off()  
+
+par(mfrow=c(1,1))
+jpeg("hn_probe_NSW_geno_stat.jpeg", units="in", width=7, height=5, res=300)
+ggplot(data = probe_hn, aes(factor(Stage), NormSWDist)) +
+  geom_violin() + geom_boxplot(width = 0.1) +
+  theme_bw()+ facet_grid(.~Genotype) + 
+  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Genotype)) +
+  labs(title ='Normalized SW Dist') +
+  scale_color_manual(values = c("#6a0dad", "#008000", "#FF0000")) +
+  stat_compare_means(aes(group = Genotype), label = "p.signif", hide.ns=TRUE,
+  label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
+
+# probe collapsed genotype
+
+probe_all<-probe_all %>% 
+  filter(!is.na(Coll_Geno))
+
+par(mfrow=c(1,1))
+jpeg("all_probe_AWN_geno_stat.jpeg", units="in", width=7, height=5, res=300) 
+ggplot(data = probe_all, aes(factor(Stage), Winding_numbers)) +
+  geom_violin() + geom_boxplot(width = 0.1) +
+  theme_bw()+ facet_grid(.~Coll_Geno) + 
+  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Coll_Geno)) +
+  labs(title='Winding Number') +
+  stat_compare_means(aes(group = Genotype), label = "p.signif", hide.ns=TRUE,
+  label.y.npc = "bottom", label.x.npc = "left")
+dev.off()  
+
+par(mfrow=c(1,1))
+jpeg("all_probe_NSW_geno_stat.jpeg", units="in", width=7, height=5, res=300)
+ggplot(data = probe_all, aes(factor(Stage), NormSWDist)) +
+  geom_violin() + geom_boxplot(width = 0.1) +
+  theme_bw()+ facet_grid(.~Coll_Geno) + 
+  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Coll_Geno)) +
+  labs(title ='Normalized SW Dist') +
+  stat_compare_means(aes(group = Genotype), label = "p.signif", hide.ns=TRUE,
+  label.y.npc = "bottom", label.x.npc = "left")
+dev.off()
+
+
+
+
 
 # faceted by stage and age as factor
 ggplot(data = probe_e, aes(factor(Age_group), Distance)) +
@@ -932,52 +1172,257 @@ all<-all %>%
 
 
 # AWN basic lines
+emm_options(pbkrtest.limit = 7000)
+
 mod_1_awn_basic<-lmer(Winding_numbers~factor(Genotype)*Sex*Age_group+Stage+(1|AnimalID), e_trials_ctrl)
-mix_1_wn<-emmeans(mod_1_awn_basic, "Age_group", adjust = "Tukey")
-#pairs(mod_1_awn_basic)
+mix_1_wn<-emmeans(mod_1_awn_basic, "Sex", adjust = "Tukey")
+pairs(mix_1_wn)
+mix_1_wn_geno<-emmeans(mod_1_awn_basic, "Genotype", adjust = "Tukey")
+pairs(mix_1_wn_geno)
+mix_1_wn_age<-emmeans(mod_1_awn_basic, "Age_group", adjust = "Tukey")
+pairs(mix_1_wn_age)
 a1_a<-anova(mod_1_awn_basic)
 a1_a
 
-# AWN
-mod_1_wn<-lmer(Winding_numbers~factor(Coll_Geno)*Sex*Age_group+Stage+line_factor+(1|AnimalID), all)
-mix_1_wn<-emmeans(mod_1_wn, "Age_group", adjust = "Tukey")
+# AWN basic lines full model
+mod_1_awn_basic<-lmer(Winding_numbers~factor(Genotype)*Sex*Age_group+Stage+Diet_x+(1|AnimalID), e_trials)
+mix_1_wn<-emmeans(mod_1_awn_basic, "Sex", adjust = "Tukey")
 pairs(mix_1_wn)
+mix_1_wn_geno<-emmeans(mod_1_awn_basic, "Genotype", adjust = "Tukey")
+pairs(mix_1_wn_geno)
+mix_1_wn_age<-emmeans(mod_1_awn_basic, "Age_group", adjust = "Tukey")
+pairs(mix_1_wn_age)
+mix_1_wn_age<-emmeans(mod_1_awn_basic, "Diet_x", adjust = "Tukey")
+pairs(mix_1_wn_age)
+a1_a<-anova(mod_1_awn_basic)
+a1_a
+
+# AWN HN lines full model
+mod_1_awn_hn<-lmer(Winding_numbers~factor(Genotype)*Sex*Age_group+Stage+Diet_x+(1|AnimalID), hn_trials)
+mix_1_wn<-emmeans(mod_1_awn_hn, "Sex", adjust = "Tukey")
+pairs(mix_1_wn)
+mix_1_wn_geno<-emmeans(mod_1_awn_hn, "Genotype", adjust = "Tukey")
+pairs(mix_1_wn_geno)
+mix_1_wn_age<-emmeans(mod_1_awn_hn, "Age_group", adjust = "Tukey")
+pairs(mix_1_wn_age)
+mix_1_wn_age<-emmeans(mod_1_awn_hn, "Diet_x", adjust = "Tukey")
+pairs(mix_1_wn_age)
+a1_a<-anova(mod_1_awn_hn)
+a1_a
+
+# AWN full model
+mod_1_wn<-lmer(Winding_numbers~factor(Coll_Geno)*Sex*Age_group+Stage+line_factor+Diet_x+(1|AnimalID), all)
+mix_1_wn_sex<-emmeans(mod_1_wn, "Sex", adjust = "Tukey")
+pairs(mix_1_wn_sex)
+mix_1_wn_CollGeno<-emmeans(mod_1_wn, "Coll_Geno", adjust = "Tukey")
+pairs(mix_1_wn_CollGeno)
+mix_1_wn_Age<-emmeans(mod_1_wn, "Age_group", adjust = "Tukey")
+pairs(mix_1_wn_Age)
+mix_1_wn_Line<-emmeans(mod_1_wn, "line_factor", adjust = "Tukey")
+pairs(mix_1_wn_Line)
+mix_1_wn_Diet<-emmeans(mod_1_wn, "Diet_x", adjust = "Tukey")
+pairs(mix_1_wn_Diet)
 a1<-anova(mod_1_wn)
 a1
 
-# Total distance
-mod_1_dist<-lmer(Distance~factor(Coll_Geno)*Sex*Age_group+Stage+line_factor+(1|AnimalID), all)
-mix_1_dist<-emmeans(mod_1_dist, "Coll_Geno", adjust = "Tukey")
+# AWN hn lines
+mod_1_wn_hn<-lmer(Winding_numbers~factor(Genotype)*Sex*Age_group+Stage+(1|AnimalID), hn_trials_ctrl)
+mix_1_wn_sex_hn<-emmeans(mod_1_wn_hn, "Sex", adjust = "Tukey")
+pairs(mix_1_wn_sex_hn)
+mix_1_wn_Genotype_hn<-emmeans(mod_1_wn_hn, "Genotype", adjust = "Tukey")
+pairs(mix_1_wn_Genotype_hn)
+mix_1_wn_Age_hn<-emmeans(mod_1_wn_hn, "Age_group", adjust = "Tukey")
+pairs(mix_1_wn_Age_hn)
+a1_hn<-anova(mod_1_wn_hn)
+a1_hn
+
+# Total distance full model
+mod_1_dist<-lmer(Distance~factor(Coll_Geno)*Sex*Age_group+Stage+Diet_x+line_factor+(1|AnimalID), all)
+mix_1_dist<-emmeans(mod_1_dist, "Sex", adjust = "Tukey")
 pairs(mix_1_dist)
+mix_1_dist_CollGeno<-emmeans(mod_1_dist, "Coll_Geno", adjust = "Tukey")
+pairs(mix_1_dist_CollGeno)
+mix_1_dist_Age<-emmeans(mod_1_dist, "Age_group", adjust = "Tukey")
+pairs(mix_1_dist_Age)
+mix_1_dist_line<-emmeans(mod_1_dist, "line_factor", adjust = "Tukey")
+pairs(mix_1_dist_line)
+mix_1_dist_diet<-emmeans(mod_1_dist, "Diet_x", adjust = "Tukey")
+pairs(mix_1_dist_diet)
 a2<-anova(mod_1_dist)
 a2
 
-# New Metric
-mod_1_newM<-lmer(NewM~factor(Coll_Geno)*Sex*Age_group+Stage+line_factor+(1|AnimalID), all)
-mix_1_newM<-emmeans(mod_1_newM, "Coll_Geno", adjust = "Tukey")
-pairs(mix_1_newM)
-a3<-anova(mod_1_newM)
-a3
+# Total Distance basic lines
+mod_1_dist_basic <-lmer(Distance~factor(Genotype)*Sex*Age_group+Stage+Diet_x+(1|AnimalID), e_trials)
+mix_1_dist_basic <-emmeans(mod_1_dist_basic, "Sex", adjust = "Tukey")
+pairs(mix_1_dist_basic)
+mix_1_dist_basic_Geno<-emmeans(mod_1_dist_basic, "Genotype", adjust = "Tukey")
+pairs(mix_1_dist_basic_Geno)
+mix_1_dist_Age<-emmeans(mod_1_dist_basic, "Age_group", adjust = "Tukey")
+pairs(mix_1_dist_Age)
+mix_1_dist_Diet<-emmeans(mod_1_dist_basic, "Diet_x", adjust = "Tukey")
+pairs(mix_1_dist_Diet)
+a2_dist_basic<-anova(mod_1_dist_basic)
+a2_dist_basic
 
-# Norm SW Distance
-mod_1_normSW<-lmer(NormSWDist~factor(Coll_Geno)*Sex*Age_group+Stage+line_factor+(1|AnimalID), all)
-mix_1_normSW<-emmeans(mod_1_normSW, "Coll_Geno", adjust = "Tukey")
-pairs(mix_1_normSW)
+# Total Distance HN lines
+mod_1_dist_hn <-lmer(Distance~factor(Genotype)*Sex*Age_group+Stage+Diet_x+(1|AnimalID), hn_trials)
+mix_1_dist_hn <-emmeans(mod_1_dist_hn, "Sex", adjust = "Tukey")
+pairs(mix_1_dist_hn)
+mix_1_dist_hn_Geno<-emmeans(mod_1_dist_hn, "Genotype", adjust = "Tukey")
+pairs(mix_1_dist_hn_Geno)
+mix_1_dist_Age<-emmeans(mod_1_dist_hn, "Age_group", adjust = "Tukey")
+pairs(mix_1_dist_Age)
+mix_1_dist_Diet<-emmeans(mod_1_dist_hn, "Diet_x", adjust = "Tukey")
+pairs(mix_1_dist_Diet)
+a2_dist_hn<-anova(mod_1_dist_hn)
+a2_dist_hn
+
+
+
+# Norm SW Distance full model
+mod_1_normSW<-lmer(NormSWDist~factor(Coll_Geno)*Sex*Age_group+Stage+line_factor+Diet_x+(1|AnimalID), all)
+mix_1_normSW_Age<-emmeans(mod_1_normSW, "Age_group", adjust = "Tukey")
+pairs(mix_1_normSW_Age)
+mix_1_normSW_CollGeno<-emmeans(mod_1_normSW, "Coll_Geno", adjust = "Tukey")
+pairs(mix_1_normSW_CollGeno)
+mix_1_normSW_Sex<-emmeans(mod_1_normSW, "Sex", adjust = "Tukey")
+pairs(mix_1_normSW_Sex)
+mix_1_normSW_line<-emmeans(mod_1_normSW, "line_factor", adjust = "Tukey")
+pairs(mix_1_normSW_line)
+mix_1_normSW_diet<-emmeans(mod_1_normSW, "Diet_x", adjust = "Tukey")
+pairs(mix_1_normSW_diet)
 a4<-anova(mod_1_normSW)
 a4
 
+# NSW basic full model
+mod_1_normSW_basic<-lmer(NormSWDist~factor(Genotype)*Sex*Age_group+Stage+Diet_x+(1|AnimalID), e_trials)
+mix_1_normSW_Age<-emmeans(mod_1_normSW_basic, "Age_group", adjust = "Tukey")
+pairs(mix_1_normSW_Age)
+mix_1_normSW_Geno<-emmeans(mod_1_normSW_basic, "Genotype", adjust = "Tukey")
+pairs(mix_1_normSW_Geno)
+mix_1_normSW_Sex<-emmeans(mod_1_normSW_basic, "Sex", adjust = "Tukey")
+pairs(mix_1_normSW_Sex)
+mix_1_normSW_diet<-emmeans(mod_1_normSW_basic, "Diet_x", adjust = "Tukey")
+pairs(mix_1_normSW_diet)
+a4<-anova(mod_1_normSW_basic)
+a4
+
+
+# NSW HN full model
+mod_1_normSW_hn<-lmer(NormSWDist~factor(Genotype)*Sex*Age_group+Stage+Diet_x+(1|AnimalID), hn_trials)
+mix_1_normSW_Age<-emmeans(mod_1_normSW_hn, "Age_group", adjust = "Tukey")
+pairs(mix_1_normSW_Age)
+mix_1_normSW_Geno<-emmeans(mod_1_normSW_hn, "Genotype", adjust = "Tukey")
+pairs(mix_1_normSW_Geno)
+mix_1_normSW_Sex<-emmeans(mod_1_normSW_hn, "Sex", adjust = "Tukey")
+pairs(mix_1_normSW_Sex)
+mix_1_normSW_diet<-emmeans(mod_1_normSW_hn, "Diet_x", adjust = "Tukey")
+pairs(mix_1_normSW_diet)
+a4<-anova(mod_1_normSW_hn)
+a4
+
+
 # within day 5 and within day 8
-mod_probe<-lme(NormSWDist~factor(Genotype)*Treatment.y+Stage, probe_trials)
 
-mix_reg<-emmeans(mod_reg, "Genotype", adjust = "Tukey")
-mix_probe<-emmeans(mod_probe, "Genotype", adjust = "Tukey")
+basic_day5<-probe_e %>% 
+  filter(Stage=='Probe_D5')
 
-pairs(mix_reg)
-pairs(mix_probe)
+basic_day8<-probe_e %>% 
+  filter(Stage=='Probe_D8')
 
-a1<-anova(mod_reg)
-a2<-anova(mod_probe)
+hn_day5<-probe_hn%>% 
+  filter(Stage=='Probe_D5')
 
-a1
-a2
+hn_day8<-probe_hn%>% 
+  filter(Stage=='Probe_D8')
+
+pooled_day5<-probe_all%>% 
+  filter(Stage=='Probe_D5')
+
+pooled_day8<-probe_all %>% 
+  filter(Stage=='Probe_D8')
+
+library(lme4)
+
+lm_pre<-lm(Pct.Total.Time.Freezing~Treatment+factor(Coll_Geno)*Sex*Age_group+Treatment, pretone)
+
+mod_probe_d5_basic_NSW<-lm(NormSWDist~factor(Genotype)*Sex*Age_group+Diet_x, basic_day5)
+mod_probe_d5_hn_NSW<-lm(NormSWDist~factor(Genotype)*Sex*Age_group+Diet_x, hn_day5)
+mod_probe_d5_pooled_NSW<-lm(NormSWDist~factor(Coll_Geno)*Sex*Age_group+Diet_x, pooled_day5)
+
+mod_probe_d5_basic_AWN<-lm(Winding_numbers~factor(Genotype)*Sex*Age_group*Diet_x, basic_day5)
+mod_probe_d5_hn_AWN<-lm(Winding_numbers~factor(Genotype)*Sex*Age_group*Diet_x, hn_day5)
+mod_probe_d5_pooled_AWN<-lm(Winding_numbers~factor(Coll_Geno)*Sex*Age_group*Diet_x, pooled_day5)
+
+mod_probe_d8_basic_NSW<-lm(NormSWDist~factor(Genotype)*Sex*Age_group+Diet_x, basic_day8)
+mod_probe_d8_hn_NSW<-lm(NormSWDist~factor(Genotype)*Sex*Age_group+Diet_x, hn_day8)
+mod_probe_d8_pooled_NSW<-lm(NormSWDist~factor(Coll_Geno)*Sex*Age_group+Diet_x, pooled_day8)
+
+mod_probe_d8_basic_AWN<-lm(Winding_numbers~factor(Genotype)*Sex*Age_group*Diet_x, basic_day8)
+mod_probe_d8_hn_AWN<-lm(Winding_numbers~factor(Genotype)*Sex*Age_group*Diet_x, hn_day8)
+mod_probe_d8_pooled_AWN<-lm(Winding_numbers~factor(Coll_Geno)*Sex*Age_group*Diet_x, pooled_day8)
+
+mix_basic_d5_NSW<-emmeans(mod_probe_d5_basic_NSW, "Genotype", adjust = "Tukey")
+mix_hn_d5_NSW<-emmeans(mod_probe_d5_hn_NSW, "Genotype", adjust = "Tukey")
+mix_pooled_d5_NSW<-emmeans(mod_probe_d5_pooled_NSW, "Coll_Geno", adjust = "Tukey")
+
+mix_basic_d5_AWN<-emmeans(mod_probe_d5_basic_AWN, "Genotype", adjust = "Tukey")
+mix_hn_d5_AWN<-emmeans(mod_probe_d5_hn_AWN, "Genotype", adjust = "Tukey")
+mix_pooled_d5_AWN<-emmeans(mod_probe_d5_pooled_AWN, "Coll_Geno", adjust = "Tukey")
+
+mix_basic_d8_NSW<-emmeans(mod_probe_d8_basic_NSW, "Genotype", adjust = "Tukey")
+mix_hn_d8_NSW<-emmeans(mod_probe_d8_hn_NSW, "Genotype", adjust = "Tukey")
+mix_pooled_d8_NSW<-emmeans(mod_probe_d8_pooled_NSW, "Coll_Geno", adjust = "Tukey")
+
+mix_basic_d8_AWN<-emmeans(mod_probe_d8_basic_AWN, "Genotype", adjust = "Tukey")
+mix_hn_d8_AWN<-emmeans(mod_probe_d8_hn_AWN, "Genotype", adjust = "Tukey")
+mix_pooled_d8_AWN<-emmeans(mod_probe_d8_pooled_AWN, "Coll_Geno", adjust = "Tukey")
+
+pairs(mix_basic_d5_NSW)
+pairs(mix_hn_d5_NSW)
+pairs(mix_pooled_d5_NSW)
+
+pairs(mix_basic_d5_AWN)
+pairs(mix_hn_d5_AWN)
+pairs(mix_pooled_d5_AWN)
+
+pairs(mix_basic_d8_NSW)
+pairs(mix_hn_d8_NSW)
+pairs(mix_pooled_d8_NSW)
+
+pairs(mix_basic_d8_AWN)
+pairs(mix_hn_d8_AWN)
+pairs(mix_pooled_d8_AWN)
+
+a1_d5_basic_NSW<-anova(mod_probe_d5_basic_NSW)
+a1_d5_hn_NSW<-anova(mod_probe_d5_hn_NSW)
+a1_d5_pooled_NSW<-anova(mod_probe_d5_pooled_NSW)
+
+a1_d5_basic_AWN<-anova(mod_probe_d5_basic_AWN)
+a1_d5_hn_AWN<-anova(mod_probe_d5_hn_AWN)
+a1_d5_pooled_AWN<-anova(mod_probe_d5_pooled_AWN)
+
+a1_d8_basic_NSW<-anova(mod_probe_d8_basic_NSW)
+a1_d8_hn_NSW<-anova(mod_probe_d8_hn_NSW)
+a1_d8_pooled_NSW<-anova(mod_probe_d8_pooled_NSW)
+
+a1_d8_basic_AWN<-anova(mod_probe_d8_basic_AWN)
+a1_d8_hn_AWN<-anova(mod_probe_d8_hn_AWN)
+a1_d8_pooled_AWN<-anova(mod_probe_d8_pooled_AWN)
+
+a1_d5_basic_NSW
+a1_d5_hn_NSW
+a1_d5_pooled_NSW
+
+a1_d5_basic_AWN
+a1_d5_hn_AWN
+a1_d5_pooled_AWN
+
+a1_d8_basic_NSW
+a1_d8_hn_NSW
+a1_d8_pooled_NSW
+
+a1_d8_basic_AWN
+a1_d8_hn_AWN
+a1_d8_pooled_AWN
 ```
