@@ -227,7 +227,7 @@ all_day2<-all_day2 %>%
     Component.Name == 'Day2_Exploration' ~ '3: Post-Tone'
   ))
 
-#write.csv(all_day0, '/Users/AnnaMacFarlane/Desktop/FC_day0_data.csv')
+write.csv(all_day1, '/Users/AnnaMacFarlane/Desktop/FC_day1_data.csv')
 
 ```
 
@@ -648,6 +648,47 @@ ggline(day0_hn_age, x='Time', y='Pct.Total.Time.Freezing',
 dev.off()
 
 # HN plot for sex day 0
+
+all_day0<-all_day0 %>% 
+mutate(Coll_Geno = case_when(
+    Genotype == 'APOE22' ~ '22 + 22HN',
+    Genotype == 'APOE22HN' ~ '22 + 22HN',
+    Genotype == 'APOE33' ~ '33 + 33HN',
+    Genotype == 'APOE33HN' ~ '33 + 33HN',
+    Genotype == 'APOE44' ~ '44 + 44HN',
+    Genotype == 'APOE44HN' ~ '44 + 44HN'
+  )) 
+  
+coll_day0 <- all_day0 %>% 
+  filter(!is.na(Animal_ID)) %>% 
+  filter(!is.na(Coll_Geno)) %>% 
+  filter(Time == 1 |
+           Time == 2 |
+           Time == 3)  %>%  
+  filter(!is.na(Sex)) %>% 
+  filter(!is.na(Treatment)) %>%
+  filter(!is.na(Age_group)) %>% 
+  filter(!is.na(Sex)) %>% 
+  group_by(Coll_Geno, Sex, Time, Pct.Total.Time.Freezing) %>% 
+  summarise(n=n(),
+            se = sd(Pct.Total.Time.Freezing, na.rm=TRUE)/sqrt(n),
+            len = mean(Pct.Total.Time.Freezing))   
+            
+par(mfrow=c(1,1))
+jpeg("day0_coll_facetGeno_Sex.jpeg", units="in", width=7, height=5, res=300) 
+ggline(coll_day0, x='Time', y='Pct.Total.Time.Freezing',
+       color='Sex', fill='Sex', facet.by=c('Coll_Geno'), 
+       error.plot='errorbar', add='mean_se',
+       palette = c("red", "blue"), size=1,
+       point.size=1.5, legend='top', title='Learning Curve') +
+       stat_compare_means(aes(group = Sex), label = "p.signif", hide.ns=TRUE,
+       label.y.npc = "bottom", label.x.npc = "left")
+dev.off()          
+            
+            
+            
+            
+            
        
 day0_hn_sex <-all_day0 %>% 
   filter(!is.na(Animal_ID)) %>% 
@@ -719,6 +760,15 @@ day0_HFD<-day0_lmer %>%
   filter(Treatment=='HFD')
 day0_control<-day0_lmer %>% 
   filter(Treatment=='Control')
+
+
+  
+mod1_coll<-lmer(Pct.Total.Time.Freezing~factor(Coll_Geno)*Sex*Age_group+Time+Treatment+(1|Animal_ID), all_day0)
+mix1_Coll<-emmeans(mod1_coll, "Coll_Geno", adjust = "Tukey")
+pairs(mix1_Coll)
+a1_coll<-anova(mod1_coll)
+a1_coll
+  
 
 mod1<-lmer(Pct.Total.Time.Freezing~factor(Genotype)*Time+(1|Animal_ID), day0_HFD)
 mod2<-lmer(Pct.Total.Time.Freezing~factor(Genotype)*Time+(1|Animal_ID), day0_control)
@@ -1006,19 +1056,57 @@ day1_violin<-all_day1 %>%
   filter(!is.na(Coll_Geno)) %>% 
   filter(!is.na(Sex)) %>% 
   filter(!is.na(Age_group)) %>% 
-  select(Pct.Total.Time.Freezing, Age_group, Sex, Coll_Geno) 
+  select(Pct.Total.Time.Freezing, Age_group, Sex, Treatment, Coll_Geno) 
+  
+all_day1 <- all_day1 %>% 
+  mutate(Coll_Geno = case_when(
+    Genotype == 'APOE22' ~ '22 + 22HN',
+    Genotype == 'APOE22HN' ~ '22 + 22HN',
+    Genotype == 'APOE33' ~ '33 + 33HN',
+    Genotype == 'APOE33HN' ~ '33 + 33HN',
+    Genotype == 'APOE44' ~ '44 + 44HN',
+    Genotype == 'APOE44HN' ~ '44 + 44HN'
+  ))
   
 par(mfrow=c(1,1))
-jpeg("day1_coll_violin_facetGeno_sexAge.jpeg", units="in", width=7, height=5, res=300) 
+jpeg("day1_coll_violin_facetGeno_Sex.jpeg", units="in", width=7, height=5, res=300) 
+ggplot(data = day1_violin, aes(factor(Sex), Pct.Total.Time.Freezing)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1) +
+  theme_bw()+
+  facet_grid(.~Coll_Geno) + 
+  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Sex)) +
+  scale_color_manual(values = c("red", "blue")) +
+  labs(y = "Mean Percent Freezing Time", x='') +
+  labs(title='Contextual Test')
+dev.off()  
+
+par(mfrow=c(1,1))
+jpeg("day1_coll_violin_facetGeno_Diet.jpeg", units="in", width=7, height=5, res=300) 
+ggplot(data = day1_violin, aes(factor(Treatment), Pct.Total.Time.Freezing)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1) +
+  theme_bw()+
+  facet_grid(.~Coll_Geno) + 
+  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Treatment)) +
+  scale_color_manual(values = c("orange", "dark blue")) +
+  labs(y = "Mean Percent Freezing Time", x='') +
+  labs(title='Contextual Test')
+dev.off() 
+
+
+par(mfrow=c(1,1))
+jpeg("day1_coll_violin_facetGeno_Age.jpeg", units="in", width=7, height=5, res=300) 
 ggplot(data = day1_violin, aes(factor(Age_group), Pct.Total.Time.Freezing)) +
   geom_violin() +
   geom_boxplot(width = 0.1) +
   theme_bw()+
-  facet_grid(Sex~Coll_Geno) + 
-  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Coll_Geno)) +
+  facet_grid(.~Coll_Geno) + 
+  geom_jitter(height = 0, width = 0.3, size = 0.7, aes(color = Age_group)) +
+  scale_color_manual(values = c("purple", "green")) +
   labs(y = "Mean Percent Freezing Time", x='') +
   labs(title='Contextual Test')
-dev.off()  
+dev.off() 
 
 ```
 
@@ -1038,6 +1126,14 @@ day1_hfd<-day1_lm %>%
   filter(Treatment=="HFD")
 day1_ctrl<-day1_lm %>% 
   filter(Treatment=="Control")
+  
+lm1_coll<-lm(Pct.Total.Time.Freezing~factor(Coll_Geno)*Sex*Age_group+Treatment, all_day1)
+model1_coll<-emmeans(lm1_coll, "Coll_Geno", adjust = "Tukey")
+pairs(model1_coll)
+a_day1<- anova(lm1_coll)
+a_day1
+
+
 
 lm1_hfd <-lm(Pct.Total.Time.Freezing~factor(Genotype), day1_hfd)
 lm1_ctrl <-lm(Pct.Total.Time.Freezing~factor(Genotype), day1_ctrl)
@@ -1248,7 +1344,18 @@ day2_violin_coll<-all_day2 %>%
   filter(!is.na(Age_group))  %>% 
   filter(!is.na(Sex)) %>% 
   filter(!is.na(Coll_Geno)) %>% 
-  select(comp, Age_group, Sex, Pct.Total.Time.Freezing, Coll_Geno)
+  select(comp, Age_group, Sex, Treatment, Pct.Total.Time.Freezing, Coll_Geno)
+  
+  
+all_day2<-all_day2 %>% 
+mutate(Coll_Geno = case_when(
+    Genotype == 'APOE22' ~ '22 + 22HN',
+    Genotype == 'APOE22HN' ~ '22 + 22HN',
+    Genotype == 'APOE33' ~ '33 + 33HN',
+    Genotype == 'APOE33HN' ~ '33 + 33HN',
+    Genotype == 'APOE44' ~ '44 + 44HN',
+    Genotype == 'APOE44HN' ~ '44 + 44HN'
+  ))
   
 before_during_coll <- day2_violin_coll %>% 
   filter(comp=='1: Pre-Tone' | comp=='2: Tone')  
@@ -1281,6 +1388,22 @@ ggplot(data = before_during_coll, aes(factor(Coll_Geno), Pct.Total.Time.Freezing
   labs(title="Cue Learning")
 dev.off()
   
+# collapsed geno before and during tone for diet  
+par(mfrow=c(1,1))
+jpeg("day2_violin_facetDiet.jpeg", units="in", width=7, height=5, res=300) 
+ggplot(data = before_during_coll, aes(factor(Coll_Geno), Pct.Total.Time.Freezing)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1) +
+  facet_grid(Treatment~comp) +
+  theme_bw()+
+  geom_jitter(height = 0, width = 0.3, aes(color = Coll_Geno)) +
+  labs(y = "Mean Percent Freezing Time", x='') +
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.5))+
+  labs(title="Cue Learning")
+dev.off()
+
+
+
 
 ggplot(data = pre, aes(factor(Genotype), Pct.Total.Time.Freezing)) +
   geom_violin() +
@@ -1410,6 +1533,58 @@ hfd_2<-day2_lm %>%
   filter(Treatment=="HFD")
 control_2<-day2_lm %>% 
   filter(Treatment=='Control')
+ 
+ 
+all_day2<-all_day2 %>% 
+mutate(Coll_Geno = case_when(
+    Genotype == 'APOE22' ~ '22 + 22HN',
+    Genotype == 'APOE22HN' ~ '22 + 22HN',
+    Genotype == 'APOE33' ~ '33 + 33HN',
+    Genotype == 'APOE33HN' ~ '33 + 33HN',
+    Genotype == 'APOE44' ~ '44 + 44HN',
+    Genotype == 'APOE44HN' ~ '44 + 44HN'
+  ))
+  
+  
+pretone<-all_day2 %>% 
+  filter(comp=='1: Pre-Tone')
+tone<-all_day2 %>% 
+  filter(comp=='2: Tone')
+posttone<-all_day2 %>% 
+  filter(comp=='3: Post-Tone')
+  
+  
+lm_pre<-lm(Pct.Total.Time.Freezing~Treatment+factor(Coll_Geno)*Sex*Age_group+Treatment, pretone)
+lm_t<-lm(Pct.Total.Time.Freezing~Treatment+factor(Coll_Geno)*Sex*Age_group+Treatment, tone)
+lm_post<-lm(Pct.Total.Time.Freezing~Treatment+factor(Coll_Geno)*Sex*Age_group+Treatment, posttone)  
+  
+model_pre<-emmeans(lm_pre, "Coll_Geno", adjust = "Tukey")
+pairs(model_pre)  
+
+model_tone<-emmeans(lm_t, "Coll_Geno", adjust = "Tukey")
+pairs(model_tone)  
+
+model_post<-emmeans(lm_post, "Coll_Geno", adjust = "Tukey")
+pairs(model_post)  
+  
+
+a_pre<-anova(lm_pre)
+a_pre
+
+a_tone<-anova(lm_t)
+a_tone
+
+a_post<-anova(lm_post)
+a_post
+
+
+  
+  
+lm_day2<-lm(Pct.Total.Time.Freezing~Treatment+factor(Coll_Geno)*Sex*Age_group+Treatment, all_day2) 
+model_day2<-emmeans(lm_day2, "Coll_Geno", adjust = "Tukey")
+pairs(model_day2)
+a_day2<-anova(lm_day2)
+a_day2
 
 lm_pre<-lm(Pct.Total.Time.Freezing~Treatment+factor(Genotype), pretone)
 lm_t<-lm(Pct.Total.Time.Freezing~Treatment+factor(Genotype), tone)
